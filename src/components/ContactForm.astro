@@ -21,12 +21,17 @@ import { SITE } from '@lib/site';
   </div>
 
   <div class="field">
+    <label for="cf-subject">Subject</label>
+    <input id="cf-subject" name="subject" type="text" required />
+  </div>
+
+  <div class="field">
     <label for="cf-message">Message</label>
     <textarea id="cf-message" name="message" rows="5" required></textarea>
   </div>
 
   <button type="submit" class="btn btn-primary w-full justify-center">Send message</button>
-  <p class="contact-hint">Opens your email app with this message ready to send to {SITE.contactEmail}.</p>
+  <p class="contact-hint">We handle your details strictly to answer your message. Read our privacy policy. No marketing consent or registration required.</p>
 </form>
 
 <style>
@@ -65,10 +70,10 @@ import { SITE } from '@lib/site';
     const data = new FormData(form);
     const name = String(data.get('name') ?? '').trim();
     const email = String(data.get('email') ?? '').trim();
+    const subject = String(data.get('subject') ?? '').trim();
     const message = String(data.get('message') ?? '').trim();
 
     const to = (form.dataset.to ?? '').trim();
-    const subject = `New message from ${name}`;
     const body = `${message}\n\n—\n${name}\n${email}`;
 
     const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
