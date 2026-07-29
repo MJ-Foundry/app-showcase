@@ -5,7 +5,7 @@ import AppIcon from '@components/AppIcon.astro';
 import StatusBadge from '@components/StatusBadge.astro';
 import Tag from '@components/Tag.astro';
 import AppCard from '@components/AppCard.astro';
-import { getApps, relatedApps, relativeDate, isoDate } from '@lib/apps';
+import { getApps, relatedApps } from '@lib/apps';
 import { withBase } from '@lib/url';
 
 export async function getStaticPaths() {
@@ -22,7 +22,6 @@ const { Content } = await render(app);
 const externalLinks = [
   d.links.demo && { label: 'Live demo', href: d.links.demo, icon: '↗', primary: true },
   d.links.website && { label: 'Website', href: d.links.website, icon: '↗', primary: !d.links.demo },
-  d.links.repo && { label: 'GitHub repo', href: d.links.repo, icon: '⌥', primary: false },
 ].filter(Boolean) as { label: string; href: string; icon: string; primary: boolean }[];
 
 const [from, to] = d.accent;
@@ -139,20 +138,12 @@ const [from, to] = d.accent;
           <div><dt>Status</dt><dd><StatusBadge status={d.status} /></dd></div>
           <div><dt>Category</dt><dd>{d.category}</dd></div>
           <div><dt>Access</dt><dd>{d.access}</dd></div>
-          <div><dt>Updated</dt><dd><time datetime={isoDate(d.updated)}>{relativeDate(d.updated)}</time></dd></div>
         </dl>
 
         {d.platforms.length > 0 && (
           <div class="side-block">
             <h3 class="side-subtitle">Platforms</h3>
             <div class="flex flex-wrap gap-1.5">{d.platforms.map((p) => <Tag>{p}</Tag>)}</div>
-          </div>
-        )}
-
-        {d.tech.length > 0 && (
-          <div class="side-block">
-            <h3 class="side-subtitle">Tech stack</h3>
-            <div class="flex flex-wrap gap-1.5">{d.tech.map((t) => <Tag variant="accent">{t}</Tag>)}</div>
           </div>
         )}
 

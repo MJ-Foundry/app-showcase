@@ -15,7 +15,6 @@ featured: false
 order: 5
 updated: 2026-05-19
 links:
-  repo: 'https://github.com/marcus/signal'
   demo: 'https://example.com/signal'
 features:
   - 'One-binary deploy, no dependencies'

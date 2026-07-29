@@ -30,7 +30,7 @@ const isActive = (href: string) => current === href.replace(/\/$/, '');
         </svg>
       </span>
       <span class="text-[0.98rem] font-semibold tracking-tight">
-        {SITE.name}<span class="text-[var(--color-faint)]"> / {SITE.brand}</span>
+        {SITE.name}
       </span>
     </a>
 
@@ -45,7 +45,6 @@ const isActive = (href: string) => current === href.replace(/\/$/, '');
           {l.label}
         </a>
       ))}
-      <a href={SITE.github} class="nav-link" rel="noopener noreferrer" target="_blank">GitHub</a>
     </nav>
 
     <!-- Actions -->
@@ -89,7 +88,6 @@ const isActive = (href: string) => current === href.replace(/\/$/, '');
       {links.map((l) => (
         <a href={l.href} class="mobile-link">{l.label}</a>
       ))}
-      <a href={SITE.github} class="mobile-link" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
       <button type="button" class="mobile-link text-left" data-cmdk-open>Search apps ⌘K</button>
     </nav>
   </div>

@@ -3,16 +3,17 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { SITE } from '@lib/site';
 import { withBase } from '@lib/url';
 import { getApps, categoriesOf, languagesOf } from '@lib/apps';
+import ContactForm from '@components/ContactForm.astro';
 
 const apps = await getApps();
 const categories = categoriesOf(apps);
 const languages = languagesOf(apps);
 
 const principles = [
-  { icon: '✶', title: 'Calm by default', body: 'Software should reduce noise, not add to it. I design for focus, restraint and quiet confidence.' },
+  { icon: '✶', title: 'Calm by default', body: 'Software should reduce noise, not add to it. We design for focus, restraint and quiet confidence.' },
   { icon: '◆', title: 'Craft in the details', body: 'The small things — typography, motion, empty states — are where products earn trust.' },
   { icon: '❍', title: 'Private and durable', body: 'Offline-first and local-first wherever possible. Your data is yours; tools should outlast trends.' },
-  { icon: '▲', title: 'Ship, then refine', body: 'Real usage beats speculation. I release early, listen closely and iterate honestly.' },
+  { icon: '▲', title: 'Ship, then refine', body: 'Real usage beats speculation. We release early, listen closely and iterate honestly.' },
 ];
 ---
 
@@ -22,19 +23,19 @@ const principles = [
       <p class="kicker">Hello 👋</p>
       <h1 class="mt-3 text-4xl md:text-5xl">The studio behind the apps</h1>
       <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
-        I'm {SITE.author} — I design and build small, considered software. This
+        {SITE.name} designs and builds small, considered software. This
         site is a living catalog of that work: {apps.length} apps and counting,
         across {categories.length} categories and {languages.length} languages.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href={SITE.github} class="btn btn-primary" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
-        <a href={SITE.contact} class="btn btn-ghost">Get in touch</a>
+        <a href={withBase('/apps')} class="btn btn-primary">Explore all apps</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
       </div>
     </div>
   </section>
 
   <section class="container-page mt-20">
-    <h2 class="mb-8 text-center text-3xl on-scroll">How I work</h2>
+    <h2 class="mb-8 text-center text-3xl on-scroll">How we work</h2>
     <div class="principles">
       {principles.map((p) => (
         <div class="card card-hover on-scroll p-6">
@@ -46,9 +47,23 @@ const principles = [
     </div>
   </section>
 
+  <section id="contact" class="container-page mt-24 scroll-mt-24">
+    <div class="mx-auto max-w-xl text-center on-scroll">
+      <p class="kicker">Get in touch</p>
+      <h2 class="mt-2 text-3xl md:text-4xl">Contact us</h2>
+      <p class="mx-auto mt-4 max-w-md text-[var(--color-muted)]">
+        Questions, feedback or an idea for a collaboration? Send us a message
+        and we'll get back to you.
+      </p>
+    </div>
+    <div class="mx-auto mt-9 max-w-xl on-scroll">
+      <ContactForm />
+    </div>
+  </section>
+
   <section class="container-page mt-24">
     <div class="cta on-scroll">
-      <h2 class="text-3xl">Curious what I'm building?</h2>
+      <h2 class="text-3xl">Curious what we're building?</h2>
       <p class="mx-auto mt-3 max-w-md text-[var(--color-muted)]">Every project lives in the catalog — have a browse.</p>
       <a href={withBase('/apps')} class="btn btn-primary mt-6">Explore all apps</a>
     </div>

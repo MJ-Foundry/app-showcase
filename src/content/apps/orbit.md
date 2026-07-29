@@ -14,8 +14,6 @@ status: 'Archived'
 featured: false
 order: 10
 updated: 2025-11-08
-links:
-  repo: 'https://github.com/marcus/orbit'
 features:
   - 'Bookmarks as stars in a 3D constellation'
   - 'Clustering by topic and recency'

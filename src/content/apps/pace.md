@@ -15,7 +15,6 @@ featured: true
 order: 3
 updated: 2026-06-28
 links:
-  repo: 'https://github.com/marcus/pace'
   demo: 'https://example.com/pace'
 features:
   - 'Flexible schedules — daily, weekly or "a few times a week"'

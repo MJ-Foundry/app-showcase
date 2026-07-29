@@ -37,25 +37,6 @@ export function relatedApps(app: App, all: App[]): App[] {
     .filter((a): a is App => Boolean(a));
 }
 
-/** Human-friendly relative date, e.g. "3 days ago". */
-export function relativeDate(date: Date, now = new Date()): string {
-  const diff = now.getTime() - date.getTime();
-  const day = 86_400_000;
-  const days = Math.round(diff / day);
-  if (days <= 0) return 'today';
-  if (days === 1) return 'yesterday';
-  if (days < 30) return `${days} days ago`;
-  const months = Math.round(days / 30);
-  if (months < 12) return `${months} month${months > 1 ? 's' : ''} ago`;
-  const years = Math.round(months / 12);
-  return `${years} year${years > 1 ? 's' : ''} ago`;
-}
-
-/** ISO date "2026-06-01" for <time datetime>. */
-export function isoDate(date: Date): string {
-  return date.toISOString().slice(0, 10);
-}
-
 /**
  * Serialize an app to the compact JSON shape consumed by the client-side
  * search/filter island. Keeping this in one place ensures the markup and the

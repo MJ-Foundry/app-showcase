@@ -15,7 +15,6 @@ featured: false
 order: 6
 updated: 2026-06-15
 links:
-  repo: 'https://github.com/marcus/prism'
   demo: 'https://example.com/prism'
 features:
   - 'Perceptually-even scales in OKLCH'

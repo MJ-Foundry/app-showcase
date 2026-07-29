@@ -14,8 +14,6 @@ status: 'Live'
 featured: false
 order: 9
 updated: 2026-03-30
-links:
-  repo: 'https://github.com/marcus/quill'
 features:
   - 'Invoices as version-controllable plain text'
   - 'Themeable templates via Typst'

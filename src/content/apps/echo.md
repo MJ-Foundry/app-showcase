@@ -14,8 +14,6 @@ status: 'Beta'
 featured: false
 order: 4
 updated: 2026-07-02
-links:
-  repo: 'https://github.com/marcus/echo'
 features:
   - 'Cited answers that link back to the exact passage'
   - 'Pluggable local or hosted models'

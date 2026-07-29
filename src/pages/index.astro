@@ -5,6 +5,7 @@ import FeatureCard from '@components/FeatureCard.astro';
 import AppCard from '@components/AppCard.astro';
 import { getApps, getFeaturedApps, categoriesOf } from '@lib/apps';
 import { withBase } from '@lib/url';
+import { SITE } from '@lib/site';
 
 const apps = await getApps();
 const featured = await getFeaturedApps();
@@ -20,7 +21,7 @@ const stats = [
 ];
 ---
 
-<BaseLayout title="Marcus Wallberg — App Studio" path="/">
+<BaseLayout title={SITE.title} path="/">
   <Hero appCount={apps.length} />
 
   <!-- Statistics -->
