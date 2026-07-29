@@ -1,0 +1,35 @@
+---
+/**
+ * StatusBadge — a colored pill communicating an app's development status.
+ * Color carries meaning but is always paired with text + a dot for
+ * accessibility (never color alone).
+ */
+interface Props {
+  status: 'Live' | 'Beta' | 'In Progress' | 'Coming Soon' | 'Archived';
+  class?: string;
+}
+const { status, class: className = '' } = Astro.props;
+
+const styles: Record<Props['status'], string> = {
+  Live: 'bg-[var(--color-mint-100)] text-[var(--color-mint-600)]',
+  Beta: 'bg-[var(--color-sky-100)] text-[var(--color-sky-700)]',
+  'In Progress': 'bg-[var(--color-amber-100)] text-[var(--color-amber-700)]',
+  'Coming Soon': 'bg-iris-100 text-iris-700',
+  Archived: 'bg-[var(--color-line)] text-[var(--color-muted)]',
+};
+---
+
+<span class:list={['pill', styles[status], className]}>
+  <span class="dot" aria-hidden="true"></span>
+  {status}
+</span>
+
+<style>
+  .dot {
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999px;
+    background: currentColor;
+    flex: none;
+  }
+</style>

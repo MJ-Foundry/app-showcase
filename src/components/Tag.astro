@@ -1,0 +1,20 @@
+---
+/**
+ * Tag — a neutral, subtle label used for tags, tech-stack chips and platforms.
+ */
+interface Props {
+  variant?: 'default' | 'accent' | 'outline';
+  class?: string;
+}
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const variants = {
+  default: 'bg-canvas text-[var(--color-muted)] border border-[var(--color-line)]',
+  accent: 'bg-iris-50 text-iris-700',
+  outline: 'text-[var(--color-muted)] border border-[var(--color-line)]',
+} as const;
+---
+
+<span class:list={['pill', variants[variant], className]}>
+  <slot />
+</span>

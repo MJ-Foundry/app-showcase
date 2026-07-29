@@ -1,0 +1,47 @@
+---
+/**
+ * ThemeToggle — light/dark switch. Defaults to light; respects a previously
+ * saved preference. The inline script in BaseLayout applies the theme before
+ * paint to avoid a flash.
+ */
+---
+
+<button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle color theme">
+  <svg class="sun" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7" />
+    <g stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+      <path d="M12 2.5v2.2M12 19.3v2.2M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.4 19.6l1.6-1.6M18 6l1.6-1.6" />
+    </g>
+  </svg>
+  <svg class="moon" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+    <path d="M20 14.5A8 8 0 019.5 4a7 7 0 108.9 10.5c.4-.1.8.3.6.7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+  </svg>
+</button>
+
+<style>
+  .icon-btn {
+    display: inline-grid;
+    place-items: center;
+    height: 2.4rem;
+    width: 2.4rem;
+    border-radius: 999px;
+    color: var(--color-ink);
+    transition: background 0.2s ease;
+  }
+  .icon-btn:hover { background: var(--color-iris-50); }
+  .icon-btn svg { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.25s ease; grid-area: 1 / 1; }
+  .moon { opacity: 0; transform: rotate(-40deg) scale(0.6); }
+  .sun { opacity: 1; }
+  :global([data-theme='dark']) .sun { opacity: 0; transform: rotate(40deg) scale(0.6); }
+  :global([data-theme='dark']) .moon { opacity: 1; transform: none; }
+</style>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  btn?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch {}
+  });
+</script>

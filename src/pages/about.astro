@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE } from '@lib/site';
+import { withBase } from '@lib/url';
+import { getApps, categoriesOf, languagesOf } from '@lib/apps';
+
+const apps = await getApps();
+const categories = categoriesOf(apps);
+const languages = languagesOf(apps);
+
+const principles = [
+  { icon: '✶', title: 'Calm by default', body: 'Software should reduce noise, not add to it. I design for focus, restraint and quiet confidence.' },
+  { icon: '◆', title: 'Craft in the details', body: 'The small things — typography, motion, empty states — are where products earn trust.' },
+  { icon: '❍', title: 'Private and durable', body: 'Offline-first and local-first wherever possible. Your data is yours; tools should outlast trends.' },
+  { icon: '▲', title: 'Ship, then refine', body: 'Real usage beats speculation. I release early, listen closely and iterate honestly.' },
+];
+---
+
+<BaseLayout title="About" description={`About ${SITE.author} and the studio behind these apps.`} path="/about">
+  <section class="container-page pt-16 pb-4">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="kicker">Hello 👋</p>
+      <h1 class="mt-3 text-4xl md:text-5xl">The studio behind the apps</h1>
+      <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
+        I'm {SITE.author} — I design and build small, considered software. This
+        site is a living catalog of that work: {apps.length} apps and counting,
+        across {categories.length} categories and {languages.length} languages.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href={SITE.github} class="btn btn-primary" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
+        <a href={SITE.contact} class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page mt-20">
+    <h2 class="mb-8 text-center text-3xl on-scroll">How I work</h2>
+    <div class="principles">
+      {principles.map((p) => (
+        <div class="card card-hover on-scroll p-6">
+          <span class="principle-icon" aria-hidden="true">{p.icon}</span>
+          <h3 class="mt-4 text-xl">{p.title}</h3>
+          <p class="mt-2 text-[0.95rem] leading-relaxed text-[var(--color-muted)]">{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-page mt-24">
+    <div class="cta on-scroll">
+      <h2 class="text-3xl">Curious what I'm building?</h2>
+      <p class="mx-auto mt-3 max-w-md text-[var(--color-muted)]">Every project lives in the catalog — have a browse.</p>
+      <a href={withBase('/apps')} class="btn btn-primary mt-6">Explore all apps</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .kicker { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-coral-500); }
+  .principles { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+  .principle-icon {
+    display: inline-grid; place-items: center; height: 3rem; width: 3rem; border-radius: 1rem;
+    font-size: 1.4rem; color: var(--color-iris-600); background: var(--color-iris-50); border: 1px solid var(--color-iris-100);
+  }
+  .cta { text-align: center; padding: 4rem 1.5rem; border-radius: var(--radius-3xl); background: var(--color-surface); border: 1px solid var(--color-line); box-shadow: var(--shadow-soft); }
+</style>

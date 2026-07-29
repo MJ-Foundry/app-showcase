@@ -1,0 +1,126 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import FeatureCard from '@components/FeatureCard.astro';
+import AppCard from '@components/AppCard.astro';
+import { getApps, getFeaturedApps, categoriesOf } from '@lib/apps';
+import { withBase } from '@lib/url';
+
+const apps = await getApps();
+const featured = await getFeaturedApps();
+const recent = [...apps].sort((a, b) => b.data.updated.getTime() - a.data.updated.getTime()).slice(0, 3);
+const comingSoon = apps.filter((a) => a.data.status === 'Coming Soon');
+
+// App statistics
+const stats = [
+  { label: 'Apps & tools', value: apps.length },
+  { label: 'Live', value: apps.filter((a) => a.data.status === 'Live').length },
+  { label: 'Open source', value: apps.filter((a) => a.data.access === 'Open Source').length },
+  { label: 'Categories', value: categoriesOf(apps).length },
+];
+---
+
+<BaseLayout title="Marcus Wallberg — App Studio" path="/">
+  <Hero appCount={apps.length} />
+
+  <!-- Statistics -->
+  <section class="container-page -mt-4">
+    <dl class="stats card on-scroll">
+      {stats.map((s) => (
+        <div class="stat">
+          <dt class="stat__label">{s.label}</dt>
+          <dd class="stat__value">{s.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Featured -->
+  <section class="container-page mt-24">
+    <header class="section-head on-scroll">
+      <div>
+        <p class="kicker">Spotlight</p>
+        <h2 class="text-3xl md:text-4xl">Featured apps</h2>
+      </div>
+      <a href={withBase('/apps')} class="see-all">View all →</a>
+    </header>
+    <div class="feature-grid">
+      {featured.map((app, i) => <FeatureCard app={app} index={i} />)}
+    </div>
+  </section>
+
+  <!-- Recently updated -->
+  <section class="container-page mt-24">
+    <header class="section-head on-scroll">
+      <div>
+        <p class="kicker">Fresh</p>
+        <h2 class="text-3xl md:text-4xl">Recently updated</h2>
+      </div>
+      <a href={withBase('/apps')} class="see-all">Browse everything →</a>
+    </header>
+    <div class="app-grid">
+      {recent.map((app, i) => <AppCard app={app} index={i} />)}
+    </div>
+  </section>
+
+  <!-- Coming soon -->
+  {comingSoon.length > 0 && (
+    <section class="container-page mt-24">
+      <header class="section-head on-scroll">
+        <div>
+          <p class="kicker">On the horizon</p>
+          <h2 class="text-3xl md:text-4xl">Coming soon</h2>
+        </div>
+      </header>
+      <div class="app-grid">
+        {comingSoon.map((app, i) => <AppCard app={app} index={i} />)}
+      </div>
+    </section>
+  )}
+
+  <!-- CTA band -->
+  <section class="container-page mt-24">
+    <div class="cta on-scroll">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <h2 class="relative text-3xl md:text-4xl">Find your next favorite tool.</h2>
+      <p class="relative mx-auto mt-3 max-w-md text-[var(--color-muted)]">
+        Filter by category, language and platform — or just start typing.
+      </p>
+      <div class="relative mt-7 flex flex-wrap justify-center gap-3">
+        <a href={withBase('/apps')} class="btn btn-primary">Explore all apps</a>
+        <button type="button" class="btn btn-ghost" data-cmdk-open>Quick search ⌘K</button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; padding: 1.5rem 1rem; }
+  @media (min-width: 640px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .stat { text-align: center; padding: 0.5rem; position: relative; }
+  .stat:not(:last-child)::after {
+    content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: var(--color-line);
+  }
+  .stat__value { font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: var(--color-iris-700); letter-spacing: -0.02em; }
+  .stat__label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-faint); margin-bottom: 0.35rem; }
+
+  .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.75rem; }
+  .kicker { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-coral-500); margin-bottom: 0.5rem; }
+  .see-all { flex: none; font-size: 0.9rem; font-weight: 600; color: var(--color-iris-600); transition: color 0.2s ease; }
+  .see-all:hover { color: var(--color-iris-700); }
+
+  .feature-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+  .app-grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); }
+
+  .cta {
+    position: relative; overflow: hidden; text-align: center;
+    padding: 4rem 1.5rem; border-radius: var(--radius-3xl);
+    background: var(--color-surface); border: 1px solid var(--color-line); box-shadow: var(--shadow-soft);
+  }
+  .cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(40rem 20rem at 15% 0%, var(--color-iris-50), transparent 60%),
+      radial-gradient(36rem 20rem at 90% 100%, var(--color-coral-50), transparent 60%);
+  }
+</style>

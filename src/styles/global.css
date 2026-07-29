@@ -1,0 +1,259 @@
+/* ==========================================================================
+   Global stylesheet + design system
+   Tailwind v4 (CSS-first config). Design tokens live in the @theme block so
+   they are usable as utility classes (e.g. bg-canvas, text-iris-500).
+   ========================================================================== */
+
+@import 'tailwindcss';
+
+/* Self-hosted variable fonts (no runtime network requests) */
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/fraunces';
+
+@theme {
+  /* --- Type ------------------------------------------------------------- */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Fraunces Variable', ui-serif, Georgia, 'Times New Roman', serif;
+
+  /* --- Canvas / neutrals ------------------------------------------------ */
+  --color-canvas: #fbfaf8;      /* warm off-white page background */
+  --color-surface: #ffffff;     /* card surfaces */
+  --color-ink: #191720;         /* primary text — deep warm charcoal */
+  --color-muted: #6b6775;       /* secondary text */
+  --color-faint: #9a96a3;       /* tertiary text */
+  --color-line: #ece9e4;        /* hairline borders */
+
+  /* --- Iris (primary accent) -------------------------------------------- */
+  --color-iris-50: #f2f0ff;
+  --color-iris-100: #e7e3ff;
+  --color-iris-200: #d1c9ff;
+  --color-iris-300: #b3a4ff;
+  --color-iris-400: #937bfb;
+  --color-iris-500: #7658f0;
+  --color-iris-600: #6440dd;
+  --color-iris-700: #5432ba;
+  --color-iris-800: #452c97;
+  --color-iris-900: #3a2a7a;
+
+  /* --- Coral (secondary accent) ----------------------------------------- */
+  --color-coral-50: #fff4f0;
+  --color-coral-100: #ffe6dd;
+  --color-coral-200: #ffc9b6;
+  --color-coral-300: #ffa387;
+  --color-coral-400: #ff7a54;
+  --color-coral-500: #f95f34;
+  --color-coral-600: #e2481f;
+
+  /* --- Support colors for status badges --------------------------------- */
+  --color-mint-100: #d8f4e7;
+  --color-mint-600: #0f8a5f;
+  --color-amber-100: #fdeecb;
+  --color-amber-700: #9a6a12;
+  --color-sky-100: #d9ecff;
+  --color-sky-700: #1667b8;
+
+  /* --- Radii ------------------------------------------------------------ */
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2.25rem;
+
+  /* --- Shadows (soft, layered) ------------------------------------------ */
+  --shadow-soft: 0 1px 2px rgba(25, 23, 32, 0.04), 0 8px 24px -12px rgba(25, 23, 32, 0.12);
+  --shadow-lift: 0 2px 4px rgba(25, 23, 32, 0.05), 0 20px 40px -20px rgba(25, 23, 32, 0.22);
+}
+
+/* ==========================================================================
+   Dark theme — light-first, but a considered dark variant is available.
+   Activated by [data-theme="dark"] on <html>.
+   ========================================================================== */
+[data-theme='dark'] {
+  --color-canvas: #131118;
+  --color-surface: #1c1a24;
+  --color-ink: #f4f2f7;
+  --color-muted: #b0acbb;
+  --color-faint: #837f8f;
+  --color-line: #2c2935;
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35), 0 20px 40px -20px rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   Base element styles
+   ========================================================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background: var(--color-iris-200);
+    color: var(--color-iris-900);
+  }
+
+  /* Visible, consistent focus states for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-iris-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+/* ==========================================================================
+   Reusable component utilities
+   ========================================================================== */
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-page { padding-inline: 2rem; }
+  }
+
+  /* Accent gradient text */
+  .text-gradient {
+    background-image: linear-gradient(120deg, var(--color-iris-600), var(--color-coral-500));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Frosted card base */
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.35s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--color-iris-200);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    padding: 0.7rem 1.4rem;
+    transition: transform 0.2s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    cursor: pointer;
+  }
+  .btn:active { transform: scale(0.97); }
+
+  .btn-primary {
+    color: #fff;
+    background-image: linear-gradient(120deg, var(--color-iris-600), var(--color-iris-500));
+    box-shadow: 0 10px 24px -12px var(--color-iris-500);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 14px 30px -12px var(--color-iris-500);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    color: var(--color-ink);
+    background-color: transparent;
+    border: 1px solid var(--color-line);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-iris-300);
+    background-color: var(--color-iris-50);
+  }
+
+  /* Small pill / tag */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.36rem 0.66rem;
+    border-radius: 999px;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* ==========================================================================
+   Entrance animations (respect prefers-reduced-motion via base rule above)
+   ========================================================================== */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(0, -22px) scale(1.04); }
+}
+
+.reveal {
+  opacity: 0;
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.reveal-in {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered delays for grids/lists */
+.delay-1 { animation-delay: 0.06s; }
+.delay-2 { animation-delay: 0.12s; }
+.delay-3 { animation-delay: 0.18s; }
+.delay-4 { animation-delay: 0.24s; }
+.delay-5 { animation-delay: 0.30s; }
+.delay-6 { animation-delay: 0.36s; }
+
+/* Scroll-reveal: hidden until observed (progressive enhancement) */
+.js .on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+.js .on-scroll.is-visible { opacity: 1; transform: none; }

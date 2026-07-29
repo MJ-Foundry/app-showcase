@@ -1,0 +1,348 @@
+---
+import type { App } from '@lib/apps';
+import { categoriesOf, languagesOf, platformsOf } from '@lib/apps';
+import AppCard from './AppCard.astro';
+
+/**
+ * AppExplorer — the interactive "All apps" experience. Cards are rendered on
+ * the server (SEO-friendly, works without JS); the toolbar below is a vanilla
+ * JS island that filters/sorts/searches by toggling card visibility and DOM
+ * order. No framework, no backend.
+ */
+interface Props {
+  apps: App[];
+}
+const { apps } = Astro.props;
+
+const categories = categoriesOf(apps);
+const languages = languagesOf(apps);
+const platforms = platformsOf(apps);
+const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
+---
+
+<section class="explorer" data-explorer>
+  <!-- Toolbar -->
+  <div class="toolbar card on-scroll">
+    <!-- Search -->
+    <div class="search">
+      <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+        <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="1.7" />
+        <path d="M14 14l4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+      </svg>
+      <input
+        type="search"
+        data-search
+        placeholder="Search apps, tech, tags…"
+        aria-label="Search apps"
+        autocomplete="off"
+      />
+      <button type="button" class="clear-search" data-clear-search hidden aria-label="Clear search">✕</button>
+    </div>
+
+    <!-- Sort + favorites -->
+    <div class="toolbar__end">
+      <label class="fav-toggle">
+        <input type="checkbox" data-fav-only />
+        <span>★ Favorites</span>
+      </label>
+      <div class="select-wrap">
+        <label for="sort" class="sr-only">Sort by</label>
+        <select id="sort" data-sort aria-label="Sort apps">
+          <option value="featured">Featured first</option>
+          <option value="recent">Recently updated</option>
+          <option value="name">Name (A–Z)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter facets -->
+  <div class="facets on-scroll">
+    <div class="facet-row" role="group" aria-label="Filter by category">
+      <span class="facet-label">Category</span>
+      <div class="chips">
+        <button type="button" class="chip is-active" data-filter="category" data-value="" aria-pressed="true">All</button>
+        {categories.map((c) => (
+          <button type="button" class="chip" data-filter="category" data-value={c} aria-pressed="false">{c}</button>
+        ))}
+      </div>
+    </div>
+
+    <div class="facet-row" role="group" aria-label="Filter by access">
+      <span class="facet-label">Access</span>
+      <div class="chips">
+        <button type="button" class="chip is-active" data-filter="access" data-value="" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="access" data-value="Open Source" aria-pressed="false">Open Source</button>
+        <button type="button" class="chip" data-filter="access" data-value="Private" aria-pressed="false">Private</button>
+      </div>
+    </div>
+
+    <details class="more-facets">
+      <summary>More filters</summary>
+      <div class="facet-row" role="group" aria-label="Filter by status">
+        <span class="facet-label">Status</span>
+        <div class="chips">
+          {statuses.map((s) => (
+            <button type="button" class="chip chip--multi" data-filter="status" data-value={s} aria-pressed="false">{s}</button>
+          ))}
+        </div>
+      </div>
+      <div class="facet-row" role="group" aria-label="Filter by language">
+        <span class="facet-label">Language</span>
+        <div class="chips">
+          {languages.map((l) => (
+            <button type="button" class="chip chip--multi" data-filter="language" data-value={l} aria-pressed="false">{l}</button>
+          ))}
+        </div>
+      </div>
+      <div class="facet-row" role="group" aria-label="Filter by platform">
+        <span class="facet-label">Platform</span>
+        <div class="chips">
+          {platforms.map((p) => (
+            <button type="button" class="chip chip--multi" data-filter="platform" data-value={p} aria-pressed="false">{p}</button>
+          ))}
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Result count -->
+  <div class="result-bar">
+    <p aria-live="polite" data-count>Showing all {apps.length} apps</p>
+    <button type="button" class="reset-btn" data-reset hidden>Reset filters</button>
+  </div>
+
+  <!-- Grid -->
+  <div class="app-grid" data-grid>
+    {apps.map((app, i) => <AppCard app={app} index={i} />)}
+  </div>
+
+  <!-- Empty state -->
+  <div class="empty-state" data-empty hidden>
+    <div class="empty-icon" aria-hidden="true">◍</div>
+    <h3 class="text-xl">Nothing matches (yet)</h3>
+    <p class="mt-2 max-w-sm text-[var(--color-muted)]">
+      Try loosening a filter or clearing your search — your perfect app might be one tweak away.
+    </p>
+    <button type="button" class="btn btn-ghost mt-5" data-reset>Reset all filters</button>
+  </div>
+</section>
+
+<style>
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  .toolbar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
+    padding: 0.85rem 0.95rem; margin-bottom: 1.25rem;
+  }
+  .search { display: flex; align-items: center; gap: 0.6rem; flex: 1 1 16rem; color: var(--color-faint); padding-left: 0.35rem; }
+  .search input { flex: 1; border: none; outline: none; background: transparent; font-size: 1rem; color: var(--color-ink); }
+  .search input::-webkit-search-cancel-button { display: none; }
+  .clear-search { color: var(--color-faint); font-size: 0.8rem; padding: 0.2rem 0.4rem; border-radius: 999px; }
+  .clear-search:hover { color: var(--color-ink); background: var(--color-canvas); }
+
+  .toolbar__end { display: flex; align-items: center; gap: 0.75rem; }
+  .fav-toggle { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.88rem; font-weight: 500; color: var(--color-muted); cursor: pointer; padding: 0.4rem 0.75rem; border-radius: 999px; border: 1px solid var(--color-line); transition: all 0.2s ease; }
+  .fav-toggle:has(input:checked) { color: var(--color-coral-600); border-color: var(--color-coral-200); background: var(--color-coral-50); }
+  .fav-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .fav-toggle:focus-within { outline: 2px solid var(--color-iris-500); outline-offset: 2px; }
+
+  .select-wrap { position: relative; }
+  .select-wrap::after { content: '⌄'; position: absolute; right: 0.8rem; top: 50%; transform: translateY(-60%); pointer-events: none; color: var(--color-faint); }
+  select { appearance: none; border: 1px solid var(--color-line); background: var(--color-surface); color: var(--color-ink); font-size: 0.88rem; font-weight: 500; padding: 0.5rem 2rem 0.5rem 0.9rem; border-radius: 999px; cursor: pointer; }
+  select:hover { border-color: var(--color-iris-300); }
+
+  .facets { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
+  .facet-row { display: flex; align-items: baseline; gap: 0.85rem; flex-wrap: wrap; }
+  .facet-label { flex: none; width: 4.75rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-faint); }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip {
+    font-size: 0.83rem; font-weight: 500; padding: 0.36rem 0.85rem; border-radius: 999px;
+    border: 1px solid var(--color-line); background: var(--color-surface); color: var(--color-muted);
+    cursor: pointer; transition: all 0.2s ease;
+  }
+  .chip:hover { border-color: var(--color-iris-300); color: var(--color-ink); }
+  .chip.is-active { background: var(--color-iris-600); border-color: var(--color-iris-600); color: #fff; box-shadow: 0 8px 18px -12px var(--color-iris-500); }
+
+  .more-facets { margin-top: 0.15rem; }
+  .more-facets > summary {
+    display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;
+    font-size: 0.83rem; font-weight: 600; color: var(--color-iris-600); list-style: none; width: fit-content;
+  }
+  .more-facets > summary::-webkit-details-marker { display: none; }
+  .more-facets > summary::before { content: '＋'; font-weight: 700; }
+  .more-facets[open] > summary::before { content: '－'; }
+  .more-facets[open] { display: flex; flex-direction: column; gap: 0.8rem; }
+  .more-facets[open] > summary { margin-bottom: 0.2rem; }
+
+  .result-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; font-size: 0.9rem; color: var(--color-muted); }
+  .reset-btn { font-size: 0.85rem; font-weight: 600; color: var(--color-iris-600); }
+  .reset-btn:hover { text-decoration: underline; }
+
+  .app-grid {
+    display: grid; gap: 1.1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  }
+
+  .empty-state { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 4rem 1rem; }
+  .empty-icon {
+    display: grid; place-items: center; height: 4rem; width: 4rem; margin-bottom: 1.25rem;
+    border-radius: 1.25rem; font-size: 1.8rem; color: var(--color-iris-500);
+    background: var(--color-iris-50); border: 1px solid var(--color-iris-100);
+    animation: float-slow 5s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  type FilterKey = 'category' | 'access' | 'status' | 'language' | 'platform';
+
+  const root = document.querySelector<HTMLElement>('[data-explorer]');
+  if (root) {
+    const grid = root.querySelector<HTMLElement>('[data-grid]')!;
+    const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-app]'));
+    const searchInput = root.querySelector<HTMLInputElement>('[data-search]')!;
+    const clearSearch = root.querySelector<HTMLButtonElement>('[data-clear-search]')!;
+    const sortSelect = root.querySelector<HTMLSelectElement>('[data-sort]')!;
+    const favOnly = root.querySelector<HTMLInputElement>('[data-fav-only]')!;
+    const countEl = root.querySelector<HTMLElement>('[data-count]')!;
+    const emptyEl = root.querySelector<HTMLElement>('[data-empty]')!;
+    const resetBtns = root.querySelectorAll<HTMLButtonElement>('[data-reset]');
+
+    // Single-select facets vs multi-select facets.
+    const single: Record<'category' | 'access', string> = { category: '', access: '' };
+    const multi: Record<'status' | 'language' | 'platform', Set<string>> = {
+      status: new Set(), language: new Set(), platform: new Set(),
+    };
+    let query = '';
+
+    const readFavs = (): Set<string> => {
+      try { return new Set(JSON.parse(localStorage.getItem('favorites') || '[]')); }
+      catch { return new Set(); }
+    };
+
+    const matches = (card: HTMLElement, favs: Set<string>): boolean => {
+      const d = card.dataset;
+      if (single.category && d.category !== single.category) return false;
+      if (single.access && d.access !== single.access) return false;
+      if (multi.status.size && !multi.status.has(d.status || '')) return false;
+      const langs = (d.languages || '').split('|');
+      if (multi.language.size && ![...multi.language].some((l) => langs.includes(l))) return false;
+      const plats = (d.platforms || '').split('|');
+      if (multi.platform.size && ![...multi.platform].some((p) => plats.includes(p))) return false;
+      if (favOnly.checked && !favs.has(d.id || '')) return false;
+      if (query && !(d.haystack || '').includes(query)) return false;
+      return true;
+    };
+
+    const anyFilterActive = () =>
+      single.category || single.access || multi.status.size || multi.language.size ||
+      multi.platform.size || favOnly.checked || query;
+
+    const sortCards = (visible: HTMLElement[]): HTMLElement[] => {
+      const mode = sortSelect.value;
+      const by = [...visible];
+      if (mode === 'name') by.sort((a, b) => (a.dataset.title || '').localeCompare(b.dataset.title || ''));
+      else if (mode === 'recent') by.sort((a, b) => Number(b.dataset.updated) - Number(a.dataset.updated));
+      else by.sort((a, b) => {
+        // featured first, then recent
+        const fa = a.dataset.featured === 'true' ? 1 : 0;
+        const fb = b.dataset.featured === 'true' ? 1 : 0;
+        if (fa !== fb) return fb - fa;
+        return Number(b.dataset.updated) - Number(a.dataset.updated);
+      });
+      return by;
+    };
+
+    const apply = () => {
+      const favs = readFavs();
+      const visible = cards.filter((c) => matches(c, favs));
+      const hidden = cards.filter((c) => !visible.includes(c));
+
+      // Reorder + toggle visibility
+      sortCards(visible).forEach((c, i) => {
+        c.hidden = false;
+        c.style.order = String(i);
+        c.style.transitionDelay = `${Math.min(i, 6) * 45}ms`;
+      });
+      hidden.forEach((c) => { c.hidden = true; });
+
+      // Count + empty state
+      const n = visible.length;
+      countEl.textContent = anyFilterActive()
+        ? `Showing ${n} of ${cards.length} app${cards.length === 1 ? '' : 's'}`
+        : `Showing all ${cards.length} apps`;
+      emptyEl.hidden = n > 0;
+      grid.hidden = n === 0;
+      resetBtns.forEach((b) => (b.hidden = !anyFilterActive()));
+    };
+
+    // --- Chip handlers -------------------------------------------------
+    root.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const key = chip.dataset.filter as FilterKey;
+        const value = chip.dataset.value || '';
+
+        if (key === 'category' || key === 'access') {
+          single[key] = value;
+          root.querySelectorAll<HTMLButtonElement>(`.chip[data-filter="${key}"]`).forEach((c) => {
+            const active = (c.dataset.value || '') === value;
+            c.classList.toggle('is-active', active);
+            c.setAttribute('aria-pressed', String(active));
+          });
+        } else {
+          const set = multi[key];
+          set.has(value) ? set.delete(value) : set.add(value);
+          const on = set.has(value);
+          chip.classList.toggle('is-active', on);
+          chip.setAttribute('aria-pressed', String(on));
+        }
+        apply();
+      });
+    });
+
+    // --- Search --------------------------------------------------------
+    let t: number | undefined;
+    searchInput.addEventListener('input', () => {
+      window.clearTimeout(t);
+      t = window.setTimeout(() => {
+        query = searchInput.value.trim().toLowerCase();
+        clearSearch.hidden = query.length === 0;
+        apply();
+      }, 90);
+    });
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = ''; query = ''; clearSearch.hidden = true; apply(); searchInput.focus();
+    });
+
+    sortSelect.addEventListener('change', apply);
+    favOnly.addEventListener('change', apply);
+    document.addEventListener('favorites:changed', apply);
+
+    // --- Reset ---------------------------------------------------------
+    const reset = () => {
+      single.category = ''; single.access = '';
+      multi.status.clear(); multi.language.clear(); multi.platform.clear();
+      query = ''; searchInput.value = ''; clearSearch.hidden = true; favOnly.checked = false;
+      root.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => {
+        const isAll = (c.dataset.value || '') === '';
+        c.classList.toggle('is-active', isAll);
+        c.setAttribute('aria-pressed', String(isAll));
+      });
+      apply();
+    };
+    resetBtns.forEach((b) => b.addEventListener('click', reset));
+
+    // --- Deep-link support: /apps?category=AI --------------------------
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('category');
+    if (cat) {
+      const chip = root.querySelector<HTMLButtonElement>(`.chip[data-filter="category"][data-value="${cat}"]`);
+      chip?.click();
+    }
+
+    apply();
+  }
+</script>

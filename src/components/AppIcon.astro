@@ -1,0 +1,53 @@
+---
+/**
+ * AppIcon — renders an app's glyph inside a soft gradient tile built from its
+ * two accent colors. Purely decorative (the app title provides the label), so
+ * it is marked aria-hidden.
+ */
+interface Props {
+  icon: string;
+  accent: [string, string];
+  /** Tailwind size utility set, e.g. 'h-14 w-14 text-2xl'. */
+  size?: string;
+  class?: string;
+}
+const { icon, accent, size = 'h-14 w-14 text-2xl', class: className = '' } = Astro.props;
+const [from, to] = accent;
+---
+
+<span
+  class:list={['app-icon', size, className]}
+  style={`--from:${from}; --to:${to};`}
+  aria-hidden="true"
+>
+  <span class="app-icon__glyph">{icon}</span>
+</span>
+
+<style>
+  .app-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    background-image: linear-gradient(135deg, var(--from), var(--to));
+    color: #fff;
+    box-shadow: 0 8px 20px -10px var(--from);
+    flex: none;
+    overflow: hidden;
+  }
+  /* soft inner highlight for a glassy feel */
+  .app-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 90% at 30% 15%, rgba(255, 255, 255, 0.45), transparent 55%);
+    pointer-events: none;
+  }
+  .app-icon__glyph {
+    position: relative;
+    line-height: 1;
+    transform: translateY(-1px);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  }
+</style>

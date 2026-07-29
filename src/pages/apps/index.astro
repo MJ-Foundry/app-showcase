@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AppExplorer from '@components/AppExplorer.astro';
+import { getApps } from '@lib/apps';
+
+const apps = await getApps();
+---
+
+<BaseLayout
+  title="All apps"
+  description="Browse, search and filter every app, tool and experiment — by category, language, platform and more."
+  path="/apps"
+>
+  <section class="container-page pt-14 pb-10">
+    <div class="reveal max-w-2xl">
+      <p class="kicker">The full catalog</p>
+      <h1 class="mt-2 text-4xl md:text-5xl">All apps</h1>
+      <p class="mt-4 text-lg leading-relaxed text-[var(--color-muted)]">
+        Everything I've built and shipped, in one place. Filter by category,
+        language or platform — or search across the whole collection.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page pb-10">
+    <AppExplorer apps={apps} />
+  </section>
+</BaseLayout>
+
+<style>
+  .kicker { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-coral-500); }
+</style>

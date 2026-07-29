@@ -1,0 +1,237 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AppIcon from '@components/AppIcon.astro';
+import StatusBadge from '@components/StatusBadge.astro';
+import Tag from '@components/Tag.astro';
+import AppCard from '@components/AppCard.astro';
+import { getApps, relatedApps, relativeDate, isoDate } from '@lib/apps';
+import { withBase } from '@lib/url';
+
+export async function getStaticPaths() {
+  const apps = await getApps();
+  return apps.map((app) => ({ params: { slug: app.id }, props: { app } }));
+}
+
+const { app } = Astro.props;
+const d = app.data;
+const all = await getApps();
+const related = relatedApps(app, all);
+const { Content } = await render(app);
+
+const externalLinks = [
+  d.links.demo && { label: 'Live demo', href: d.links.demo, icon: '↗', primary: true },
+  d.links.website && { label: 'Website', href: d.links.website, icon: '↗', primary: !d.links.demo },
+  d.links.repo && { label: 'GitHub repo', href: d.links.repo, icon: '⌥', primary: false },
+].filter(Boolean) as { label: string; href: string; icon: string; primary: boolean }[];
+
+const [from, to] = d.accent;
+---
+
+<BaseLayout title={d.title} description={d.description} path={`/apps/${app.id}`} ogType="article">
+  <!-- Hero -->
+  <section class="detail-hero" style={`--from:${from}; --to:${to};`}>
+    <div class="detail-hero__bg" aria-hidden="true"></div>
+    <div class="container-page relative">
+      <a href={withBase('/apps')} class="reveal back-link">← All apps</a>
+
+      <div class="reveal delay-1 mt-6 flex flex-col gap-6 md:flex-row md:items-center">
+        <AppIcon icon={d.icon} accent={d.accent} size="h-20 w-20 text-4xl" class="rounded-2xl" />
+        <div class="min-w-0 flex-1">
+          <div class="mb-2 flex flex-wrap items-center gap-2 text-sm text-[var(--color-faint)]">
+            <span class="font-semibold uppercase tracking-wider text-[var(--color-coral-500)]">{d.category}</span>
+            <span aria-hidden="true">·</span>
+            <span>{d.access}</span>
+          </div>
+          <h1 class="text-4xl tracking-tight md:text-5xl">{d.title}</h1>
+          <p class="mt-3 max-w-2xl text-lg text-[var(--color-muted)]">{d.tagline}</p>
+        </div>
+        <StatusBadge status={d.status} class="self-start md:self-center" />
+      </div>
+
+      {externalLinks.length > 0 && (
+        <div class="reveal delay-2 mt-7 flex flex-wrap gap-3">
+          {externalLinks.map((l) => (
+            <a
+              href={l.href}
+              class:list={['btn', l.primary ? 'btn-primary' : 'btn-ghost']}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {l.label} <span aria-hidden="true">{l.icon}</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <div class="container-page grid gap-12 py-14 lg:grid-cols-[1fr_18rem]">
+    <!-- Main column -->
+    <div class="min-w-0">
+      <!-- Screenshots -->
+      {d.screenshots.length > 0 && (
+        <section class="mb-14 on-scroll" aria-label="Screenshots">
+          <div class="shots">
+            {d.screenshots.map((s, i) => (
+              <figure class="shot" style={`--from:${from}; --to:${to};`}>
+                <div class="shot__frame" role="img" aria-label={s.alt}>
+                  <span class="shot__glyph" aria-hidden="true">{d.icon}</span>
+                  <span class="shot__badge">Screenshot {i + 1}</span>
+                </div>
+                <figcaption>{s.alt}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Full description (Markdown body) -->
+      <section class="prose on-scroll">
+        <h2 class="mb-4 text-2xl">About {d.title}</h2>
+        <Content />
+      </section>
+
+      <!-- Features -->
+      {d.features.length > 0 && (
+        <section class="mt-14 on-scroll">
+          <h2 class="mb-5 text-2xl">Key features</h2>
+          <ul class="feature-list">
+            {d.features.map((f) => (
+              <li>
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" width="13" height="13"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <!-- Changelog -->
+      {d.changelog.length > 0 && (
+        <section class="mt-14 on-scroll">
+          <h2 class="mb-5 text-2xl">Changelog</h2>
+          <ol class="changelog">
+            {d.changelog.map((c) => (
+              <li>
+                <div class="changelog__dot" aria-hidden="true"></div>
+                <div class="changelog__body">
+                  <div class="flex flex-wrap items-baseline gap-2">
+                    <span class="changelog__version">v{c.version}</span>
+                    <time class="changelog__date" datetime={c.date}>{c.date}</time>
+                  </div>
+                  <p class="mt-1 text-[var(--color-muted)]">{c.note}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="detail-aside on-scroll">
+      <div class="card p-5">
+        <h2 class="side-title">Details</h2>
+        <dl class="side-list">
+          <div><dt>Status</dt><dd><StatusBadge status={d.status} /></dd></div>
+          <div><dt>Category</dt><dd>{d.category}</dd></div>
+          <div><dt>Access</dt><dd>{d.access}</dd></div>
+          <div><dt>Updated</dt><dd><time datetime={isoDate(d.updated)}>{relativeDate(d.updated)}</time></dd></div>
+        </dl>
+
+        {d.platforms.length > 0 && (
+          <div class="side-block">
+            <h3 class="side-subtitle">Platforms</h3>
+            <div class="flex flex-wrap gap-1.5">{d.platforms.map((p) => <Tag>{p}</Tag>)}</div>
+          </div>
+        )}
+
+        {d.tech.length > 0 && (
+          <div class="side-block">
+            <h3 class="side-subtitle">Tech stack</h3>
+            <div class="flex flex-wrap gap-1.5">{d.tech.map((t) => <Tag variant="accent">{t}</Tag>)}</div>
+          </div>
+        )}
+
+        {d.tags.length > 0 && (
+          <div class="side-block">
+            <h3 class="side-subtitle">Tags</h3>
+            <div class="flex flex-wrap gap-1.5">{d.tags.map((t) => <Tag variant="outline">#{t}</Tag>)}</div>
+          </div>
+        )}
+      </div>
+    </aside>
+  </div>
+
+  <!-- Related -->
+  {related.length > 0 && (
+    <section class="container-page pb-8">
+      <h2 class="mb-6 text-2xl md:text-3xl on-scroll">Related apps</h2>
+      <div class="app-grid">
+        {related.map((r, i) => <AppCard app={r} index={i} />)}
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .detail-hero { position: relative; overflow: hidden; padding: 3rem 0 2.5rem; }
+  .detail-hero__bg {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.6;
+    background:
+      radial-gradient(40rem 22rem at 0% -10%, color-mix(in srgb, var(--from) 20%, transparent), transparent 60%),
+      radial-gradient(38rem 22rem at 100% 0%, color-mix(in srgb, var(--to) 18%, transparent), transparent 60%);
+  }
+  .back-link { display: inline-block; font-size: 0.9rem; font-weight: 600; color: var(--color-iris-600); }
+  .back-link:hover { color: var(--color-iris-700); }
+
+  .shots { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+  .shot__frame {
+    position: relative; aspect-ratio: 16 / 10; border-radius: var(--radius-xl);
+    display: grid; place-items: center; overflow: hidden;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--from) 16%, var(--color-surface)), color-mix(in srgb, var(--to) 16%, var(--color-surface)));
+    border: 1px solid var(--color-line);
+  }
+  .shot__glyph { font-size: 3.5rem; opacity: 0.35; }
+  .shot__badge {
+    position: absolute; bottom: 0.75rem; left: 0.75rem; font-size: 0.7rem; font-weight: 600;
+    padding: 0.25rem 0.6rem; border-radius: 999px; background: color-mix(in srgb, var(--color-surface) 85%, transparent);
+    color: var(--color-muted); border: 1px solid var(--color-line);
+  }
+  .shot figcaption { margin-top: 0.6rem; font-size: 0.85rem; color: var(--color-faint); }
+
+  /* Prose */
+  .prose :global(p) { color: var(--color-muted); line-height: 1.75; margin-bottom: 1.1rem; font-size: 1.05rem; }
+  .prose :global(strong) { color: var(--color-ink); font-weight: 600; }
+  .prose :global(a) { color: var(--color-iris-600); text-decoration: underline; text-underline-offset: 3px; }
+
+  .feature-list { display: grid; gap: 0.75rem; }
+  @media (min-width: 640px) { .feature-list { grid-template-columns: 1fr 1fr; } }
+  .feature-list li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.98rem; color: var(--color-ink); }
+  .check {
+    flex: none; display: grid; place-items: center; height: 1.4rem; width: 1.4rem; margin-top: 0.05rem;
+    border-radius: 999px; background: var(--color-mint-100); color: var(--color-mint-600);
+  }
+
+  .changelog { position: relative; padding-left: 1.5rem; }
+  .changelog::before { content: ''; position: absolute; left: 0.32rem; top: 0.4rem; bottom: 0.4rem; width: 2px; background: var(--color-line); }
+  .changelog li { position: relative; padding-bottom: 1.4rem; }
+  .changelog li:last-child { padding-bottom: 0; }
+  .changelog__dot { position: absolute; left: -1.5rem; top: 0.3rem; height: 0.7rem; width: 0.7rem; border-radius: 999px; background: var(--color-iris-500); box-shadow: 0 0 0 4px var(--color-iris-50); }
+  .changelog__version { font-family: var(--font-display); font-weight: 600; color: var(--color-ink); }
+  .changelog__date { font-size: 0.82rem; color: var(--color-faint); }
+
+  .detail-aside { align-self: start; position: sticky; top: 5.5rem; }
+  .side-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-faint); margin-bottom: 1rem; }
+  .side-list { display: grid; gap: 0.8rem; }
+  .side-list > div { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .side-list dt { font-size: 0.9rem; color: var(--color-faint); }
+  .side-list dd { font-size: 0.9rem; font-weight: 500; text-align: right; }
+  .side-block { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--color-line); }
+  .side-subtitle { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-faint); margin-bottom: 0.6rem; }
+
+  .app-grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); }
+</style>
