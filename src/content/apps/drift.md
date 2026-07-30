@@ -10,12 +10,10 @@ languages: ['Swift']
 tech: ['SwiftUI', 'Metal']
 tags: ['generative', 'ambient', 'art']
 access: 'Private'
-status: 'In Progress'
+status: 'Coming Soon'
 featured: false
 order: 7
 updated: 2026-07-25
-links:
-  website: 'https://example.com/drift'
 features:
   - 'Metal shaders that render at negligible battery cost'
   - 'Palettes that shift with sunrise, sunset and weather'

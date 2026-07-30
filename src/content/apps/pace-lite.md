@@ -14,8 +14,6 @@ status: 'Coming Soon'
 featured: false
 order: 8
 updated: 2026-07-27
-links:
-  website: 'https://example.com/pace-lite'
 features:
   - 'One habit, zero configuration'
   - 'A single tap from your watch face'

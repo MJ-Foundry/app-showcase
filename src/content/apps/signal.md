@@ -10,12 +10,10 @@ languages: ['Go']
 tech: ['Go', 'SQLite', 'HTMX']
 tags: ['monitoring', 'devops', 'self-hosted']
 access: 'Open Source'
-status: 'Live'
+status: 'Coming Soon'
 featured: false
 order: 5
 updated: 2026-05-19
-links:
-  demo: 'https://example.com/signal'
 features:
   - 'One-binary deploy, no dependencies'
   - 'Multi-region checks with latency graphs'

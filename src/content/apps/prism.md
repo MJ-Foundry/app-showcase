@@ -10,12 +10,10 @@ languages: ['TypeScript']
 tech: ['Svelte', 'Culori', 'Vite']
 tags: ['design', 'accessibility', 'color']
 access: 'Open Source'
-status: 'Live'
+status: 'Coming Soon'
 featured: false
 order: 6
 updated: 2026-06-15
-links:
-  demo: 'https://example.com/prism'
 features:
   - 'Perceptually-even scales in OKLCH'
   - 'Live WCAG AA / AAA contrast scoring'

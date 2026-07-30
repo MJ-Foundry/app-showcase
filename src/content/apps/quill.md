@@ -10,7 +10,7 @@ languages: ['Rust']
 tech: ['Rust', 'Typst']
 tags: ['cli', 'freelance', 'pdf']
 access: 'Open Source'
-status: 'Live'
+status: 'Coming Soon'
 featured: false
 order: 9
 updated: 2026-03-30

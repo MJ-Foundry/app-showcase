@@ -10,13 +10,10 @@ languages: ['TypeScript', 'Rust']
 tech: ['Astro', 'Tauri', 'WebGPU', 'SQLite']
 tags: ['editor', 'productivity', 'llm']
 access: 'Private'
-status: 'Live'
+status: 'Coming Soon'
 featured: true
 order: 1
 updated: 2026-07-20
-links:
-  website: 'https://example.com/lumen'
-  demo: 'https://example.com/lumen/demo'
 features:
   - 'Inline rewriting with tone and length controls'
   - 'Outline mode that restructures long documents in one click'

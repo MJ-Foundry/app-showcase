@@ -10,13 +10,10 @@ languages: ['TypeScript']
 tech: ['React', 'Canvas', 'Yjs', 'Cloudflare']
 tags: ['planning', 'collaboration', 'realtime']
 access: 'Private'
-status: 'Beta'
+status: 'Coming Soon'
 featured: true
 order: 2
 updated: 2026-07-11
-links:
-  demo: 'https://example.com/atlas'
-  website: 'https://example.com/atlas'
 features:
   - 'Real-time multiplayer with presence and cursors'
   - 'Dependency arrows that reflow as you drag'

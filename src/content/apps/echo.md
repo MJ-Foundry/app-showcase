@@ -10,7 +10,7 @@ languages: ['Python', 'TypeScript']
 tech: ['FastAPI', 'Astro', 'pgvector', 'Ollama']
 tags: ['rag', 'search', 'llm']
 access: 'Open Source'
-status: 'Beta'
+status: 'Coming Soon'
 featured: false
 order: 4
 updated: 2026-07-02

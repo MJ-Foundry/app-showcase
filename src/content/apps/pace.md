@@ -10,12 +10,10 @@ languages: ['TypeScript', 'Swift']
 tech: ['Expo', 'React Native', 'SQLite', 'Reanimated']
 tags: ['habits', 'wellbeing', 'offline']
 access: 'Open Source'
-status: 'Live'
+status: 'Coming Soon'
 featured: true
 order: 3
 updated: 2026-06-28
-links:
-  demo: 'https://example.com/pace'
 features:
   - 'Flexible schedules — daily, weekly or "a few times a week"'
   - 'Forgiving streaks that bend instead of breaking'

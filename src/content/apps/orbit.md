@@ -10,7 +10,7 @@ languages: ['JavaScript']
 tech: ['Three.js', 'IndexedDB']
 tags: ['spatial', 'archived', 'webgl']
 access: 'Open Source'
-status: 'Archived'
+status: 'Coming Soon'
 featured: false
 order: 10
 updated: 2025-11-08
