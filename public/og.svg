@@ -6,15 +6,15 @@
     </linearGradient>
     <linearGradient id="mark" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
       <stop stop-color="#6440dd"/>
-      <stop offset="1" stop-color="#f95f34"/>
+      <stop offset="1" stop-color="#ff9552"/>
     </linearGradient>
     <radialGradient id="glow1" cx="0.15" cy="0.1" r="0.5">
       <stop stop-color="#d1c9ff" stop-opacity="0.9"/>
       <stop offset="1" stop-color="#d1c9ff" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="glow2" cx="0.9" cy="0.95" r="0.5">
-      <stop stop-color="#ffc9b6" stop-opacity="0.9"/>
-      <stop offset="1" stop-color="#ffc9b6" stop-opacity="0"/>
+      <stop stop-color="#ffcc9e" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffcc9e" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>

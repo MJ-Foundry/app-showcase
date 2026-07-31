@@ -63,13 +63,13 @@ const { appCount } = Astro.props;
     padding: 0.4rem 0.9rem; border-radius: 999px;
     background: var(--color-iris-50); border: 1px solid var(--color-iris-100);
   }
-  .eyebrow .dot { width: 0.5rem; height: 0.5rem; border-radius: 999px; background: var(--color-coral-400); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-coral-400) 25%, transparent); }
+  .eyebrow .dot { width: 0.5rem; height: 0.5rem; border-radius: 999px; background: var(--color-peach-400); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-peach-400) 25%, transparent); }
 
   .hero-bg { position: absolute; inset: -20% 0 0; z-index: 0; pointer-events: none; }
   .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.55; will-change: transform; }
-  .blob-1 { top: 4%; left: 8%; width: 32rem; height: 32rem; background: radial-gradient(circle, #d1c9ff, transparent 68%); animation: float-slow 14s ease-in-out infinite; }
-  .blob-2 { top: 0; right: 4%; width: 26rem; height: 26rem; background: radial-gradient(circle, #ffc9b6, transparent 68%); animation: float-slow 18s ease-in-out infinite reverse; }
-  .blob-3 { bottom: -30%; left: 40%; width: 28rem; height: 28rem; background: radial-gradient(circle, #d9ecff, transparent 68%); animation: float-slow 22s ease-in-out infinite; }
+  .blob-1 { top: 4%; left: 8%; width: 32rem; height: 32rem; background: radial-gradient(circle, var(--color-iris-200), transparent 68%); animation: float-slow 14s ease-in-out infinite; }
+  .blob-2 { top: 0; right: 4%; width: 26rem; height: 26rem; background: radial-gradient(circle, var(--color-peach-200), transparent 68%); animation: float-slow 18s ease-in-out infinite reverse; }
+  .blob-3 { bottom: -30%; left: 40%; width: 28rem; height: 28rem; background: radial-gradient(circle, var(--color-sky-100), transparent 68%); animation: float-slow 22s ease-in-out infinite; }
   :global([data-theme='dark']) .blob { opacity: 0.22; }
 
   .grid-overlay {

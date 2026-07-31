@@ -18,7 +18,7 @@ const apps = defineCollection({
     /** Emoji or short glyph used as the app icon (keeps the demo asset-free). */
     icon: z.string().default('✦'),
     /** Two hex colors used to build the icon's gradient tile. */
-    accent: z.tuple([z.string(), z.string()]).default(['#7658f0', '#f95f34']),
+    accent: z.tuple([z.string(), z.string()]).default(['#7658f0', '#ff9552']),
 
     /* --- Taxonomy ------------------------------------------------------- */
     category: z.enum(['AI', 'Web', 'Mobile', 'Tools', 'Experiments']),

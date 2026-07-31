@@ -3,7 +3,7 @@ title: Packfolio
 tagline: Packing lists you can actually reuse.
 description: Build a list per trip — blank or seeded from a template — and tick items off as they go into the bag, so the essentials stop getting forgotten.
 icon: 🧳
-accent: ['#f95f34', '#ffa387']
+accent: ['#f2610d', '#ffb073']
 category: Mobile
 platforms: ['iOS', 'Android']
 languages: ['TypeScript']

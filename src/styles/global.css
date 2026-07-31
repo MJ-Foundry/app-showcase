@@ -16,7 +16,7 @@
   --font-display: 'Fraunces Variable', ui-serif, Georgia, 'Times New Roman', serif;
 
   /* --- Canvas / neutrals ------------------------------------------------ */
-  --color-canvas: #fbfaf8;      /* warm off-white page background */
+  --color-canvas: #fcf0d6;      /* warm, soft butter-cream page background */
   --color-surface: #ffffff;     /* card surfaces */
   --color-ink: #191720;         /* primary text — deep warm charcoal */
   --color-muted: #6b6775;       /* secondary text */
@@ -35,14 +35,14 @@
   --color-iris-800: #452c97;
   --color-iris-900: #3a2a7a;
 
-  /* --- Coral (secondary accent) ----------------------------------------- */
-  --color-coral-50: #fff4f0;
-  --color-coral-100: #ffe6dd;
-  --color-coral-200: #ffc9b6;
-  --color-coral-300: #ffa387;
-  --color-coral-400: #ff7a54;
-  --color-coral-500: #f95f34;
-  --color-coral-600: #e2481f;
+  /* --- Peach (secondary accent) ------------------------------------------ */
+  --color-peach-50: #fff3e8;
+  --color-peach-100: #ffe3cb;
+  --color-peach-200: #ffcc9e;
+  --color-peach-300: #ffb073;
+  --color-peach-400: #ff9552;
+  --color-peach-500: #f2610d;
+  --color-peach-600: #cb510b;
 
   /* --- Support colors for status badges --------------------------------- */
   --color-mint-100: #d8f4e7;
@@ -151,7 +151,7 @@
 
   /* Accent gradient text */
   .text-gradient {
-    background-image: linear-gradient(120deg, var(--color-iris-600), var(--color-coral-500));
+    background-image: linear-gradient(120deg, var(--color-iris-600), var(--color-peach-400));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
