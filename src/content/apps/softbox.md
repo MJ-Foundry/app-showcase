@@ -5,7 +5,6 @@ description: A full-screen fill light for photos and video — pick any color, d
 icon: ☀
 accent: ['#f59e0b', '#fcd34d']
 platforms: ['iOS', 'Android']
-languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-brightness', 'AsyncStorage']
 tags: ['photography', 'lighting', 'utility']
 status: 'Coming Soon'

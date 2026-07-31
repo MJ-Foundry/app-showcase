@@ -5,7 +5,6 @@ description: Paste a recipe URL and it pulls the title, ingredients and steps in
 icon: 🍴
 accent: ['#d94a6a', '#f78fa7']
 platforms: ['iOS', 'Android']
-languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['recipes', 'cooking', 'import']
 status: 'Coming Soon'

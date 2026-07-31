@@ -12,8 +12,8 @@ A modern, fast, fully-static website that showcases my apps — built with
 - ⚡️ **100% static** — no backend, no database, no SSR. Perfect for GitHub Pages.
 - 🎨 **Original design system** — Fraunces + Inter typography, an iris/peach
   accent palette, soft gradients, gentle shadows and refined micro-interactions.
-- 🔎 **Client-side search & filtering** — full-text search, status / language /
-  platform filters and sorting. No framework required.
+- 🔎 **Client-side search & filtering** — full-text search, status / platform
+  filters and sorting. No framework required.
 - ⌘ **Command palette** (`⌘K` / `Ctrl+K`) for instant navigation.
 - 🌗 **Light-first theme** with an optional, considered dark mode.
 - 📱 **Fully responsive** with a polished mobile navigation.
@@ -61,7 +61,6 @@ description: A one-sentence description used on cards and meta tags.
 icon: "✦"                         # emoji / glyph used as the icon
 accent: ["#7658f0", "#ff9552"]    # gradient for the icon tile
 platforms: ["Web"]                 # Web | iOS | Android | macOS | CLI
-languages: ["TypeScript"]
 tech: ["Astro", "Tailwind"]
 tags: ["productivity"]             # at most 3
 status: Live                       # Live | Beta | In Progress | Coming Soon | Archived

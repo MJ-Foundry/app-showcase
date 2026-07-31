@@ -1,6 +1,6 @@
 ---
 import type { App } from '@lib/apps';
-import { languagesOf, platformsOf } from '@lib/apps';
+import { platformsOf } from '@lib/apps';
 import AppCard from './AppCard.astro';
 
 /**
@@ -14,8 +14,8 @@ interface Props {
 }
 const { apps } = Astro.props;
 
-const languages = languagesOf(apps);
-const platforms = platformsOf(apps);
+// No web apps yet, so "Web" isn't a meaningful filter option right now.
+const platforms = platformsOf(apps).filter((p) => p !== 'Web');
 const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
 ---
 
@@ -53,33 +53,22 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
 
   <!-- Filter facets -->
   <div class="facets on-scroll">
-    <details class="more-facets">
-      <summary>More filters</summary>
-      <div class="facet-row" role="group" aria-label="Filter by status">
-        <span class="facet-label">Status</span>
-        <div class="chips">
-          {statuses.map((s) => (
-            <button type="button" class="chip chip--multi" data-filter="status" data-value={s} aria-pressed="false">{s}</button>
-          ))}
-        </div>
+    <div class="facet-row" role="group" aria-label="Filter by status">
+      <span class="facet-label">Status</span>
+      <div class="chips">
+        {statuses.map((s) => (
+          <button type="button" class="chip chip--multi" data-filter="status" data-value={s} aria-pressed="false">{s}</button>
+        ))}
       </div>
-      <div class="facet-row" role="group" aria-label="Filter by language">
-        <span class="facet-label">Language</span>
-        <div class="chips">
-          {languages.map((l) => (
-            <button type="button" class="chip chip--multi" data-filter="language" data-value={l} aria-pressed="false">{l}</button>
-          ))}
-        </div>
+    </div>
+    <div class="facet-row" role="group" aria-label="Filter by platform">
+      <span class="facet-label">Platform</span>
+      <div class="chips">
+        {platforms.map((p) => (
+          <button type="button" class="chip chip--multi" data-filter="platform" data-value={p} aria-pressed="false">{p}</button>
+        ))}
       </div>
-      <div class="facet-row" role="group" aria-label="Filter by platform">
-        <span class="facet-label">Platform</span>
-        <div class="chips">
-          {platforms.map((p) => (
-            <button type="button" class="chip chip--multi" data-filter="platform" data-value={p} aria-pressed="false">{p}</button>
-          ))}
-        </div>
-      </div>
-    </details>
+    </div>
   </div>
 
   <!-- Result count -->
@@ -139,17 +128,6 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
   .chip:hover { border-color: var(--color-iris-300); color: var(--color-ink); }
   .chip.is-active { background: var(--color-iris-600); border-color: var(--color-iris-600); color: #fff; box-shadow: 0 8px 18px -12px var(--color-iris-500); }
 
-  .more-facets { margin-top: 0.15rem; }
-  .more-facets > summary {
-    display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;
-    font-size: 0.83rem; font-weight: 600; color: var(--color-iris-600); list-style: none; width: fit-content;
-  }
-  .more-facets > summary::-webkit-details-marker { display: none; }
-  .more-facets > summary::before { content: '＋'; font-weight: 700; }
-  .more-facets[open] > summary::before { content: '－'; }
-  .more-facets[open] { display: flex; flex-direction: column; gap: 0.8rem; }
-  .more-facets[open] > summary { margin-bottom: 0.2rem; }
-
   .result-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; font-size: 0.9rem; color: var(--color-muted); }
   .reset-btn { font-size: 0.85rem; font-weight: 600; color: var(--color-iris-600); }
   .reset-btn:hover { text-decoration: underline; }
@@ -169,7 +147,7 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
 </style>
 
 <script>
-  type FilterKey = 'status' | 'language' | 'platform';
+  type FilterKey = 'status' | 'platform';
 
   const root = document.querySelector<HTMLElement>('[data-explorer]');
   if (root) {
@@ -183,15 +161,13 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
     const resetBtns = root.querySelectorAll<HTMLButtonElement>('[data-reset]');
 
     const multi: Record<FilterKey, Set<string>> = {
-      status: new Set(), language: new Set(), platform: new Set(),
+      status: new Set(), platform: new Set(),
     };
     let query = '';
 
     const matches = (card: HTMLElement): boolean => {
       const d = card.dataset;
       if (multi.status.size && !multi.status.has(d.status || '')) return false;
-      const langs = (d.languages || '').split('|');
-      if (multi.language.size && ![...multi.language].some((l) => langs.includes(l))) return false;
       const plats = (d.platforms || '').split('|');
       if (multi.platform.size && ![...multi.platform].some((p) => plats.includes(p))) return false;
       if (query && !(d.haystack || '').includes(query)) return false;
@@ -199,7 +175,7 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
     };
 
     const anyFilterActive = () =>
-      multi.status.size || multi.language.size || multi.platform.size || query;
+      multi.status.size || multi.platform.size || query;
 
     const sortCards = (visible: HTMLElement[]): HTMLElement[] => {
       const mode = sortSelect.value;
@@ -270,7 +246,7 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
 
     // --- Reset ---------------------------------------------------------
     const reset = () => {
-      multi.status.clear(); multi.language.clear(); multi.platform.clear();
+      multi.status.clear(); multi.platform.clear();
       query = ''; searchInput.value = ''; clearSearch.hidden = true;
       root.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => {
         c.classList.remove('is-active');

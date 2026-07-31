@@ -5,7 +5,6 @@ description: An installable, offline-first tracker for a baby's day. Both parent
 icon: 👶
 accent: ['#7658f0', '#937bfb']
 platforms: ['Web', 'Android']
-languages: ['TypeScript', 'SQL']
 tech: ['React 19', 'Vite', 'PWA', 'Supabase', 'IndexedDB']
 tags: ['baby', 'offline-first', 'realtime']
 status: 'Coming Soon'

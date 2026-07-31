@@ -5,7 +5,6 @@ description: An offline medication tracker that forecasts when each prescription
 icon: 💊
 accent: ['#0d9488', '#5eead4']
 platforms: ['iOS', 'Android']
-languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-notifications', 'expo-camera', 'AsyncStorage']
 tags: ['medication', 'reminders', 'barcode']
 status: 'Coming Soon'

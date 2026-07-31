@@ -15,11 +15,6 @@ export async function getFeaturedApps(): Promise<App[]> {
   return (await getApps()).filter((a) => a.data.featured);
 }
 
-/** Distinct, sorted language list derived from the content. */
-export function languagesOf(apps: App[]): string[] {
-  return [...new Set(apps.flatMap((a) => a.data.languages))].sort();
-}
-
 /** Distinct, sorted platform list derived from the content. */
 export function platformsOf(apps: App[]): string[] {
   return [...new Set(apps.flatMap((a) => a.data.platforms))].sort();

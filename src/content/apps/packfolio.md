@@ -5,7 +5,6 @@ description: Build a list per trip — blank or seeded from a template — and t
 icon: 🧳
 accent: ['#f2610d', '#ffb073']
 platforms: ['iOS', 'Android']
-languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['packing', 'travel', 'checklist']
 status: 'Coming Soon'

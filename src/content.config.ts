@@ -22,7 +22,6 @@ const apps = defineCollection({
 
     /* --- Taxonomy ------------------------------------------------------- */
     platforms: z.array(z.enum(['Web', 'iOS', 'Android', 'macOS', 'CLI'])).default([]),
-    languages: z.array(z.string()).default([]),
     tech: z.array(z.string()).default([]),
     /** At most 3 — keeps cards scannable. */
     tags: z.array(z.string()).max(3).default([]),

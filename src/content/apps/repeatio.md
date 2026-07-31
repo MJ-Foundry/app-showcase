@@ -5,7 +5,6 @@ description: A tracker for recurring responsibilities — sheets weekly, kettle 
 icon: 🔁
 accent: ['#1667b8', '#5aa9ea']
 platforms: ['iOS', 'Android']
-languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-notifications', 'AsyncStorage']
 tags: ['routines', 'reminders', 'household']
 status: 'Coming Soon'

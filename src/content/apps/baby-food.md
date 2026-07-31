@@ -5,7 +5,6 @@ description: "A record of every new food a baby tries: when they tried it, how t
 icon: 🍏
 accent: ['#0f8a5f', '#34c48c']
 platforms: ['iOS', 'Android']
-languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['baby', 'food-log', 'allergens']
 status: 'Coming Soon'

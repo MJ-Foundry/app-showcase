@@ -2,11 +2,10 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { SITE } from '@lib/site';
 import { withBase } from '@lib/url';
-import { getApps, platformsOf, languagesOf } from '@lib/apps';
+import { getApps, platformsOf } from '@lib/apps';
 
 const apps = await getApps();
 const platforms = platformsOf(apps);
-const languages = languagesOf(apps);
 
 const principles = [
   { icon: '✶', title: 'Calm by default', body: 'Software should reduce noise, not add to it. We design for focus, restraint and quiet confidence.' },
@@ -24,7 +23,7 @@ const principles = [
       <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
         {SITE.name} designs and builds small, considered software. This
         site is a living catalog of that work: {apps.length} apps and counting,
-        across {platforms.length} platforms and {languages.length} languages.
+        across {platforms.length} platforms.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a href={withBase('/apps')} class="btn btn-primary">Explore all apps</a>

@@ -201,7 +201,7 @@
   .btn-ghost {
     color: var(--color-ink);
     background-color: var(--color-surface);
-    border: 1.5px solid var(--color-muted);
+    border: 1.5px solid color-mix(in srgb, var(--color-muted) 80%, var(--color-surface));
   }
   .btn-ghost:hover {
     border-color: var(--color-iris-400);
