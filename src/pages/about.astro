@@ -3,7 +3,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { SITE } from '@lib/site';
 import { withBase } from '@lib/url';
 import { getApps, categoriesOf, languagesOf } from '@lib/apps';
-import ContactForm from '@components/ContactForm.astro';
 
 const apps = await getApps();
 const categories = categoriesOf(apps);
@@ -52,12 +51,16 @@ const principles = [
       <p class="kicker">Get in touch</p>
       <h2 class="mt-2 text-3xl md:text-4xl">Contact us</h2>
       <p class="mx-auto mt-4 max-w-md text-[var(--color-muted)]">
-        Questions, feedback or an idea for a collaboration? Send us a message
+        Questions, feedback or an idea for a collaboration? Send us an email
         and we'll get back to you.
       </p>
-    </div>
-    <div class="mx-auto mt-9 max-w-xl on-scroll">
-      <ContactForm />
+      <a href={`mailto:${SITE.contactEmail}`} class="btn btn-primary mt-7">
+        <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
+          <path d="M3 5.5h14a1 1 0 011 1v7a1 1 0 01-1 1H3a1 1 0 01-1-1v-7a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+          <path d="M2.5 6l7.5 5.5L17.5 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        Email {SITE.contactEmail}
+      </a>
     </div>
   </section>
 
