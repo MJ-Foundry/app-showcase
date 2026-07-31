@@ -11,8 +11,6 @@ const links = [
   { label: 'Apps', href: withBase('/apps') },
   { label: 'About', href: withBase('/about') },
 ];
-const current = Astro.url.pathname.replace(/\/$/, '');
-const isActive = (href: string) => current === href.replace(/\/$/, '');
 ---
 
 <header class="site-nav" data-nav>
@@ -34,24 +32,11 @@ const isActive = (href: string) => current === href.replace(/\/$/, '');
       </span>
     </a>
 
-    <!-- Desktop links -->
-    <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
-      {links.map((l) => (
-        <a
-          href={l.href}
-          class:list={['nav-link', isActive(l.href) && 'nav-link--active']}
-          aria-current={isActive(l.href) ? 'page' : undefined}
-        >
-          {l.label}
-        </a>
-      ))}
-    </nav>
-
     <!-- Actions -->
     <div class="flex items-center gap-1.5">
       <button
         type="button"
-        class="cmdk-trigger hidden items-center gap-2 sm:inline-flex"
+        class="cmdk-trigger inline-flex items-center gap-2"
         data-cmdk-open
         aria-label="Open command palette"
       >
@@ -59,7 +44,7 @@ const isActive = (href: string) => current === href.replace(/\/$/, '');
           <circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="1.6" />
           <path d="M14 14l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
         </svg>
-        <span>Search</span>
+        <span class="hidden sm:inline">Search</span>
       </button>
 
       <ThemeToggle />
@@ -67,7 +52,7 @@ const isActive = (href: string) => current === href.replace(/\/$/, '');
       <!-- Mobile menu toggle -->
       <button
         type="button"
-        class="icon-btn md:hidden"
+        class="icon-btn"
         data-menu-toggle
         aria-expanded="false"
         aria-controls="mobile-menu"
@@ -88,7 +73,6 @@ const isActive = (href: string) => current === href.replace(/\/$/, '');
       {links.map((l) => (
         <a href={l.href} class="mobile-link">{l.label}</a>
       ))}
-      <button type="button" class="mobile-link text-left" data-cmdk-open>Search apps</button>
     </nav>
   </div>
 </header>
@@ -120,18 +104,6 @@ const isActive = (href: string) => current === href.replace(/\/$/, '');
     transition: transform 0.3s ease;
   }
   a:hover > .logo-mark { transform: rotate(-8deg) scale(1.05); }
-
-  .nav-link {
-    position: relative;
-    padding: 0.5rem 0.85rem;
-    border-radius: 999px;
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--color-muted);
-    transition: color 0.2s ease, background 0.2s ease;
-  }
-  .nav-link:hover { color: var(--color-ink); background: var(--color-iris-50); }
-  .nav-link--active { color: var(--color-iris-700); }
 
   .cmdk-trigger {
     padding: 0.42rem 0.7rem 0.42rem 0.75rem;
