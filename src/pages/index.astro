@@ -3,7 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/Hero.astro';
 import FeatureCard from '@components/FeatureCard.astro';
 import AppCard from '@components/AppCard.astro';
-import { getApps, getFeaturedApps, categoriesOf, platformsOf } from '@lib/apps';
+import { getApps, getFeaturedApps } from '@lib/apps';
 import { withBase } from '@lib/url';
 import { SITE } from '@lib/site';
 
@@ -20,8 +20,6 @@ const comingSoon = apps.filter(
 const stats = [
   { label: 'Apps & tools', value: apps.length },
   { label: 'In the works', value: apps.filter((a) => a.data.status === 'Coming Soon').length },
-  { label: 'Platforms', value: platformsOf(apps).length },
-  { label: 'Categories', value: categoriesOf(apps).length },
 ];
 ---
 
@@ -37,6 +35,28 @@ const stats = [
           <dd class="stat__value">{s.value}</dd>
         </div>
       ))}
+      <div class="stat">
+        <dt class="stat__label">Platforms</dt>
+        <dd class="stat__value stat__platforms">
+          <span class="platform-icon" role="img" aria-label="Available on the App Store">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <ellipse cx="14.3" cy="3.6" rx="1.6" ry="0.9" fill="currentColor" transform="rotate(-30 14.3 3.6)" />
+              <rect x="11.5" y="2.2" width="1.1" height="3" rx="0.5" fill="currentColor" />
+              <circle cx="9.2" cy="14" r="6.2" fill="currentColor" />
+              <circle cx="14.8" cy="14" r="6.2" fill="currentColor" />
+              <circle cx="17.5" cy="8.5" r="2.6" fill="var(--color-surface)" />
+            </svg>
+          </span>
+          <span class="platform-icon" role="img" aria-label="Available on Google Play">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <polygon points="5,3 5,7.5 21,12" fill="#4285F4" />
+              <polygon points="5,7.5 5,12 21,12" fill="#34A853" />
+              <polygon points="5,12 5,16.5 21,12" fill="#FBBC05" />
+              <polygon points="5,16.5 5,21 21,12" fill="#EA4335" />
+            </svg>
+          </span>
+        </dd>
+      </div>
     </dl>
   </section>
 
@@ -85,14 +105,15 @@ const stats = [
 </BaseLayout>
 
 <style>
-  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; padding: 1.5rem 1rem; }
-  @media (min-width: 640px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; padding: 1.5rem 1rem; }
   .stat { text-align: center; padding: 0.5rem; position: relative; }
   .stat:not(:last-child)::after {
     content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: var(--color-line);
   }
   .stat__value { font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: var(--color-iris-700); letter-spacing: -0.02em; }
   .stat__label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-faint); margin-bottom: 0.35rem; }
+  .stat__platforms { display: flex; align-items: center; justify-content: center; gap: 0.7rem; min-height: 2.5rem; }
+  .platform-icon { display: inline-flex; color: var(--color-ink); }
 
   .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.75rem; }
   .kicker { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-peach-500); margin-bottom: 0.5rem; }
