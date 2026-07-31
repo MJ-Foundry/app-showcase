@@ -5,17 +5,14 @@
  * accessibility (never color alone).
  */
 interface Props {
-  status: 'Live' | 'Beta' | 'In Progress' | 'Coming Soon' | 'Archived';
+  status: 'Live' | 'Coming Soon';
   class?: string;
 }
 const { status, class: className = '' } = Astro.props;
 
 const styles: Record<Props['status'], string> = {
   Live: 'bg-[var(--color-mint-100)] text-[var(--color-mint-600)]',
-  Beta: 'bg-[var(--color-sky-100)] text-[var(--color-sky-700)]',
-  'In Progress': 'bg-[var(--color-amber-100)] text-[var(--color-amber-700)]',
   'Coming Soon': 'bg-iris-100 text-iris-700',
-  Archived: 'bg-[var(--color-line)] text-[var(--color-muted)]',
 };
 ---
 

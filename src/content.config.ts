@@ -27,7 +27,7 @@ const apps = defineCollection({
     tags: z.array(z.string()).max(3).default([]),
 
     /* --- Status & meta -------------------------------------------------- */
-    status: z.enum(['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived']),
+    status: z.enum(['Live', 'Coming Soon']),
     featured: z.boolean().default(false),
     order: z.number().default(100),
     updated: z.coerce.date(),

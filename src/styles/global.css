@@ -44,13 +44,10 @@
   --color-peach-500: #f2610d;
   --color-peach-600: #cb510b;
 
-  /* --- Support colors for status badges --------------------------------- */
+  /* --- Support colors --------------------------------------------------- */
   --color-mint-100: #d8f4e7;
   --color-mint-600: #0f8a5f;
-  --color-amber-100: #fdeecb;
-  --color-amber-700: #9a6a12;
   --color-sky-100: #d9ecff;
-  --color-sky-700: #1667b8;
 
   /* --- Radii ------------------------------------------------------------ */
   --radius-xl: 1.25rem;

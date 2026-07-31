@@ -16,7 +16,7 @@ const { apps } = Astro.props;
 
 // No web apps yet, so "Web" isn't a meaningful filter option right now.
 const platforms = platformsOf(apps).filter((p) => p !== 'Web');
-const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
+const statuses = ['Live', 'Coming Soon'];
 ---
 
 <section class="explorer" data-explorer>
@@ -31,7 +31,7 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
       <input
         type="search"
         data-search
-        placeholder="Search apps, tech, tags…"
+        placeholder="Search"
         aria-label="Search apps"
         autocomplete="off"
       />
@@ -44,9 +44,11 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
         <label for="sort" class="sr-only">Sort by</label>
         <select id="sort" data-sort aria-label="Sort apps">
           <option value="featured">Featured first</option>
-          <option value="recent">Recently updated</option>
           <option value="name">Name (A–Z)</option>
         </select>
+        <svg class="select-arrow" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true">
+          <path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
       </div>
     </div>
   </div>
@@ -111,8 +113,8 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
 
   .toolbar__end { display: flex; align-items: center; gap: 0.75rem; }
 
-  .select-wrap { position: relative; }
-  .select-wrap::after { content: '⌄'; position: absolute; right: 0.8rem; top: 50%; transform: translateY(-60%); pointer-events: none; color: var(--color-faint); }
+  .select-wrap { position: relative; display: inline-flex; align-items: center; }
+  .select-arrow { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--color-faint); }
   select { appearance: none; border: 1px solid var(--color-line); background: var(--color-surface); color: var(--color-ink); font-size: 0.88rem; font-weight: 500; padding: 0.5rem 2rem 0.5rem 0.9rem; border-radius: 999px; cursor: pointer; }
   select:hover { border-color: var(--color-iris-300); }
 
@@ -181,7 +183,6 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
       const mode = sortSelect.value;
       const by = [...visible];
       if (mode === 'name') by.sort((a, b) => (a.dataset.title || '').localeCompare(b.dataset.title || ''));
-      else if (mode === 'recent') by.sort((a, b) => Number(b.dataset.updated) - Number(a.dataset.updated));
       else by.sort((a, b) => {
         // featured first, then recent
         const fa = a.dataset.featured === 'true' ? 1 : 0;
