@@ -24,7 +24,7 @@
     <rect x="0" y="0" width="96" height="96" rx="24" fill="#ffffff" stroke="#ece9e4"/>
     <path transform="translate(12,12) scale(0.9)" d="M40 4l9.3 22.7L72 36l-22.7 7.3L40 68l-9.3-24.7L8 36l22.7-9.3z" fill="url(#mark)"/>
   </g>
-  <text x="96" y="400" font-family="Georgia, serif" font-size="82" font-weight="600" fill="#191720" letter-spacing="-2">Small software,</text>
-  <text x="96" y="490" font-family="Georgia, serif" font-size="82" font-weight="600" fill="#6440dd" letter-spacing="-2">made with care.</text>
+  <text x="96" y="400" font-family="Georgia, serif" font-size="82" font-weight="600" fill="#191720" letter-spacing="-2">Thoughtful apps</text>
+  <text x="96" y="490" font-family="Georgia, serif" font-size="82" font-weight="600" fill="#6440dd" letter-spacing="-2">for everyday life</text>
   <text x="98" y="556" font-family="Inter, system-ui, sans-serif" font-size="30" fill="#6b6775">A curated showcase of apps, tools &amp; experiments.</text>
 </svg>
