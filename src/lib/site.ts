@@ -5,7 +5,7 @@ export const SITE = {
   name: 'MJ Foundry',
   title: 'MJ Foundry — App Studio',
   description:
-    'A curated showcase of applications, experiments and tools — spanning AI, web and mobile. Browse, search and discover what we build.',
+    "Building apps we'd love to use ourselves.",
   author: 'MJ Foundry',
   /** Destination address for the contact form. */
   contactEmail: 'mjfoundry.support@gmail.com',
