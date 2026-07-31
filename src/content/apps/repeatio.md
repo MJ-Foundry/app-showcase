@@ -1,5 +1,5 @@
 ---
-title: repeatio
+title: Repeatio
 tagline: Life maintenance for everything that comes back around.
 description: A tracker for recurring responsibilities — sheets weekly, kettle descaled monthly, bike serviced each spring. Complete a task and the next one schedules itself.
 icon: 🔁
