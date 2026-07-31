@@ -4,12 +4,10 @@ tagline: Log sleep, feeds and diapers — together, offline.
 description: An installable, offline-first tracker for a baby's day. Both parents write to the same timeline and see each other's entries in real time.
 icon: 👶
 accent: ['#7658f0', '#937bfb']
-category: Web
 platforms: ['Web', 'Android']
 languages: ['TypeScript', 'SQL']
 tech: ['React 19', 'Vite', 'PWA', 'Supabase', 'IndexedDB']
-tags: ['baby', 'tracking', 'offline-first', 'realtime']
-access: 'Private'
+tags: ['baby', 'offline-first', 'realtime']
 status: 'Coming Soon'
 featured: true
 order: 2

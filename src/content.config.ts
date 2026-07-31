@@ -21,13 +21,11 @@ const apps = defineCollection({
     accent: z.tuple([z.string(), z.string()]).default(['#7658f0', '#ff9552']),
 
     /* --- Taxonomy ------------------------------------------------------- */
-    category: z.enum(['AI', 'Web', 'Mobile', 'Tools', 'Experiments']),
     platforms: z.array(z.enum(['Web', 'iOS', 'Android', 'macOS', 'CLI'])).default([]),
     languages: z.array(z.string()).default([]),
     tech: z.array(z.string()).default([]),
-    tags: z.array(z.string()).default([]),
-    /** Access model — shown as a label and filterable. */
-    access: z.enum(['Open Source', 'Private']).default('Private'),
+    /** At most 3 — keeps cards scannable. */
+    tags: z.array(z.string()).max(3).default([]),
 
     /* --- Status & meta -------------------------------------------------- */
     status: z.enum(['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived']),

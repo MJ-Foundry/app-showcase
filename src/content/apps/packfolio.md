@@ -4,12 +4,10 @@ tagline: Packing lists you can actually reuse.
 description: Build a list per trip — blank or seeded from a template — and tick items off as they go into the bag, so the essentials stop getting forgotten.
 icon: 🧳
 accent: ['#f2610d', '#ffb073']
-category: Mobile
 platforms: ['iOS', 'Android']
 languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['packing', 'travel', 'checklist']
-access: 'Private'
 status: 'Coming Soon'
 featured: false
 order: 6

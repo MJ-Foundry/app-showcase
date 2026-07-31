@@ -4,12 +4,10 @@ tagline: Know when to buy more medicine — before you run out.
 description: An offline medication tracker that forecasts when each prescription runs out from your package size and daily dose, then reminds you in time to refill.
 icon: 💊
 accent: ['#0d9488', '#5eead4']
-category: Mobile
 platforms: ['iOS', 'Android']
 languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-notifications', 'expo-camera', 'AsyncStorage']
-tags: ['health', 'medication', 'reminders', 'barcode']
-access: 'Private'
+tags: ['medication', 'reminders', 'barcode']
 status: 'Coming Soon'
 featured: false
 order: 5

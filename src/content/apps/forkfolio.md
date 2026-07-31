@@ -4,12 +4,10 @@ tagline: A recipe box that fills itself from a link.
 description: Paste a recipe URL and it pulls the title, ingredients and steps into a draft you can edit before saving — or write your own from scratch.
 icon: 🍴
 accent: ['#d94a6a', '#f78fa7']
-category: Mobile
 platforms: ['iOS', 'Android']
 languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['recipes', 'cooking', 'import']
-access: 'Private'
 status: 'Coming Soon'
 featured: false
 order: 7

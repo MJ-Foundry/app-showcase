@@ -14,7 +14,7 @@ const items = [
   ...apps.map((a) => ({
     id: a.id,
     title: a.data.title,
-    hint: `${a.data.category} · ${a.data.status}`,
+    hint: a.data.status,
     href: withBase(`/apps/${a.id}`),
     icon: a.data.icon,
     accent: a.data.accent,

@@ -1,6 +1,6 @@
 ---
 import type { App } from '@lib/apps';
-import { categoriesOf, languagesOf, platformsOf } from '@lib/apps';
+import { languagesOf, platformsOf } from '@lib/apps';
 import AppCard from './AppCard.astro';
 
 /**
@@ -14,7 +14,6 @@ interface Props {
 }
 const { apps } = Astro.props;
 
-const categories = categoriesOf(apps);
 const languages = languagesOf(apps);
 const platforms = platformsOf(apps);
 const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
@@ -54,25 +53,6 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
 
   <!-- Filter facets -->
   <div class="facets on-scroll">
-    <div class="facet-row" role="group" aria-label="Filter by category">
-      <span class="facet-label">Category</span>
-      <div class="chips">
-        <button type="button" class="chip is-active" data-filter="category" data-value="" aria-pressed="true">All</button>
-        {categories.map((c) => (
-          <button type="button" class="chip" data-filter="category" data-value={c} aria-pressed="false">{c}</button>
-        ))}
-      </div>
-    </div>
-
-    <div class="facet-row" role="group" aria-label="Filter by access">
-      <span class="facet-label">Access</span>
-      <div class="chips">
-        <button type="button" class="chip is-active" data-filter="access" data-value="" aria-pressed="true">All</button>
-        <button type="button" class="chip" data-filter="access" data-value="Open Source" aria-pressed="false">Open Source</button>
-        <button type="button" class="chip" data-filter="access" data-value="Private" aria-pressed="false">Private</button>
-      </div>
-    </div>
-
     <details class="more-facets">
       <summary>More filters</summary>
       <div class="facet-row" role="group" aria-label="Filter by status">
@@ -189,7 +169,7 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
 </style>
 
 <script>
-  type FilterKey = 'category' | 'access' | 'status' | 'language' | 'platform';
+  type FilterKey = 'status' | 'language' | 'platform';
 
   const root = document.querySelector<HTMLElement>('[data-explorer]');
   if (root) {
@@ -202,17 +182,13 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
     const emptyEl = root.querySelector<HTMLElement>('[data-empty]')!;
     const resetBtns = root.querySelectorAll<HTMLButtonElement>('[data-reset]');
 
-    // Single-select facets vs multi-select facets.
-    const single: Record<'category' | 'access', string> = { category: '', access: '' };
-    const multi: Record<'status' | 'language' | 'platform', Set<string>> = {
+    const multi: Record<FilterKey, Set<string>> = {
       status: new Set(), language: new Set(), platform: new Set(),
     };
     let query = '';
 
     const matches = (card: HTMLElement): boolean => {
       const d = card.dataset;
-      if (single.category && d.category !== single.category) return false;
-      if (single.access && d.access !== single.access) return false;
       if (multi.status.size && !multi.status.has(d.status || '')) return false;
       const langs = (d.languages || '').split('|');
       if (multi.language.size && ![...multi.language].some((l) => langs.includes(l))) return false;
@@ -223,8 +199,7 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
     };
 
     const anyFilterActive = () =>
-      single.category || single.access || multi.status.size || multi.language.size ||
-      multi.platform.size || query;
+      multi.status.size || multi.language.size || multi.platform.size || query;
 
     const sortCards = (visible: HTMLElement[]): HTMLElement[] => {
       const mode = sortSelect.value;
@@ -268,21 +243,11 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
       chip.addEventListener('click', () => {
         const key = chip.dataset.filter as FilterKey;
         const value = chip.dataset.value || '';
-
-        if (key === 'category' || key === 'access') {
-          single[key] = value;
-          root.querySelectorAll<HTMLButtonElement>(`.chip[data-filter="${key}"]`).forEach((c) => {
-            const active = (c.dataset.value || '') === value;
-            c.classList.toggle('is-active', active);
-            c.setAttribute('aria-pressed', String(active));
-          });
-        } else {
-          const set = multi[key];
-          set.has(value) ? set.delete(value) : set.add(value);
-          const on = set.has(value);
-          chip.classList.toggle('is-active', on);
-          chip.setAttribute('aria-pressed', String(on));
-        }
+        const set = multi[key];
+        set.has(value) ? set.delete(value) : set.add(value);
+        const on = set.has(value);
+        chip.classList.toggle('is-active', on);
+        chip.setAttribute('aria-pressed', String(on));
         apply();
       });
     });
@@ -305,25 +270,15 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
 
     // --- Reset ---------------------------------------------------------
     const reset = () => {
-      single.category = ''; single.access = '';
       multi.status.clear(); multi.language.clear(); multi.platform.clear();
       query = ''; searchInput.value = ''; clearSearch.hidden = true;
       root.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => {
-        const isAll = (c.dataset.value || '') === '';
-        c.classList.toggle('is-active', isAll);
-        c.setAttribute('aria-pressed', String(isAll));
+        c.classList.remove('is-active');
+        c.setAttribute('aria-pressed', 'false');
       });
       apply();
     };
     resetBtns.forEach((b) => b.addEventListener('click', reset));
-
-    // --- Deep-link support: /apps?category=AI --------------------------
-    const params = new URLSearchParams(window.location.search);
-    const cat = params.get('category');
-    if (cat) {
-      const chip = root.querySelector<HTMLButtonElement>(`.chip[data-filter="category"][data-value="${cat}"]`);
-      chip?.click();
-    }
 
     apply();
   }

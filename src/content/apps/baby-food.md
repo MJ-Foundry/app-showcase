@@ -4,12 +4,10 @@ tagline: Log your baby's first foods — and how they went.
 description: "A record of every new food a baby tries: when they tried it, how they reacted, and which of the major allergens you have introduced so far."
 icon: 🍏
 accent: ['#0f8a5f', '#34c48c']
-category: Mobile
 platforms: ['iOS', 'Android']
 languages: ['TypeScript']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['baby', 'food-log', 'allergens']
-access: 'Private'
 status: 'Coming Soon'
 featured: false
 order: 4

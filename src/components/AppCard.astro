@@ -22,7 +22,7 @@ const delay = Math.min(index, 6);
 
 // Haystack for full-text search (lowercased, joined).
 const haystack = [
-  d.title, d.tagline, d.description, d.category, d.status, d.access,
+  d.title, d.tagline, d.description, d.status,
   ...d.platforms, ...d.languages, ...d.tech, ...d.tags,
 ].join(' ').toLowerCase();
 ---
@@ -33,9 +33,7 @@ const haystack = [
   data-app
   data-id={app.id}
   data-title={d.title}
-  data-category={d.category}
   data-status={d.status}
-  data-access={d.access}
   data-featured={String(d.featured)}
   data-platforms={d.platforms.join('|')}
   data-languages={d.languages.join('|')}
@@ -45,21 +43,19 @@ const haystack = [
   <a href={href} class="flex flex-1 flex-col focus:outline-none">
     <div class="mb-4 flex items-start gap-3">
       <AppIcon icon={d.icon} accent={d.accent} size="h-12 w-12 text-xl" />
-      <div class="min-w-0 pt-0.5">
+      <div class="min-w-0 flex-1 pt-0.5">
         <h3 class="truncate text-lg font-semibold tracking-tight text-[var(--color-ink)]">
           {d.title}
         </h3>
-        <p class="mt-0.5 text-sm text-[var(--color-faint)]">{d.category}</p>
+        <div class="mt-1.5 flex flex-wrap gap-1.5">
+          {d.tags.map((t) => <Tag>{t}</Tag>)}
+        </div>
       </div>
     </div>
 
     <p class="mb-4 line-clamp-2 text-sm leading-relaxed text-[var(--color-muted)]">
       {d.description}
     </p>
-
-    <div class="mb-4 flex flex-wrap gap-1.5">
-      {d.tags.slice(0, 3).map((t) => <Tag>{t}</Tag>)}
-    </div>
 
     <!-- Footer meta pinned to the bottom -->
     <div class="mt-auto flex items-center justify-end border-t border-[var(--color-line)] pt-3">

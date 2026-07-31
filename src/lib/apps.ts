@@ -15,11 +15,6 @@ export async function getFeaturedApps(): Promise<App[]> {
   return (await getApps()).filter((a) => a.data.featured);
 }
 
-/** Distinct, sorted category list derived from the content. */
-export function categoriesOf(apps: App[]): string[] {
-  return [...new Set(apps.map((a) => a.data.category))].sort();
-}
-
 /** Distinct, sorted language list derived from the content. */
 export function languagesOf(apps: App[]): string[] {
   return [...new Set(apps.flatMap((a) => a.data.languages))].sort();
@@ -37,27 +32,3 @@ export function relatedApps(app: App, all: App[]): App[] {
     .filter((a): a is App => Boolean(a));
 }
 
-/**
- * Serialize an app to the compact JSON shape consumed by the client-side
- * search/filter island. Keeping this in one place ensures the markup and the
- * client data never drift apart.
- */
-export function toSearchRecord(app: App) {
-  return {
-    id: app.id,
-    title: app.data.title,
-    tagline: app.data.tagline,
-    description: app.data.description,
-    category: app.data.category,
-    status: app.data.status,
-    access: app.data.access,
-    platforms: app.data.platforms,
-    languages: app.data.languages,
-    tech: app.data.tech,
-    tags: app.data.tags,
-    updated: app.data.updated.getTime(),
-    featured: app.data.featured,
-  };
-}
-
-export type SearchRecord = ReturnType<typeof toSearchRecord>;
