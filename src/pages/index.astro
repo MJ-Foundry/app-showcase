@@ -47,7 +47,6 @@ const stats = [
         <p class="kicker">Spotlight</p>
         <h2 class="text-3xl md:text-4xl">Featured apps</h2>
       </div>
-      <a href={withBase('/apps')} class="see-all">View all →</a>
     </header>
     <div class="feature-grid">
       {featured.map((app, i) => <FeatureCard app={app} index={i} />)}
@@ -97,9 +96,6 @@ const stats = [
 
   .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.75rem; }
   .kicker { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-peach-500); margin-bottom: 0.5rem; }
-  .see-all { flex: none; font-size: 0.9rem; font-weight: 600; color: var(--color-iris-600); transition: color 0.2s ease; }
-  .see-all:hover { color: var(--color-iris-700); }
-
   .feature-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
   .app-grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); }
 
