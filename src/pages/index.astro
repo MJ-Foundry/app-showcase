@@ -18,7 +18,7 @@ const comingSoon = apps.filter(
 
 // App statistics
 const stats = [
-  { label: 'Apps & tools', value: apps.length },
+  { label: 'Available now', value: apps.filter((a) => a.data.status === 'Live' || a.data.status === 'Beta').length },
   { label: 'In the works', value: apps.filter((a) => a.data.status === 'Coming Soon').length },
 ];
 ---
