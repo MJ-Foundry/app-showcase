@@ -6,10 +6,6 @@ import { withBase } from '@lib/url';
  * The backdrop is purely decorative (aria-hidden) and disables its animation
  * under prefers-reduced-motion via the global stylesheet.
  */
-interface Props {
-  appCount: number;
-}
-const { appCount } = Astro.props;
 ---
 
 <section class="hero">
@@ -23,22 +19,17 @@ const { appCount } = Astro.props;
 
   <div class="container-page relative">
     <div class="mx-auto max-w-3xl text-center">
-      <p class="reveal eyebrow">
-        <span class="dot" aria-hidden="true"></span>
-        {appCount} apps · always shipping
-      </p>
-
-      <h1 class="reveal delay-1 mt-6 text-4xl leading-[1.05] sm:text-5xl md:text-6xl">
+      <h1 class="reveal text-4xl leading-[1.05] sm:text-5xl md:text-6xl">
         Thoughtful apps<br />
         <span class="text-gradient">for everyday life</span>
       </h1>
 
-      <p class="reveal delay-2 mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
+      <p class="reveal delay-1 mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
         A living collection of the apps, tools and experiments I build — spanning
         AI, the web and mobile. Browse, search and find something useful.
       </p>
 
-      <div class="reveal delay-3 mt-9 flex flex-wrap items-center justify-center gap-3">
+      <div class="reveal delay-2 mt-9 flex flex-wrap items-center justify-center gap-3">
         <a href={withBase('/apps')} class="btn btn-primary">
           Explore all apps
           <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
@@ -56,14 +47,6 @@ const { appCount } = Astro.props;
 <style>
   .hero { position: relative; overflow: hidden; padding: 6rem 0 5rem; }
   @media (min-width: 768px) { .hero { padding: 8rem 0 6rem; } }
-
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.83rem; font-weight: 600; color: var(--color-iris-700);
-    padding: 0.4rem 0.9rem; border-radius: 999px;
-    background: var(--color-iris-50); border: 1px solid var(--color-iris-100);
-  }
-  .eyebrow .dot { width: 0.5rem; height: 0.5rem; border-radius: 999px; background: var(--color-peach-400); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-peach-400) 25%, transparent); }
 
   .hero-bg { position: absolute; inset: -20% 0 0; z-index: 0; pointer-events: none; }
   .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.55; will-change: transform; }
