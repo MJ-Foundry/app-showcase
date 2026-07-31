@@ -43,19 +43,20 @@ const haystack = [
   <a href={href} class="flex flex-1 flex-col focus:outline-none">
     <div class="mb-4 flex items-start gap-3">
       <AppIcon icon={d.icon} accent={d.accent} size="h-12 w-12 text-xl" />
-      <div class="min-w-0 flex-1 pt-0.5">
+      <div class="min-w-0 pt-0.5">
         <h3 class="truncate text-lg font-semibold tracking-tight text-[var(--color-ink)]">
           {d.title}
         </h3>
-        <div class="mt-1.5 flex flex-wrap gap-1.5">
-          {d.tags.map((t) => <Tag>{t}</Tag>)}
-        </div>
       </div>
     </div>
 
     <p class="mb-4 line-clamp-2 text-sm leading-relaxed text-[var(--color-muted)]">
       {d.description}
     </p>
+
+    <div class="mb-4 flex flex-wrap gap-1.5">
+      {d.tags.map((t) => <Tag>{t}</Tag>)}
+    </div>
 
     <!-- Footer meta pinned to the bottom -->
     <div class="mt-auto flex items-center justify-end border-t border-[var(--color-line)] pt-3">

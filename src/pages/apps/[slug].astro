@@ -37,9 +37,6 @@ const [from, to] = d.accent;
       <div class="reveal delay-1 mt-6 flex flex-col gap-6 md:flex-row md:items-center">
         <AppIcon icon={d.icon} accent={d.accent} size="h-20 w-20 text-4xl" class="rounded-2xl" />
         <div class="min-w-0 flex-1">
-          <div class="mb-2 flex flex-wrap gap-1.5">
-            {d.tags.map((t) => <Tag>{t}</Tag>)}
-          </div>
           <h1 class="text-4xl tracking-tight md:text-5xl">{d.title}</h1>
           <p class="mt-3 max-w-2xl text-lg text-[var(--color-muted)]">{d.tagline}</p>
         </div>
@@ -140,6 +137,13 @@ const [from, to] = d.accent;
           <div class="side-block">
             <h3 class="side-subtitle">Platforms</h3>
             <div class="flex flex-wrap gap-1.5">{d.platforms.map((p) => <Tag>{p}</Tag>)}</div>
+          </div>
+        )}
+
+        {d.tags.length > 0 && (
+          <div class="side-block">
+            <h3 class="side-subtitle">Tags</h3>
+            <div class="flex flex-wrap gap-1.5">{d.tags.map((t) => <Tag variant="outline">#{t}</Tag>)}</div>
           </div>
         )}
       </div>
