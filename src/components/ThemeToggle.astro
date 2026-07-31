@@ -26,9 +26,10 @@
     width: 2.4rem;
     border-radius: 999px;
     color: var(--color-ink);
-    transition: background 0.2s ease;
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease;
   }
-  .icon-btn:hover { background: color-mix(in srgb, var(--color-iris-500) 12%, var(--color-canvas)); }
+  .icon-btn:hover { border-color: var(--color-iris-400); }
   .icon-btn svg { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.25s ease; grid-area: 1 / 1; }
   .moon { opacity: 0; transform: rotate(-40deg) scale(0.6); }
   .sun { opacity: 1; }

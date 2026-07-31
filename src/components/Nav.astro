@@ -123,9 +123,10 @@ const links = [
     width: 2.4rem;
     border-radius: 999px;
     color: var(--color-ink);
-    transition: background 0.2s ease;
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease;
   }
-  .icon-btn:hover { background: color-mix(in srgb, var(--color-iris-500) 12%, var(--color-canvas)); }
+  .icon-btn:hover { border-color: var(--color-iris-400); }
   .icon-btn svg path { transition: transform 0.3s ease, opacity 0.2s ease; transform-origin: center; }
   .icon-btn[aria-expanded='true'] .line-top { transform: translateY(5px) rotate(45deg); }
   .icon-btn[aria-expanded='true'] .line-mid { opacity: 0; }
