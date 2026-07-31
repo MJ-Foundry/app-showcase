@@ -54,9 +54,8 @@ const { title, description, path, ogType } = Astro.props;
       .skip-link:focus { top: 1rem; }
     </style>
 
-    {/* Global progressive enhancements: scroll-reveal + favorites persistence. */}
+    {/* Global progressive enhancement: scroll-reveal. */}
     <script>
-      // --- Scroll reveal --------------------------------------------------
       const reveals = document.querySelectorAll<HTMLElement>('.on-scroll');
       if ('IntersectionObserver' in window && reveals.length) {
         const io = new IntersectionObserver(
@@ -74,34 +73,6 @@ const { title, description, path, ogType } = Astro.props;
       } else {
         reveals.forEach((el) => el.classList.add('is-visible'));
       }
-
-      // --- Favorites (localStorage) --------------------------------------
-      const KEY = 'favorites';
-      const read = (): string[] => {
-        try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
-      };
-      const write = (ids: string[]) => {
-        try { localStorage.setItem(KEY, JSON.stringify(ids)); } catch {}
-      };
-      const favs = new Set(read());
-
-      document.querySelectorAll<HTMLButtonElement>('[data-fav]').forEach((btn) => {
-        const id = btn.dataset.fav!;
-        const sync = () => {
-          const on = favs.has(id);
-          btn.setAttribute('aria-pressed', String(on));
-          btn.setAttribute('aria-label', `${on ? 'Remove' : 'Add'} favorite`);
-        };
-        sync();
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          favs.has(id) ? favs.delete(id) : favs.add(id);
-          write([...favs]);
-          sync();
-          document.dispatchEvent(new CustomEvent('favorites:changed'));
-        });
-      });
     </script>
   </body>
 </html>

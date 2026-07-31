@@ -8,7 +8,7 @@ import Tag from './Tag.astro';
 /**
  * AppCard — the standard card shown in the "All apps" grid. Carries data-*
  * attributes so the client-side AppExplorer island can filter/sort/search
- * without a framework. Includes a favorites star (persisted to localStorage).
+ * without a framework.
  */
 interface Props {
   app: App;
@@ -28,7 +28,7 @@ const haystack = [
 ---
 
 <article
-  class="app-card card card-hover on-scroll group relative flex flex-col p-5"
+  class="app-card card card-hover on-scroll flex flex-col p-5"
   style={`transition-delay:${delay * 60}ms`}
   data-app
   data-id={app.id}
@@ -42,25 +42,6 @@ const haystack = [
   data-updated={d.updated.getTime()}
   data-haystack={haystack}
 >
-  <!-- Favorite toggle -->
-  <button
-    type="button"
-    class="fav-btn"
-    data-fav={app.id}
-    aria-pressed="false"
-    aria-label={`Add ${d.title} to favorites`}
-  >
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-      <path
-        d="M12 17.3l-5.2 3 1-5.8-4.2-4.1 5.9-.9L12 4.2l2.5 5.3 5.9.9-4.2 4.1 1 5.8z"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linejoin="round"
-      ></path>
-    </svg>
-  </button>
-
   <a href={href} class="flex flex-1 flex-col focus:outline-none">
     <div class="mb-4 flex items-start gap-3">
       <AppIcon icon={d.icon} accent={d.accent} size="h-12 w-12 text-xl" />
@@ -89,31 +70,6 @@ const haystack = [
 
 <style>
   .app-card { scroll-margin-top: 6rem; }
-
-  .fav-btn {
-    position: absolute;
-    top: 0.85rem;
-    right: 0.85rem;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 999px;
-    color: var(--color-faint);
-    background: color-mix(in srgb, var(--color-surface) 70%, transparent);
-    border: 1px solid var(--color-line);
-    transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-  }
-  .fav-btn:hover { color: var(--color-peach-500); transform: scale(1.08); }
-  .fav-btn[aria-pressed='true'] {
-    color: var(--color-peach-500);
-  }
-  .fav-btn[aria-pressed='true'] svg path {
-    fill: var(--color-peach-400);
-    stroke: var(--color-peach-500);
-  }
 
   .line-clamp-2 {
     display: -webkit-box;

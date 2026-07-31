@@ -39,12 +39,8 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
       <button type="button" class="clear-search" data-clear-search hidden aria-label="Clear search">✕</button>
     </div>
 
-    <!-- Sort + favorites -->
+    <!-- Sort -->
     <div class="toolbar__end">
-      <label class="fav-toggle">
-        <input type="checkbox" data-fav-only />
-        <span>★ Favorites</span>
-      </label>
       <div class="select-wrap">
         <label for="sort" class="sr-only">Sort by</label>
         <select id="sort" data-sort aria-label="Sort apps">
@@ -145,10 +141,6 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
   .clear-search:hover { color: var(--color-ink); background: var(--color-canvas); }
 
   .toolbar__end { display: flex; align-items: center; gap: 0.75rem; }
-  .fav-toggle { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.88rem; font-weight: 500; color: var(--color-muted); cursor: pointer; padding: 0.4rem 0.75rem; border-radius: 999px; border: 1px solid var(--color-line); transition: all 0.2s ease; }
-  .fav-toggle:has(input:checked) { color: var(--color-peach-600); border-color: var(--color-peach-200); background: var(--color-peach-50); }
-  .fav-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
-  .fav-toggle:focus-within { outline: 2px solid var(--color-iris-500); outline-offset: 2px; }
 
   .select-wrap { position: relative; }
   .select-wrap::after { content: '⌄'; position: absolute; right: 0.8rem; top: 50%; transform: translateY(-60%); pointer-events: none; color: var(--color-faint); }
@@ -206,7 +198,6 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
     const searchInput = root.querySelector<HTMLInputElement>('[data-search]')!;
     const clearSearch = root.querySelector<HTMLButtonElement>('[data-clear-search]')!;
     const sortSelect = root.querySelector<HTMLSelectElement>('[data-sort]')!;
-    const favOnly = root.querySelector<HTMLInputElement>('[data-fav-only]')!;
     const countEl = root.querySelector<HTMLElement>('[data-count]')!;
     const emptyEl = root.querySelector<HTMLElement>('[data-empty]')!;
     const resetBtns = root.querySelectorAll<HTMLButtonElement>('[data-reset]');
@@ -218,12 +209,7 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
     };
     let query = '';
 
-    const readFavs = (): Set<string> => {
-      try { return new Set(JSON.parse(localStorage.getItem('favorites') || '[]')); }
-      catch { return new Set(); }
-    };
-
-    const matches = (card: HTMLElement, favs: Set<string>): boolean => {
+    const matches = (card: HTMLElement): boolean => {
       const d = card.dataset;
       if (single.category && d.category !== single.category) return false;
       if (single.access && d.access !== single.access) return false;
@@ -232,14 +218,13 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
       if (multi.language.size && ![...multi.language].some((l) => langs.includes(l))) return false;
       const plats = (d.platforms || '').split('|');
       if (multi.platform.size && ![...multi.platform].some((p) => plats.includes(p))) return false;
-      if (favOnly.checked && !favs.has(d.id || '')) return false;
       if (query && !(d.haystack || '').includes(query)) return false;
       return true;
     };
 
     const anyFilterActive = () =>
       single.category || single.access || multi.status.size || multi.language.size ||
-      multi.platform.size || favOnly.checked || query;
+      multi.platform.size || query;
 
     const sortCards = (visible: HTMLElement[]): HTMLElement[] => {
       const mode = sortSelect.value;
@@ -257,8 +242,7 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
     };
 
     const apply = () => {
-      const favs = readFavs();
-      const visible = cards.filter((c) => matches(c, favs));
+      const visible = cards.filter((c) => matches(c));
       const hidden = cards.filter((c) => !visible.includes(c));
 
       // Reorder + toggle visibility
@@ -318,14 +302,12 @@ const statuses = ['Live', 'Beta', 'In Progress', 'Coming Soon', 'Archived'];
     });
 
     sortSelect.addEventListener('change', apply);
-    favOnly.addEventListener('change', apply);
-    document.addEventListener('favorites:changed', apply);
 
     // --- Reset ---------------------------------------------------------
     const reset = () => {
       single.category = ''; single.access = '';
       multi.status.clear(); multi.language.clear(); multi.platform.clear();
-      query = ''; searchInput.value = ''; clearSearch.hidden = true; favOnly.checked = false;
+      query = ''; searchInput.value = ''; clearSearch.hidden = true;
       root.querySelectorAll<HTMLButtonElement>('.chip').forEach((c) => {
         const isAll = (c.dataset.value || '') === '';
         c.classList.toggle('is-active', isAll);

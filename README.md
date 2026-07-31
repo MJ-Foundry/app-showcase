@@ -13,8 +13,7 @@ A modern, fast, fully-static website that showcases my apps — built with
 - 🎨 **Original design system** — Fraunces + Inter typography, an iris/coral
   accent palette, soft gradients, gentle shadows and refined micro-interactions.
 - 🔎 **Client-side search & filtering** — full-text search, category / access /
-  status / language / platform filters, sorting and a "favorites only" toggle.
-  No framework required.
+  status / language / platform filters and sorting. No framework required.
 - ⌘ **Command palette** (`⌘K` / `Ctrl+K`) for instant navigation.
 - 🌗 **Light-first theme** with an optional, considered dark mode.
 - 📱 **Fully responsive** with a polished mobile navigation.
