@@ -3,20 +3,25 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/Hero.astro';
 import FeatureCard from '@components/FeatureCard.astro';
 import AppCard from '@components/AppCard.astro';
-import { getApps, getFeaturedApps, categoriesOf } from '@lib/apps';
+import { getApps, getFeaturedApps, categoriesOf, platformsOf } from '@lib/apps';
 import { withBase } from '@lib/url';
 import { SITE } from '@lib/site';
 
 const apps = await getApps();
 const featured = await getFeaturedApps();
 const recent = [...apps].sort((a, b) => b.data.updated.getTime() - a.data.updated.getTime()).slice(0, 3);
-const comingSoon = apps.filter((a) => a.data.status === 'Coming Soon');
+// Only surface upcoming apps that aren't already shown above, so the section
+// stays useful whether one app is coming or every app is.
+const shownAbove = new Set([...featured, ...recent].map((a) => a.id));
+const comingSoon = apps.filter(
+  (a) => a.data.status === 'Coming Soon' && !shownAbove.has(a.id),
+);
 
 // App statistics
 const stats = [
   { label: 'Apps & tools', value: apps.length },
-  { label: 'Live', value: apps.filter((a) => a.data.status === 'Live').length },
-  { label: 'Open source', value: apps.filter((a) => a.data.access === 'Open Source').length },
+  { label: 'In the works', value: apps.filter((a) => a.data.status === 'Coming Soon').length },
+  { label: 'Platforms', value: platformsOf(apps).length },
   { label: 'Categories', value: categoriesOf(apps).length },
 ];
 ---
