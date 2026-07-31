@@ -49,20 +49,10 @@ const delay = Math.min(index, 6);
     <div class="flex flex-wrap gap-1.5">
       {d.tags.slice(0, 4).map((t) => <Tag>{t}</Tag>)}
     </div>
-
-    <a
-      href={href}
-      class="inline-flex items-center gap-1.5 self-start text-sm font-semibold text-iris-600 transition-colors hover:text-iris-700"
-    >
-      Explore {d.title}
-      <svg class="arrow" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
-        <path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </a>
   </div>
 
-  <!-- full-card link overlay for large hit target (kept below the CTA/tags visually) -->
-  <a href={href} class="absolute inset-0" aria-label={`Explore ${d.title}`} tabindex="-1"></a>
+  <!-- full-card link: the whole card is the click/tap target -->
+  <a href={href} class="absolute inset-0" aria-label={`Explore ${d.title}`}></a>
 </article>
 
 <style>
@@ -79,9 +69,4 @@ const delay = Math.min(index, 6);
     pointer-events: none;
   }
   .feature-card:hover .feature-glow { opacity: 1; transform: translate(-6%, 4%); }
-  .arrow { transition: transform 0.25s ease; }
-  .feature-card:hover .arrow { transform: translateX(3px); }
-  /* keep interactive elements above the overlay link */
-  .feature-card :global(a:not(.absolute)),
-  .feature-card :global(.pill) { position: relative; z-index: 1; }
 </style>
