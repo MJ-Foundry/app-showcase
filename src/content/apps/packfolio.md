@@ -2,7 +2,7 @@
 title: Packfolio
 tagline: Packing lists you can actually reuse.
 description: Build a list per trip — blank or seeded from a template — and tick items off as they go into the bag, so the essentials stop getting forgotten.
-icon: 🧳
+icon: suitcase
 accent: ['#f2610d', '#ffb073']
 platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']

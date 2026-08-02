@@ -7,6 +7,7 @@ import Tag from '@components/Tag.astro';
 import AppCard from '@components/AppCard.astro';
 import { getApps, relatedApps } from '@lib/apps';
 import { withBase } from '@lib/url';
+import { APP_ICONS } from '@lib/appIcons';
 
 export async function getStaticPaths() {
   const apps = await getApps();
@@ -69,7 +70,11 @@ const [from, to] = d.accent;
             {d.screenshots.map((s, i) => (
               <figure class="shot" style={`--from:${from}; --to:${to};`}>
                 <div class="shot__frame" role="img" aria-label={s.alt}>
-                  <span class="shot__glyph" aria-hidden="true">{d.icon}</span>
+                  {APP_ICONS[d.icon] ? (
+                    <svg class="shot__glyph-svg" viewBox="0 0 24 24" set:html={APP_ICONS[d.icon]} />
+                  ) : (
+                    <span class="shot__glyph" aria-hidden="true">{d.icon}</span>
+                  )}
                   <span class="shot__badge">Screenshot {i + 1}</span>
                 </div>
                 <figcaption>{s.alt}</figcaption>
@@ -179,6 +184,7 @@ const [from, to] = d.accent;
     border: 1px solid var(--color-line);
   }
   .shot__glyph { font-size: 3.5rem; opacity: 0.35; }
+  .shot__glyph-svg { width: 3.5rem; height: 3.5rem; color: var(--from); opacity: 0.35; }
   .shot__badge {
     position: absolute; bottom: 0.75rem; left: 0.75rem; font-size: 0.7rem; font-weight: 600;
     padding: 0.25rem 0.6rem; border-radius: 999px; background: color-mix(in srgb, var(--color-surface) 85%, transparent);

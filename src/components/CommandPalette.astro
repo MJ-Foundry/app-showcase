@@ -1,6 +1,7 @@
 ---
 import { getApps } from '@lib/apps';
 import { withBase } from '@lib/url';
+import { APP_ICONS } from '@lib/appIcons';
 
 /**
  * CommandPalette — a ⌘K / Ctrl+K quick-launcher. Fully client-side: the app
@@ -9,8 +10,8 @@ import { withBase } from '@lib/url';
  */
 const apps = await getApps();
 const items = [
-  { id: '__apps', title: 'Browse all apps', hint: 'Page', href: withBase('/apps'), icon: '▤', accent: ['#7658f0', '#937bfb'] as [string, string] },
-  { id: '__about', title: 'About', hint: 'Page', href: withBase('/about'), icon: '☺', accent: ['#1667b8', '#3aa0ff'] as [string, string] },
+  { id: '__apps', title: 'Browse all apps', hint: 'Page', href: withBase('/apps'), icon: 'grid', accent: ['#7658f0', '#937bfb'] as [string, string] },
+  { id: '__about', title: 'About', hint: 'Page', href: withBase('/about'), icon: 'info', accent: ['#1667b8', '#3aa0ff'] as [string, string] },
   ...apps.map((a) => ({
     id: a.id,
     title: a.data.title,
@@ -52,7 +53,13 @@ const items = [
             data-cmdk-item
             data-search={`${it.title} ${it.hint}`.toLowerCase()}
           >
-            <span class="cmdk__icon" style={`--from:${it.accent[0]}; --to:${it.accent[1]};`} aria-hidden="true">{it.icon}</span>
+            <span class="cmdk__icon" style={`--from:${it.accent[0]}; --to:${it.accent[1]};`} aria-hidden="true">
+              {APP_ICONS[it.icon] ? (
+                <svg class="cmdk__icon-svg" viewBox="0 0 24 24" set:html={APP_ICONS[it.icon]} />
+              ) : (
+                it.icon
+              )}
+            </span>
             <span class="cmdk__label">{it.title}</span>
             <span class="cmdk__hint">{it.hint}</span>
           </a>
@@ -79,6 +86,7 @@ const items = [
   .cmdk__item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.7rem; border-radius: 0.8rem; color: var(--color-ink); }
   .cmdk__item[aria-selected='true'] { background: color-mix(in srgb, var(--color-iris-500) 12%, var(--color-surface)); }
   .cmdk__icon { display: inline-grid; place-items: center; height: 1.9rem; width: 1.9rem; border-radius: 0.55rem; background-image: linear-gradient(135deg, var(--from), var(--to)); color: #fff; font-size: 0.9rem; flex: none; }
+  .cmdk__icon-svg { width: 55%; height: 55%; }
   .cmdk__label { font-weight: 500; font-size: 0.95rem; }
   .cmdk__hint { margin-left: auto; font-size: 0.78rem; color: var(--color-faint); }
   .cmdk__empty { padding: 1.5rem; text-align: center; color: var(--color-faint); font-size: 0.9rem; }

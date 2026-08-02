@@ -58,7 +58,7 @@ frontmatter schema is defined and validated in `src/content.config.ts`:
 title: My App
 tagline: A short, punchy one-liner.
 description: A one-sentence description used on cards and meta tags.
-icon: "✦"                         # emoji / glyph used as the icon
+icon: "baby"                      # a key from src/lib/appIcons.ts, or any emoji/glyph as a fallback
 accent: ["#7658f0", "#ff9552"]    # gradient for the icon tile
 platforms: ["Web"]                 # Web | iOS | Android | macOS | CLI
 tech: ["Astro", "Tailwind"]

@@ -2,7 +2,7 @@
 title: Baby Food
 tagline: Log your baby's first foods — and how they went.
 description: "A record of every new food a baby tries: when they tried it, how they reacted, and which of the major allergens you have introduced so far."
-icon: 🍏
+icon: apple
 accent: ['#0f8a5f', '#34c48c']
 platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']

@@ -2,7 +2,7 @@
 title: Baby Logger
 tagline: Log sleep, feeds and diapers — together, offline.
 description: An installable, offline-first tracker for a baby's day. Both parents write to the same timeline and see each other's entries in real time.
-icon: 👶
+icon: baby
 accent: ['#7658f0', '#937bfb']
 platforms: ['Web', 'Android']
 tech: ['React 19', 'Vite', 'PWA', 'Supabase', 'IndexedDB']

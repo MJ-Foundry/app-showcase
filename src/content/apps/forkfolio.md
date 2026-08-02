@@ -2,7 +2,7 @@
 title: Forkfolio
 tagline: A recipe box that fills itself from a link.
 description: Paste a recipe URL and it pulls the title, ingredients and steps into a draft you can edit before saving — or write your own from scratch.
-icon: 🍴
+icon: fork
 accent: ['#d94a6a', '#f78fa7']
 platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']

@@ -1,8 +1,15 @@
 ---
+import { APP_ICONS } from '@lib/appIcons';
+
 /**
  * AppIcon — renders an app's glyph inside a soft gradient tile built from its
  * two accent colors. Purely decorative (the app title provides the label), so
  * it is marked aria-hidden.
+ *
+ * `icon` is looked up in the shared APP_ICONS library first (a real SVG,
+ * rendering identically on every device). If it isn't a recognized key,
+ * it's rendered as raw text instead — so an emoji still works as a stopgap
+ * and adding a new app never requires a code change.
  */
 interface Props {
   icon: string;
@@ -13,6 +20,7 @@ interface Props {
 }
 const { icon, accent, size = 'h-14 w-14 text-2xl', class: className = '' } = Astro.props;
 const [from, to] = accent;
+const svgShape = APP_ICONS[icon];
 ---
 
 <span
@@ -20,7 +28,11 @@ const [from, to] = accent;
   style={`--from:${from}; --to:${to};`}
   aria-hidden="true"
 >
-  <span class="app-icon__glyph">{icon}</span>
+  {svgShape ? (
+    <svg class="app-icon__svg" viewBox="0 0 24 24" set:html={svgShape} />
+  ) : (
+    <span class="app-icon__glyph">{icon}</span>
+  )}
 </span>
 
 <style>
@@ -49,5 +61,11 @@ const [from, to] = accent;
     line-height: 1;
     transform: translateY(-1px);
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  }
+  .app-icon__svg {
+    position: relative;
+    width: 52%;
+    height: 52%;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.18));
   }
 </style>
