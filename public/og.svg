@@ -22,7 +22,8 @@
   <rect width="1200" height="630" fill="url(#glow2)"/>
   <g transform="translate(96, 210)">
     <rect x="0" y="0" width="96" height="96" rx="24" fill="#ffffff" stroke="#ece9e4"/>
-    <path transform="translate(12,12) scale(0.9)" d="M40 4l9.3 22.7L72 36l-22.7 7.3L40 68l-9.3-24.7L8 36l22.7-9.3z" fill="url(#mark)"/>
+    <rect x="18" y="18" width="42" height="42" rx="13" fill="url(#mark)" opacity="0.55"/>
+    <rect x="36" y="36" width="42" height="42" rx="13" fill="url(#mark)"/>
   </g>
   <text x="96" y="400" font-family="Georgia, serif" font-size="82" font-weight="600" fill="#191720" letter-spacing="-2">Thoughtful apps</text>
   <text x="96" y="490" font-family="Georgia, serif" font-size="82" font-weight="600" fill="#6440dd" letter-spacing="-2">for everyday life</text>
