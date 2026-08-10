@@ -79,4 +79,10 @@ export const APP_ICONS: Record<string, string> = {
     <circle cx="12" cy="8.3" r="0.9" fill="currentColor" />
     <path d="M12 11v5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
   `,
+  // Triangular warning sign, rounded corners — used by roadwise
+  sign: `
+    <path d="M12 3.4l8.6 15.3a1 1 0 01-.9 1.5H4.3a1 1 0 01-.9-1.5L12 3.4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+    <path d="M12 9.8v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+    <circle cx="12" cy="16.6" r="0.9" fill="currentColor" />
+  `,
 };
