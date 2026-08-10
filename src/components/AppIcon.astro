@@ -1,5 +1,6 @@
 ---
 import { APP_ICONS } from '@lib/appIcons';
+import { withBase } from '@lib/url';
 
 /**
  * AppIcon — renders an app's glyph inside a soft gradient tile built from its
@@ -7,9 +8,10 @@ import { APP_ICONS } from '@lib/appIcons';
  * it is marked aria-hidden.
  *
  * `icon` is looked up in the shared APP_ICONS library first (a real SVG,
- * rendering identically on every device). If it isn't a recognized key,
- * it's rendered as raw text instead — so an emoji still works as a stopgap
- * and adding a new app never requires a code change.
+ * rendering identically on every device). If `icon` looks like an image path
+ * (starts with "/") it's rendered as the app's own icon artwork instead. If
+ * neither matches, it's rendered as raw text — so an emoji still works as a
+ * stopgap and adding a new app never requires a code change.
  */
 interface Props {
   icon: string;
@@ -20,15 +22,18 @@ interface Props {
 }
 const { icon, accent, size = 'h-14 w-14 text-2xl', class: className = '' } = Astro.props;
 const [from, to] = accent;
-const svgShape = APP_ICONS[icon];
+const isImage = icon.startsWith('/');
+const svgShape = isImage ? undefined : APP_ICONS[icon];
 ---
 
 <span
-  class:list={['app-icon', size, className]}
+  class:list={['app-icon', size, className, isImage && 'app-icon--image']}
   style={`--from:${from}; --to:${to};`}
   aria-hidden="true"
 >
-  {svgShape ? (
+  {isImage ? (
+    <img class="app-icon__img" src={withBase(icon)} alt="" />
+  ) : svgShape ? (
     <svg class="app-icon__svg" viewBox="0 0 24 24" set:html={svgShape} />
   ) : (
     <span class="app-icon__glyph">{icon}</span>
@@ -48,13 +53,19 @@ const svgShape = APP_ICONS[icon];
     flex: none;
     overflow: hidden;
   }
-  /* soft inner highlight for a glassy feel */
-  .app-icon::after {
+  /* soft inner highlight for a glassy feel — skipped for real icon artwork, which brings its own finish */
+  .app-icon:not(.app-icon--image)::after {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(120% 90% at 30% 15%, rgba(255, 255, 255, 0.45), transparent 55%);
     pointer-events: none;
+  }
+  .app-icon__img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .app-icon__glyph {
     position: relative;
