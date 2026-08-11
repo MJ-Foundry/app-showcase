@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mj-foundry.github.io/app-showcase/sitemap-index.xml
