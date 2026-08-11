@@ -1,0 +1,50 @@
+name: PR Preview
+
+# Builds every PR to its own subpath on the gh-pages branch (alongside
+# production, which lives at the branch root — see deploy.yml) and comments
+# the preview link on the PR. Removed automatically when the PR closes.
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: pr-preview-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        if: github.event.action != 'closed'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        run: npm ci
+
+      - name: Build preview
+        if: github.event.action != 'closed'
+        run: npm run build
+        env:
+          SITE_URL: https://mj-foundry.github.io
+          BASE_PATH: /app-showcase/pr-preview/pr-${{ github.event.number }}/
+          # Keeps the preview out of search engines — see SEO.astro and
+          # robots.txt.ts.
+          PREVIEW: 'true'
+
+      - name: Deploy or remove preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./dist/
+          github-token: ${{ secrets.GITHUB_TOKEN }}

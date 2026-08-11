@@ -22,6 +22,12 @@ const {
 
 const fullTitle = path === '/' ? title : `${title} — ${SITE.name}`;
 
+// PR preview builds set PREVIEW=true so they never show up in search
+// results — noindex is the reliable signal (unlike robots.txt, which only
+// asks crawlers not to *crawl*, this guarantees no *listing* even if a
+// preview link is discovered).
+const isPreview = process.env.PREVIEW === 'true';
+
 // Canonical absolute URL (Astro.site is set in astro.config).
 const canonical = new URL(withBase(path), Astro.site ?? 'https://example.com').toString();
 const ogImage = new URL(withBase('/og.svg'), Astro.site ?? 'https://example.com').toString();
@@ -36,6 +42,7 @@ const favicon = withBase('/favicon.svg');
 <meta name="description" content={description} />
 <meta name="author" content={SITE.author} />
 <link rel="canonical" href={canonical} />
+{isPreview && <meta name="robots" content="noindex, nofollow" />}
 
 <!-- Favicons -->
 <link rel="icon" href={favicon} type="image/svg+xml" />

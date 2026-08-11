@@ -7,19 +7,20 @@ on:
   # Allow manual runs from the Actions tab
   workflow_dispatch:
 
-# Permissions required for GitHub Pages deployment
+# Pushes the build to the gh-pages branch directly (branch-based Pages),
+# rather than the Actions-based deploy API — this lets PR previews live
+# alongside production on the same branch, at their own subpaths. See
+# .github/workflows/pr-preview.yml.
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 # Allow one concurrent deployment; don't cancel in-progress production deploys
 concurrency:
-  group: pages
+  group: pages-production
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,30 +35,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Derives `origin` (e.g. https://user.github.io) and `base_path`
-      # (e.g. /repo) automatically — so the site works at any Pages URL.
-      - name: Configure Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
       - name: Build
         run: npm run build
         env:
-          SITE_URL: ${{ steps.pages.outputs.origin }}
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          SITE_URL: https://mj-foundry.github.io
+          BASE_PATH: /app-showcase/
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          # Preserve PR-preview subfolders that already live on this branch —
+          # without this, every production deploy would wipe them out.
+          keep_files: true
