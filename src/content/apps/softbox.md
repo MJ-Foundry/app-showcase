@@ -2,15 +2,17 @@
 title: Softbox
 tagline: Turn your phone into a photographer's softbox.
 description: A full-screen fill light for photos and video — pick any color, dial in the intensity, and save the setups you reach for most.
-icon: sun
+icon: /icons/softbox.png
 accent: ['#f59e0b', '#fcd34d']
 platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-brightness', 'AsyncStorage']
 tags: ['photography', 'lighting', 'utility']
-status: 'Coming Soon'
+status: 'Live'
 featured: true
 order: 1
-updated: 2026-07-30
+updated: 2026-08-12
+links:
+  playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.softbox'
 features:
   - 'Full-screen light surface in any color you pick'
   - 'Dual-color mode with split, stripe and gradient patterns'

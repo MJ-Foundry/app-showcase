@@ -38,6 +38,7 @@ const apps = defineCollection({
         demo: z.string().url().optional(),
         repo: z.string().url().optional(),
         website: z.string().url().optional(),
+        playStore: z.string().url().optional(),
       })
       .default({}),
 

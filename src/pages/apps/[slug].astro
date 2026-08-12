@@ -20,12 +20,17 @@ const all = await getApps();
 const related = relatedApps(app, all);
 const { Content } = await render(app);
 
-const externalLinks = [
-  d.links.demo && { label: 'Live demo', href: d.links.demo, icon: '↗', primary: true },
-  d.links.website && { label: 'Website', href: d.links.website, icon: '↗', primary: !d.links.demo },
-].filter(Boolean) as { label: string; href: string; icon: string; primary: boolean }[];
+// The first link present becomes the primary (bold) CTA; the rest render as
+// secondary ghost buttons.
+const linkCandidates = [
+  d.links.demo && { label: 'Live demo', href: d.links.demo, icon: '↗' },
+  d.links.playStore && { label: 'Get it on Google Play', href: d.links.playStore, icon: 'googlePlay' },
+  d.links.website && { label: 'Website', href: d.links.website, icon: '↗' },
+].filter(Boolean) as { label: string; href: string; icon: string }[];
+const externalLinks = linkCandidates.map((l, i) => ({ ...l, primary: i === 0 }));
 
 const [from, to] = d.accent;
+const isIconImage = d.icon.startsWith('/');
 ---
 
 <BaseLayout title={d.title} description={d.description} path={`/apps/${app.id}`} ogType="article">
@@ -52,7 +57,11 @@ const [from, to] = d.accent;
               rel="noopener noreferrer"
               target="_blank"
             >
-              {l.label} <span aria-hidden="true">{l.icon}</span>
+              {APP_ICONS[l.icon] && (
+                <svg viewBox="0 0 24 24" width="15" height="15" set:html={APP_ICONS[l.icon]} aria-hidden="true" />
+              )}
+              {l.label}
+              {!APP_ICONS[l.icon] && <span aria-hidden="true">{l.icon}</span>}
             </a>
           ))}
         </div>
@@ -70,7 +79,9 @@ const [from, to] = d.accent;
             {d.screenshots.map((s, i) => (
               <figure class="shot" style={`--from:${from}; --to:${to};`}>
                 <div class="shot__frame" role="img" aria-label={s.alt}>
-                  {APP_ICONS[d.icon] ? (
+                  {isIconImage ? (
+                    <img class="shot__glyph-img" src={withBase(d.icon)} alt="" />
+                  ) : APP_ICONS[d.icon] ? (
                     <svg class="shot__glyph-svg" viewBox="0 0 24 24" set:html={APP_ICONS[d.icon]} />
                   ) : (
                     <span class="shot__glyph" aria-hidden="true">{d.icon}</span>
@@ -185,6 +196,7 @@ const [from, to] = d.accent;
   }
   .shot__glyph { font-size: 3.5rem; opacity: 0.35; }
   .shot__glyph-svg { width: 3.5rem; height: 3.5rem; color: var(--from); opacity: 0.35; }
+  .shot__glyph-img { width: 3.5rem; height: 3.5rem; border-radius: 0.85rem; opacity: 0.35; }
   .shot__badge {
     position: absolute; bottom: 0.75rem; left: 0.75rem; font-size: 0.7rem; font-weight: 600;
     padding: 0.25rem 0.6rem; border-radius: 999px; background: color-mix(in srgb, var(--color-surface) 85%, transparent);
