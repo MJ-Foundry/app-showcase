@@ -40,15 +40,19 @@ const isIconImage = d.icon.startsWith('/');
     <div class="container-page relative">
       <a href={withBase('/apps')} class="reveal back-link">← All apps</a>
 
-      <div class="reveal delay-1 mt-6 flex flex-col gap-6 md:flex-row md:items-center">
-        <AppIcon icon={d.icon} accent={d.accent} size="h-20 w-20 text-4xl" class="rounded-2xl" />
-        <div class="min-w-0 flex-1">
-          <h1 class="text-4xl tracking-tight md:text-5xl">{d.title}</h1>
-          <p class="mt-3 max-w-2xl text-lg text-[var(--color-muted)]">{d.tagline}</p>
+      <!-- Same grid template as the content area below (gap-12, lg:grid-cols-[1fr_18rem])
+           so the CTA lines up exactly with the Details sidebar's left edge. -->
+      <div class="reveal delay-1 mt-6 grid gap-12 lg:grid-cols-[1fr_18rem] lg:items-start">
+        <div class:list={['flex flex-col gap-6 sm:flex-row sm:items-center', externalLinks.length === 0 && 'lg:col-span-2']}>
+          <AppIcon icon={d.icon} accent={d.accent} size="h-20 w-20 text-4xl" class="rounded-2xl" />
+          <div class="min-w-0 flex-1">
+            <h1 class="text-4xl tracking-tight md:text-5xl">{d.title}</h1>
+            <p class="mt-3 max-w-2xl text-lg text-[var(--color-muted)]">{d.tagline}</p>
+          </div>
         </div>
 
         {externalLinks.length > 0 && (
-          <div class="reveal delay-2 flex flex-wrap gap-3 md:flex-none">
+          <div class="reveal delay-2 flex flex-col justify-self-start gap-3">
             {externalLinks.map((l) => (
               <a
                 href={l.href}

@@ -9,6 +9,8 @@ export const SITE = {
   author: 'MJ Foundry',
   /** Destination address for the contact form. */
   contactEmail: 'mjfoundry.support@gmail.com',
+  /** MJ Foundry's Google Play developer page, listing every published app. */
+  googlePlayUrl: 'https://play.google.com/store/apps/developer?id=MJ+Foundry',
 } as const;
 
 export type NavLink = { label: string; href: string; external?: boolean };
