@@ -46,26 +46,26 @@ const isIconImage = d.icon.startsWith('/');
           <h1 class="text-4xl tracking-tight md:text-5xl">{d.title}</h1>
           <p class="mt-3 max-w-2xl text-lg text-[var(--color-muted)]">{d.tagline}</p>
         </div>
-      </div>
 
-      {externalLinks.length > 0 && (
-        <div class="reveal delay-2 mt-7 flex flex-wrap gap-3">
-          {externalLinks.map((l) => (
-            <a
-              href={l.href}
-              class:list={['btn', l.primary ? 'btn-primary' : 'btn-ghost']}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {APP_ICONS[l.icon] && (
-                <svg viewBox="0 0 24 24" width="15" height="15" set:html={APP_ICONS[l.icon]} aria-hidden="true" />
-              )}
-              {l.label}
-              {!APP_ICONS[l.icon] && <span aria-hidden="true">{l.icon}</span>}
-            </a>
-          ))}
-        </div>
-      )}
+        {externalLinks.length > 0 && (
+          <div class="reveal delay-2 flex flex-wrap gap-3 md:flex-none">
+            {externalLinks.map((l) => (
+              <a
+                href={l.href}
+                class:list={['btn', l.primary ? 'btn-primary' : 'btn-ghost']}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {APP_ICONS[l.icon] && (
+                  <svg viewBox="0 0 24 24" width="15" height="15" set:html={APP_ICONS[l.icon]} aria-hidden="true" />
+                )}
+                {l.label}
+                {!APP_ICONS[l.icon] && <span aria-hidden="true">{l.icon}</span>}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   </section>
 
