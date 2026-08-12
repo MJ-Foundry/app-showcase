@@ -42,7 +42,7 @@ const isIconImage = d.icon.startsWith('/');
 
       <!-- Same grid template as the content area below (gap-12, lg:grid-cols-[1fr_18rem])
            so the CTA lines up exactly with the Details sidebar's left edge. -->
-      <div class="reveal delay-1 mt-6 grid gap-12 lg:grid-cols-[1fr_18rem] lg:items-start">
+      <div class="reveal delay-1 mt-6 grid gap-6 lg:gap-12 lg:grid-cols-[1fr_18rem] lg:items-start">
         <div class:list={['flex flex-col gap-6 sm:flex-row sm:items-center', externalLinks.length === 0 && 'lg:col-span-2']}>
           <AppIcon icon={d.icon} accent={d.accent} size="h-20 w-20 text-4xl" class="rounded-2xl" />
           <div class="min-w-0 flex-1">
