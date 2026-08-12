@@ -4,7 +4,7 @@ tagline: Turn your phone into a photographer's softbox.
 description: A full-screen fill light for photos and video — pick any color, dial in the intensity, and save the setups you reach for most.
 icon: /icons/softbox.png
 accent: ['#f59e0b', '#fcd34d']
-platforms: ['iOS', 'Android']
+platforms: ['Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-brightness', 'AsyncStorage']
 tags: ['photography', 'lighting', 'utility']
 status: 'Live'

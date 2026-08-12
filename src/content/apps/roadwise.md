@@ -8,8 +8,8 @@ platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['education', 'driving', 'quiz']
 status: 'Coming Soon'
-featured: false
-order: 8
+featured: true
+order: 2
 updated: 2026-08-08
 features:
   - 'Multiple-choice quiz covering 169 Swedish road signs (categories A–E, J)'

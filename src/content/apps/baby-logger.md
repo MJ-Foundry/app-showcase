@@ -8,7 +8,7 @@ platforms: ['Web', 'Android']
 tech: ['React 19', 'Vite', 'PWA', 'Supabase', 'IndexedDB']
 tags: ['baby', 'offline-first', 'realtime']
 status: 'Coming Soon'
-featured: true
+featured: false
 order: 2
 updated: 2026-07-16
 features:
