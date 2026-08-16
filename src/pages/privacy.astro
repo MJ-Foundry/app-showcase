@@ -9,66 +9,62 @@ const sections = [
   {
     heading: 'Introduction',
     body: [
-      `This Privacy Policy explains how ${SITE.name} handles information in connection with the mobile applications we publish. We wrote this policy to be as short as it honestly can be — our apps are built to run entirely on your device, and there is very little to explain as a result.`,
+      `This Privacy Policy explains how ${SITE.name} handles information in connection with the mobile applications we publish. Our apps are designed to keep as much as possible on your device, and most of their functionality works locally.`,
+      'For details about a particular app, including whether it works offline or collects usage data, please see the app’s privacy section.',
     ],
   },
   {
     heading: 'Information We Collect',
     body: [
-      'We do not collect any personal information. Our apps do not require you to create an account, and they do not ask you for your name, your email address or your location.',
-      'Unless you turn on the optional statistics described below, our apps transmit nothing to us or to any third party, because we operate no servers to receive it.',
-      'Some of our apps offer optional anonymous usage statistics. These are switched off unless you turn them on, and if you never do, nothing is collected or transmitted at all. If you do turn them on, we receive app events — such as a screen being opened, or a quiz being started and finished — together with the standard technical details that come with them: app version, device model, operating system version, and the country your connection appears to come from. The only identifier attached is a random one the app creates on your device. It is not derived from you or your hardware, and it does not survive a reinstall.',
-      'Anything you create or configure within an app — such as saved settings, preferences, or content — is stored only in local storage on your own device and is never transmitted anywhere.',
+      'Our apps do not require an account and do not ask you for your name, email address, or other directly identifying information.',
+      'Some apps may offer optional usage statistics. If you choose to enable them, we collect information about how the app is used, such as when the app is opened and which features are used. The analytics service may also collect limited technical information such as app version, device type, operating system version, language, and approximate location derived from your network connection.',
+      'Anything you create or configure within an app — such as saved settings, preferences, or content — is stored locally on your device unless the app’s privacy section says otherwise.',
     ],
   },
   {
     heading: 'How We Use Information',
     body: [
-      'Where you have turned usage statistics on, we use them for one thing: understanding which parts of an app people actually reach, so we can make it better.',
-      'We never sell, rent or trade information about you. Not to anyone, for any purpose, and never for advertising. The only party the statistics are shared with at all is the processor named under Third-Party Services, who may act on nothing but our instructions.',
-      'Where an app uses an on-device capability (for example, adjusting your screen’s brightness) to provide its core functionality, that access happens locally, in the moment, and is never recorded or sent off your device.',
+      'We use usage statistics to understand how our apps are used, which features are useful, and where we can improve them. We do not sell this information or use it for advertising.',
+      'Information used by an app’s core functionality, such as adjusting your screen’s brightness, is processed locally on your device.',
     ],
   },
   {
     heading: 'Third-Party Services',
     body: [
-      'Our apps contain no advertising, tracking or attribution SDKs of any kind. Where an app offers the optional usage statistics described above, they are collected by Google Analytics for Firebase, acting as our processor on our instructions. Google may process this data on servers outside the EU and EEA; that transfer relies on Google’s standard data processing terms, the European Commission’s Standard Contractual Clauses, and Google’s certification under the EU–US Data Privacy Framework.',
-      'If you download an app from a store such as Google Play or the Apple App Store, that store may independently collect information under its own privacy policy (for example, download counts or aggregate crash statistics). That collection is governed by the store’s policy, not ours, and we only ever see the aggregate figures the store makes available to any developer.',
+      'Some apps may use Google Analytics for Firebase to provide optional usage statistics. Google processes this information as part of providing the analytics service. Information collected through Firebase Analytics may be processed on servers outside the EU/EEA.',
+      'If you download an app from a store such as Google Play, that store may collect information according to its own privacy policy. We do not control how those stores process your information.',
     ],
   },
   {
     heading: 'Data Storage and Security',
     body: [
-      'Data an app stores locally on your device is protected by your device’s own operating system and security features. Uninstalling an app removes its locally stored data.',
-      'Usage statistics, where you have enabled them, are sent over an encrypted connection and kept for two months, after which they are deleted automatically. We keep no copy of our own.',
+      'Data stored locally by an app is protected by your device’s operating system and security features.',
+      'Where usage statistics are enabled, information is transmitted to the analytics service using encrypted connections and is stored according to the service’s applicable retention policies.',
     ],
   },
   {
     heading: 'Children’s Privacy',
     body: [
-      'Our apps are not directed at children under 13, and we do not knowingly collect personal information from anyone, of any age. The optional statistics described above are anonymous and are only collected after someone has actively turned them on.',
+      'Our apps are not directed specifically at children, and we do not knowingly collect directly identifying personal information from children.',
     ],
   },
   {
-    heading: 'Your Choices and Your Rights',
+    heading: 'Your Choices',
     body: [
-      'You can turn optional statistics on or off at any time in the app’s settings. Turning them off stops collection immediately and discards the random identifier.',
-      'Where we process data at all, our legal basis is your consent — Article 6(1)(a) of the GDPR. You can withdraw it at any time, without giving a reason, and withdrawing is as easy as giving it.',
-      'You have the right to ask what data we hold about you, to receive a copy of it, to have it corrected or deleted, and to restrict or object to its processing. Because the statistics are not tied to your identity, the app’s settings screen shows the random identifier for your installation — send us that identifier and we can find and delete the matching records. Without it we genuinely cannot tell your data apart from anyone else’s.',
-      `Email ${SITE.contactEmail} and we will answer within 30 days. If you are not satisfied with our answer, you can complain to your national data protection authority; in Sweden that is Integritetsskyddsmyndigheten (IMY).`,
-      'For apps that collect nothing, there is nothing for us to let you access, correct or delete — any data those apps hold is already local to your device and fully within your control, including deletion, by uninstalling the app.',
+      'Where an app offers optional usage statistics, you can choose whether to enable them. You can also turn them off at any time in the app’s settings.',
+      'Where we process personal data based on consent, you can withdraw your consent at any time.',
     ],
   },
   {
     heading: 'Changes to This Policy',
     body: [
-      'If we release an app that works differently — for example, one that introduces an optional account or sync feature — we will update this policy before that app ships, and revise the date above accordingly.',
+      'If we make changes to how an app handles information, we will update this policy as needed. The date at the top of this page shows when it was last updated.',
     ],
   },
   {
     heading: 'Contact Us',
     body: [
-      `${SITE.name} is the data controller for any personal data described in this policy. If you have questions about it, or want to exercise any of the rights above, email us at ${SITE.contactEmail}.`,
+      `${SITE.name} is responsible for the processing of personal data described in this policy. If you have questions about privacy or how we handle information, email us at ${SITE.contactEmail}.`,
     ],
   },
 ];
@@ -76,7 +72,7 @@ const sections = [
 
 <BaseLayout
   title="Privacy Policy"
-  description={`How ${SITE.author} apps handle your data — most collect nothing, and where they do it is optional and anonymous.`}
+  description={`How ${SITE.author} apps handle your data — most stays on your device, and usage statistics are optional.`}
   path="/privacy"
 >
   <section class="container-page pt-16 pb-4">
