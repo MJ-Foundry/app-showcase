@@ -26,6 +26,16 @@ const apps = defineCollection({
     /** At most 3 — keeps cards scannable. */
     tags: z.array(z.string()).max(3).default([]),
 
+    /* --- Privacy -------------------------------------------------------- */
+    /**
+     * One short line about what this app does with data, shown in a card on the
+     * app's detail page. The privacy policy itself stays general — this is
+     * where the per-app specifics live.
+     *
+     * e.g. 'No data collected' · 'Anonymous usage statistics, off by default'
+     */
+    dataCollection: z.string().default('No data collected'),
+
     /* --- Status & meta -------------------------------------------------- */
     status: z.enum(['Live', 'Coming Soon']),
     featured: z.boolean().default(false),

@@ -3,7 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { SITE } from '@lib/site';
 
 // Bump this when the policy text materially changes.
-const lastUpdated = 'August 4, 2026';
+const lastUpdated = 'August 16, 2026';
 
 const sections = [
   {
@@ -15,39 +15,46 @@ const sections = [
   {
     heading: 'Information We Collect',
     body: [
-      'We do not collect any personal information. Our apps do not require you to create an account, and they do not transmit data to us or to any third party, because we operate no servers to receive it.',
+      'We do not collect any personal information. Our apps do not require you to create an account, and they do not ask you for your name, your email address or your location.',
+      'Some of our apps offer optional anonymous usage statistics. These are switched off unless you turn them on, and if you never do, nothing is collected or transmitted at all. If you do turn them on, we receive app events — such as a screen being opened, or a quiz being started and finished — together with the standard technical details that come with them: app version, device model, operating system version, and the country your connection appears to come from. The only identifier attached is a random one the app creates on your device. It is not derived from you or your hardware, and it does not survive a reinstall.',
       'Anything you create or configure within an app — such as saved settings, preferences, or content — is stored only in local storage on your own device and is never transmitted anywhere.',
     ],
   },
   {
     heading: 'How We Use Information',
     body: [
-      'Because we do not collect any information, we do not use, sell, rent, or share any information about you. Where an app uses an on-device capability (for example, adjusting your screen’s brightness) to provide its core functionality, that access happens locally, in the moment, and is never recorded or sent off your device.',
+      'Where you have turned usage statistics on, we use them for one thing: understanding which parts of an app people actually reach, so we can make it better. We do not sell, rent or trade information about you, and we never use it for advertising.',
+      'Where an app uses an on-device capability (for example, adjusting your screen’s brightness) to provide its core functionality, that access happens locally, in the moment, and is never recorded or sent off your device.',
     ],
   },
   {
     heading: 'Third-Party Services',
     body: [
-      'Our apps do not integrate analytics, advertising, tracking, or crash-reporting SDKs of any kind.',
+      'Our apps contain no advertising, tracking or attribution SDKs of any kind. Where an app offers the optional usage statistics described above, they are collected by Google Analytics for Firebase, acting as our processor on our instructions. Google may process this data on servers outside the EU and EEA; that transfer relies on Google’s standard data processing terms, the European Commission’s Standard Contractual Clauses, and Google’s certification under the EU–US Data Privacy Framework.',
       'If you download an app from a store such as Google Play or the Apple App Store, that store may independently collect information under its own privacy policy (for example, download counts or aggregate crash statistics). That collection is governed by the store’s policy, not ours, and we only ever see the aggregate figures the store makes available to any developer.',
     ],
   },
   {
     heading: 'Data Storage and Security',
     body: [
-      'Since no information is transmitted to or stored by us, there is no server-side data for us to secure. Data an app stores locally on your device is protected by your device’s own operating system and security features. Uninstalling an app removes its locally stored data.',
+      'Data an app stores locally on your device is protected by your device’s own operating system and security features. Uninstalling an app removes its locally stored data.',
+      'Usage statistics, where you have enabled them, are sent over an encrypted connection and kept for two months, after which they are deleted automatically. We keep no copy of our own.',
     ],
   },
   {
     heading: 'Children’s Privacy',
     body: [
-      'Our apps do not knowingly collect personal information from anyone, including children under 13. Because we collect no personal information from any user, none is collected from children either.',
+      'Our apps are not directed at children under 13, and we do not knowingly collect personal information from anyone, of any age. The optional statistics described above are anonymous and are only collected after someone has actively turned them on.',
     ],
   },
   {
-    heading: 'Your Choices',
+    heading: 'Your Choices and Your Rights',
     body: [
-      'Because no personal information is collected, there is nothing for us to let you access, correct, or delete on your behalf — any data an app holds is already local to your device and fully within your control, including deletion, by uninstalling the app.',
+      'You can turn optional statistics on or off at any time in the app’s settings. Turning them off stops collection immediately and discards the random identifier.',
+      'Where we process data at all, our legal basis is your consent — Article 6(1)(a) of the GDPR. You can withdraw it at any time, without giving a reason, and withdrawing is as easy as giving it.',
+      'You have the right to ask what data we hold about you, to receive a copy of it, to have it corrected or deleted, and to restrict or object to its processing. Because the statistics are not tied to your identity, the app’s settings screen shows the random identifier for your installation — send us that identifier and we can find and delete the matching records. Without it we genuinely cannot tell your data apart from anyone else’s.',
+      `Email ${SITE.contactEmail} and we will answer within 30 days. If you are not satisfied with our answer, you can complain to your national data protection authority; in Sweden that is Integritetsskyddsmyndigheten (IMY).`,
+      'For apps that collect nothing, there is nothing for us to let you access, correct or delete — any data those apps hold is already local to your device and fully within your control, including deletion, by uninstalling the app.',
     ],
   },
   {
@@ -59,7 +66,7 @@ const sections = [
   {
     heading: 'Contact Us',
     body: [
-      `If you have questions about this policy, email us at ${SITE.contactEmail}.`,
+      `${SITE.name} is the data controller for any personal data described in this policy. If you have questions about it, or want to exercise any of the rights above, email us at ${SITE.contactEmail}.`,
     ],
   },
 ];
@@ -67,7 +74,7 @@ const sections = [
 
 <BaseLayout
   title="Privacy Policy"
-  description={`How ${SITE.author} apps handle your data — the short answer is they don’t collect it.`}
+  description={`How ${SITE.author} apps handle your data — most collect nothing, and where they do it is optional and anonymous.`}
   path="/privacy"
 >
   <section class="container-page pt-16 pb-4">

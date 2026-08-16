@@ -7,6 +7,7 @@ accent: ['#BF0C1D', '#F5A3AC']
 platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['education', 'driving', 'quiz']
+dataCollection: 'Anonymous usage statistics, off by default'
 status: 'Coming Soon'
 featured: true
 order: 2

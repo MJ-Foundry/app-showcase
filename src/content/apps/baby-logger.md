@@ -7,6 +7,7 @@ accent: ['#7658f0', '#937bfb']
 platforms: ['Web', 'Android']
 tech: ['React 19', 'Vite', 'PWA', 'Supabase', 'IndexedDB']
 tags: ['baby', 'offline-first', 'realtime']
+dataCollection: 'Account and sync between parents'
 status: 'Coming Soon'
 featured: false
 order: 2

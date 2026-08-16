@@ -166,6 +166,18 @@ const isIconImage = d.icon.startsWith('/');
           </div>
         )}
       </div>
+
+      {/* Per-app data practices. The privacy policy is general on purpose, so
+          this card is where an app says what it specifically does. */}
+      <div class="card p-5 mt-4">
+        <h2 class="side-title">Privacy</h2>
+        <dl class="side-list">
+          <div><dt>Data</dt><dd>{d.dataCollection}</dd></div>
+        </dl>
+        <div class="side-block">
+          <a href={withBase('/privacy')} class="text-sm">Privacy policy →</a>
+        </div>
+      </div>
     </aside>
   </div>
 
