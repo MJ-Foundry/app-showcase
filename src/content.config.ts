@@ -26,6 +26,20 @@ const apps = defineCollection({
     /** At most 3 — keeps cards scannable. */
     tags: z.array(z.string()).max(3).default([]),
 
+    /* --- Privacy -------------------------------------------------------- */
+    /**
+     * Shown in a Privacy card on the app's detail page. The privacy policy
+     * itself stays general — this is where the per-app specifics live.
+     *
+     * All four default to what is true of most of our apps, so an app that
+     * collects nothing, works offline, needs no account and has no ads needs no
+     * frontmatter at all. Override only what differs.
+     */
+    dataCollection: z.string().default('No data collected'),
+    internet: z.string().default('Works offline'),
+    account: z.string().default('Not required'),
+    ads: z.string().default('None'),
+
     /* --- Status & meta -------------------------------------------------- */
     status: z.enum(['Live', 'Coming Soon']),
     featured: z.boolean().default(false),

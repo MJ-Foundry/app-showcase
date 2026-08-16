@@ -3,63 +3,72 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { SITE } from '@lib/site';
 
 // Bump this when the policy text materially changes.
-const lastUpdated = 'August 4, 2026';
+const lastUpdated = 'August 16, 2026';
 
 const sections = [
   {
     heading: 'Introduction',
     body: [
-      `This Privacy Policy explains how ${SITE.name} handles information in connection with the mobile applications we publish. We wrote this policy to be as short as it honestly can be — our apps are built to run entirely on your device, and there is very little to explain as a result.`,
+      `This Privacy Policy explains how ${SITE.name} handles information in connection with the mobile applications we publish. Our apps are designed to keep as much as possible on your device, and most of their functionality works locally.`,
+      'For details about a particular app, including whether it works offline or collects usage data, please see the app’s privacy section.',
     ],
   },
   {
     heading: 'Information We Collect',
     body: [
-      'We do not collect any personal information. Our apps do not require you to create an account, and they do not transmit data to us or to any third party, because we operate no servers to receive it.',
-      'Anything you create or configure within an app — such as saved settings, preferences, or content — is stored only in local storage on your own device and is never transmitted anywhere.',
+      'Our apps do not require an account and do not ask you for your name, email address, or other directly identifying information.',
+      'Some apps may offer optional usage statistics. If you choose to enable them, we collect information about how the app is used, such as when the app is opened and which features are used. The analytics service may also collect limited technical information such as app version, device type, operating system version, language, and the country your connection appears to come from.',
+      'The analytics service also attaches a random identifier for your installation. It is not derived from you or your device, is not shared with any other app, and does not survive reinstalling. We hold nothing that links it to you, and we do not try to.',
+      'Anything you create or configure within an app — such as saved settings, preferences, or content — is stored locally on your device unless the app’s privacy section says otherwise.',
     ],
   },
   {
     heading: 'How We Use Information',
     body: [
-      'Because we do not collect any information, we do not use, sell, rent, or share any information about you. Where an app uses an on-device capability (for example, adjusting your screen’s brightness) to provide its core functionality, that access happens locally, in the moment, and is never recorded or sent off your device.',
+      'We use usage statistics to understand how our apps are used, which features are useful, and where we can improve them. We do not sell this information or use it for advertising.',
+      'Information used by an app’s core functionality, such as adjusting your screen’s brightness, is processed locally on your device.',
     ],
   },
   {
     heading: 'Third-Party Services',
     body: [
-      'Our apps do not integrate analytics, advertising, tracking, or crash-reporting SDKs of any kind.',
-      'If you download an app from a store such as Google Play or the Apple App Store, that store may independently collect information under its own privacy policy (for example, download counts or aggregate crash statistics). That collection is governed by the store’s policy, not ours, and we only ever see the aggregate figures the store makes available to any developer.',
+      'Some apps may use Google Analytics for Firebase to provide optional usage statistics. Google processes this information as part of providing the analytics service. Information collected through Firebase Analytics may be processed on servers outside the EU/EEA, relying on the European Commission’s Standard Contractual Clauses and Google’s certification under the EU–US Data Privacy Framework.',
+      'If you download an app from a store such as Google Play, that store may collect information according to its own privacy policy. We do not control how those stores process your information.',
     ],
   },
   {
     heading: 'Data Storage and Security',
     body: [
-      'Since no information is transmitted to or stored by us, there is no server-side data for us to secure. Data an app stores locally on your device is protected by your device’s own operating system and security features. Uninstalling an app removes its locally stored data.',
+      'Data stored locally by an app is protected by your device’s operating system and security features.',
+      'Where usage statistics are enabled, information is transmitted to the analytics service using encrypted connections and is retained for two months, after which it is deleted automatically.',
     ],
   },
   {
     heading: 'Children’s Privacy',
     body: [
-      'Our apps do not knowingly collect personal information from anyone, including children under 13. Because we collect no personal information from any user, none is collected from children either.',
+      'Our apps are not directed specifically at children, and we do not knowingly collect directly identifying personal information from children.',
     ],
   },
   {
-    heading: 'Your Choices',
+    heading: 'Your Choices and Rights',
     body: [
-      'Because no personal information is collected, there is nothing for us to let you access, correct, or delete on your behalf — any data an app holds is already local to your device and fully within your control, including deletion, by uninstalling the app.',
+      'Usage statistics are optional. You can choose whether to enable them when you first use the app, and you can change your choice at any time in the app’s settings.',
+      'For optional usage statistics, your consent is the legal basis for processing. You can withdraw your consent at any time. Turning statistics off stops further analytics collection. Withdrawing is as easy as giving it, and it does not affect processing that already took place.',
+      'The usage statistics we collect are not linked by us to your name, account, email address, or other information that allows us to identify you as an individual. Because we cannot identify an individual user from these statistics, we generally cannot locate or provide specific analytics data relating to you, or delete it on an individual basis. We do not collect additional identifying information solely for this purpose.',
+      'Analytics data is automatically deleted in accordance with our retention settings. Event-level analytics data is currently retained for up to two months.',
+      'If you believe that we have handled your personal data incorrectly, you have the right to lodge a complaint with a data protection authority.',
     ],
   },
   {
     heading: 'Changes to This Policy',
     body: [
-      'If we release an app that works differently — for example, one that introduces an optional account or sync feature — we will update this policy before that app ships, and revise the date above accordingly.',
+      'If we make changes to how an app handles information, we will update this policy as needed. The date at the top of this page shows when it was last updated.',
     ],
   },
   {
     heading: 'Contact Us',
     body: [
-      `If you have questions about this policy, email us at ${SITE.contactEmail}.`,
+      `${SITE.name}, operated by Marcus Wallberg, is the controller of personal data described in this policy. If you have questions about privacy or how we handle information, email us at ${SITE.contactEmail}.`,
     ],
   },
 ];
@@ -67,7 +76,7 @@ const sections = [
 
 <BaseLayout
   title="Privacy Policy"
-  description={`How ${SITE.author} apps handle your data — the short answer is they don’t collect it.`}
+  description={`How ${SITE.author} apps handle your data — most stays on your device, and usage statistics are optional.`}
   path="/privacy"
 >
   <section class="container-page pt-16 pb-4">

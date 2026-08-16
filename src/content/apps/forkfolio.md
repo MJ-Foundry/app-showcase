@@ -7,6 +7,8 @@ accent: ['#d94a6a', '#f78fa7']
 platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['recipes', 'cooking', 'import']
+dataCollection: 'Only the recipe link you paste'
+internet: 'Needed to import recipes'
 status: 'Coming Soon'
 featured: false
 order: 7

@@ -166,6 +166,21 @@ const isIconImage = d.icon.startsWith('/');
           </div>
         )}
       </div>
+
+      {/* Per-app data practices. The privacy policy is general on purpose, so
+          this card is where an app says what it specifically does. */}
+      <div class="card p-5 mt-4">
+        <h2 class="side-title">Privacy</h2>
+        <dl class="side-list">
+          <div><dt>Data</dt><dd class="side-value">{d.dataCollection}</dd></div>
+          <div><dt>Internet</dt><dd class="side-value">{d.internet}</dd></div>
+          <div><dt>Account</dt><dd class="side-value">{d.account}</dd></div>
+          <div><dt>Ads</dt><dd class="side-value">{d.ads}</dd></div>
+        </dl>
+        <div class="side-block">
+          <a href={withBase('/privacy')} class="side-link">Privacy policy →</a>
+        </div>
+      </div>
     </aside>
   </div>
 
@@ -235,6 +250,11 @@ const isIconImage = d.icon.startsWith('/');
   .side-list > div { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   .side-list dt { font-size: 0.9rem; color: var(--color-faint); }
   .side-list dd { font-size: 0.9rem; font-weight: 500; text-align: right; }
+  /* Plain-text values, as opposed to the Status badge: smaller and muted so
+     they read as body copy rather than competing with the labels. */
+  .side-list dd.side-value { font-size: 0.82rem; font-weight: 400; color: var(--color-muted); }
+  .side-link { font-size: 0.82rem; color: var(--color-muted); }
+  .side-link:hover { color: var(--color-ink); }
   .side-block { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--color-line); }
   .side-subtitle { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-faint); margin-bottom: 0.6rem; }
 
