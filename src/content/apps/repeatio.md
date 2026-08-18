@@ -8,7 +8,7 @@ platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-notifications', 'AsyncStorage']
 tags: ['routines', 'reminders', 'household']
 status: 'Coming Soon'
-featured: true
+featured: false
 order: 4
 updated: 2026-07-26
 features:
