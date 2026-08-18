@@ -8,8 +8,8 @@ platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['packing', 'travel', 'checklist']
 status: 'Coming Soon'
-featured: false
-order: 6
+featured: true
+order: 3
 updated: 2026-07-22
 features:
   - 'A separate list for every trip, blank or from a template'
