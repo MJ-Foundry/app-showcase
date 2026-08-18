@@ -222,11 +222,11 @@ const statuses = ['Live', 'Coming Soon'];
       const by = [...visible];
       if (mode === 'name') by.sort((a, b) => (a.dataset.title || '').localeCompare(b.dataset.title || ''));
       else by.sort((a, b) => {
-        // featured first, then recent
+        // featured first, then by curated order (lower = earlier)
         const fa = a.dataset.featured === 'true' ? 1 : 0;
         const fb = b.dataset.featured === 'true' ? 1 : 0;
         if (fa !== fb) return fb - fa;
-        return Number(b.dataset.updated) - Number(a.dataset.updated);
+        return Number(a.dataset.order) - Number(b.dataset.order);
       });
       return by;
     };
