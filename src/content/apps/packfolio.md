@@ -1,6 +1,6 @@
 ---
 title: Packfolio
-tagline: Packing lists you can actually reuse.
+tagline: Build your perfect packing list once. Use it every time.
 description: Build a list per trip — blank or seeded from a template — and tick items off as they go into the bag, so the essentials stop getting forgotten.
 icon: /icons/packfolio.png
 accent: ['#f2610d', '#ffb073']
