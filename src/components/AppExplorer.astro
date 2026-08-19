@@ -52,13 +52,13 @@ const statuses = ['Live', 'Coming Soon'];
           aria-expanded="false"
           aria-label="Sort apps"
         >
-          <span data-sort-label>Live first</span>
+          <span data-sort-label>Featured first</span>
           <svg class="select-arrow" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true">
             <path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </button>
         <ul class="select-list" data-sort-list role="listbox" aria-label="Sort apps" hidden>
-          <li class="select-option" role="option" data-value="featured" aria-selected="true" tabindex="0">Live first</li>
+          <li class="select-option" role="option" data-value="featured" aria-selected="true" tabindex="0">Featured first</li>
           <li class="select-option" role="option" data-value="name" aria-selected="false" tabindex="-1">Name (A–Z)</li>
         </ul>
       </div>
@@ -222,7 +222,10 @@ const statuses = ['Live', 'Coming Soon'];
       const by = [...visible];
       if (mode === 'name') by.sort((a, b) => (a.dataset.title || '').localeCompare(b.dataset.title || ''));
       else by.sort((a, b) => {
-        // Live before Coming Soon, then most recently updated
+        // Featured first, then Live before Coming Soon, then most recently updated
+        const fa = a.dataset.featured === 'true' ? 1 : 0;
+        const fb = b.dataset.featured === 'true' ? 1 : 0;
+        if (fa !== fb) return fb - fa;
         const la = a.dataset.status === 'Live' ? 0 : 1;
         const lb = b.dataset.status === 'Live' ? 0 : 1;
         if (la !== lb) return la - lb;
