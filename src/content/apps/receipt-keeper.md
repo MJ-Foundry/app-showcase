@@ -3,7 +3,7 @@ title: Receipt Keeper
 tagline: Every receipt and warranty, a search away.
 description: Photograph a receipt and on-device text recognition reads the store, date and total — so you can search past purchases and get reminded before return windows and warranties run out.
 icon: /icons/receipt-keeper.png
-accent: ['#D97B4A', '#F2A661']
+accent: ['#365A7E', '#6E97C4']
 platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-text-extractor', 'expo-notifications', 'AsyncStorage']
 tags: ['receipts', 'warranties', 'reminders']
