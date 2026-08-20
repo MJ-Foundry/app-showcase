@@ -12,6 +12,8 @@ status: 'Live'
 featured: true
 order: 2
 updated: 2026-08-16
+links:
+  playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.roadwise'
 features:
   - 'Multiple-choice quiz covering 237 Swedish road signs (categories A–E, G, H and J)'
   - 'A daily streak to keep you coming back'
