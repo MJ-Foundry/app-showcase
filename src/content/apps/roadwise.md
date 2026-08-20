@@ -8,7 +8,7 @@ platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage', 'Firebase Analytics']
 tags: ['education', 'driving', 'quiz']
 dataCollection: 'Anonymous usage statistics, off by default'
-status: 'Coming Soon'
+status: 'Live'
 featured: true
 order: 2
 updated: 2026-08-16
