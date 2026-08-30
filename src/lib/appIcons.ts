@@ -79,6 +79,21 @@ export const APP_ICONS: Record<string, string> = {
     <circle cx="12" cy="8.3" r="0.9" fill="currentColor" />
     <path d="M12 11v5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
   `,
+  // Trigon's mark: a six-point ring with the fatal triangle closed on three of
+  // them — the game in one glance. The other three points stay dimmed.
+  triangle: `
+    <g fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.45">
+      <circle cx="18.9" cy="8" r="1.1" />
+      <circle cx="12" cy="20" r="1.1" />
+      <circle cx="5.1" cy="8" r="1.1" />
+    </g>
+    <polygon points="12,4 18.9,16 5.1,16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+    <g fill="currentColor">
+      <circle cx="12" cy="4" r="1.7" />
+      <circle cx="18.9" cy="16" r="1.7" />
+      <circle cx="5.1" cy="16" r="1.7" />
+    </g>
+  `,
   // Google Play mark (Simple Icons, CC0) — used for "Get it on Google Play"
   // links and the homepage's platform stat. Filled rather than stroked, so
   // it doesn't follow the stroke-width="currentColor" convention above.
