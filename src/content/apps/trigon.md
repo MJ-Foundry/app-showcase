@@ -9,7 +9,7 @@ tech: ['React Native', 'Expo SDK 54', 'expo-router', 'Reanimated', 'react-native
 tags: ['game', 'strategy', 'two-player']
 status: 'Coming Soon'
 featured: false
-order: 6
+order: 0
 updated: 2026-08-30
 features:
   - 'Play on one phone, passing it back and forth, or against the computer'

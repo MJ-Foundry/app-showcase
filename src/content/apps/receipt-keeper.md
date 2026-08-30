@@ -9,7 +9,7 @@ tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-text-extractor', 'exp
 tags: ['receipts', 'warranties', 'reminders']
 status: 'Coming Soon'
 featured: false
-order: 8
+order: 1
 updated: 2026-08-19
 features:
   - 'Scan or photograph any receipt or warranty in seconds'
