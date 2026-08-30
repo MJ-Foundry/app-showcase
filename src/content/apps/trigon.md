@@ -3,7 +3,7 @@ title: Trigon
 tagline: Don't make a triangle.
 description: A quick two-player game — take turns drawing lines between six dots, and whoever first closes a triangle with their own lines loses.
 icon: /icons/trigon.png
-accent: ['#0B7A70', '#37E6D4']
+accent: ['#0B0E14', '#37E6D4']
 platforms: ['Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'Reanimated', 'react-native-svg']
 tags: ['game', 'strategy', 'two-player']
