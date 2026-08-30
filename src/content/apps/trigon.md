@@ -2,7 +2,7 @@
 title: Trigon
 tagline: Don't make a triangle.
 description: A two-player game of Sim with a sharper rule — draw lines between six points, and if three of your own ever enclose a triangle (counting wherever they cross), you lose.
-icon: triangle
+icon: /icons/trigon.png
 accent: ['#0B7A70', '#37E6D4']
 platforms: ['Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'Reanimated', 'react-native-svg']
