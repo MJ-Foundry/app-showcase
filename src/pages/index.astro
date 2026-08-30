@@ -12,9 +12,13 @@ const featured = await getFeaturedApps();
 // Only surface upcoming apps that aren't already shown above, so the section
 // stays useful whether one app is coming or every app is.
 const shownAbove = new Set(featured.map((a) => a.id));
-const comingSoon = apps.filter(
-  (a) => a.data.status === 'Coming Soon' && !shownAbove.has(a.id),
-);
+// Show at most this many upcoming apps, in `order`. The list self-fills: when
+// one drops out — it ships, or is featured above — the next in order takes its
+// place, so the section stays full without touching this file.
+const COMING_SOON_LIMIT = 6;
+const comingSoon = apps
+  .filter((a) => a.data.status === 'Coming Soon' && !shownAbove.has(a.id))
+  .slice(0, COMING_SOON_LIMIT);
 
 // App statistics
 const stats = [

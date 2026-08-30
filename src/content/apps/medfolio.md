@@ -9,7 +9,7 @@ tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-notifications', 'expo
 tags: ['medication', 'reminders', 'barcode']
 status: 'Coming Soon'
 featured: false
-order: 5
+order: 8
 updated: 2026-07-23
 features:
   - 'Days-left forecast and estimated run-out date per medication'
