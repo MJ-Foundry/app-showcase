@@ -21,11 +21,10 @@ features:
 related: ['repeatio', 'softbox']
 ---
 
-Two players take turns drawing lines between six points. If three of **your
-own** lines ever close a triangle, you lose — and a corner counts *wherever your
-lines cross*, not only at the dots. That one twist turns the pen-and-paper game
-of [Sim](https://en.wikipedia.org/wiki/Sim_(game)) from a graph puzzle into a
-geometric one.
+Two players take turns drawing lines between six points. If three of your own
+lines ever close a triangle, you lose — and a corner counts wherever your lines
+cross, not only at the dots. That one twist turns the pen-and-paper game of Sim
+from a graph puzzle into a geometric one.
 
 Sim counts only the 20 triangles whose corners are dots; counting crossings too
 brings it to 110, so traps hide everywhere and a game is usually decided in
