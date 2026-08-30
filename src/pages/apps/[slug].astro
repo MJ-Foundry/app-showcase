@@ -31,6 +31,12 @@ const externalLinks = linkCandidates.map((l, i) => ({ ...l, primary: i === 0 }))
 
 const [from, to] = d.accent;
 const isIconImage = d.icon.startsWith('/');
+
+// Split the features into two count-balanced columns (left gets the extra on an
+// odd count) so each column always holds the same number of items — the number
+// of lines a feature wraps to never shifts an item into the other column.
+const half = Math.ceil(d.features.length / 2);
+const featureColumns = [d.features.slice(0, half), d.features.slice(half)].filter((c) => c.length > 0);
 ---
 
 <BaseLayout title={d.title} description={d.description} path={`/apps/${app.id}`} ogType="article">
@@ -109,16 +115,20 @@ const isIconImage = d.icon.startsWith('/');
       {d.features.length > 0 && (
         <section class="mt-14 on-scroll">
           <h2 class="mb-5 text-2xl">Key features</h2>
-          <ul class="feature-list">
-            {d.features.map((f) => (
-              <li>
-                <span class="check" aria-hidden="true">
-                  <svg viewBox="0 0 20 20" width="13" height="13"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-                <span>{f}</span>
-              </li>
+          <div class="feature-cols">
+            {featureColumns.map((col) => (
+              <ul class="feature-list">
+                {col.map((f) => (
+                  <li>
+                    <span class="check" aria-hidden="true">
+                      <svg viewBox="0 0 20 20" width="13" height="13"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
             ))}
-          </ul>
+          </div>
         </section>
       )}
 
@@ -228,12 +238,13 @@ const isIconImage = d.icon.startsWith('/');
   .prose :global(strong) { color: var(--color-ink); font-weight: 600; }
   .prose :global(a) { color: var(--color-iris-600); text-decoration: underline; text-underline-offset: 3px; }
 
-  /* Multi-column, not grid: each item flows to its own height so a wrapped
-     item in one column does not stretch its neighbour and skew the spacing. */
-  .feature-list { columns: 1; column-gap: 2rem; }
-  @media (min-width: 640px) { .feature-list { columns: 2; } }
-  .feature-list li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.98rem; color: var(--color-ink); break-inside: avoid; }
-  .feature-list li:not(:last-child) { margin-bottom: 0.75rem; }
+  /* Two independent column lists (see featureColumns in the frontmatter), not a
+     grid of items: each column flows on its own, so a wrapped item never
+     stretches its neighbour or shifts the count between columns. */
+  .feature-cols { display: grid; gap: 0.75rem 2rem; }
+  @media (min-width: 640px) { .feature-cols { grid-template-columns: 1fr 1fr; align-items: start; } }
+  .feature-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .feature-list li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.98rem; color: var(--color-ink); }
   .check {
     flex: none; display: grid; place-items: center; height: 1.4rem; width: 1.4rem; margin-top: 0.05rem;
     border-radius: 999px; background: var(--color-mint-100); color: var(--color-mint-600);

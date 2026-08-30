@@ -4,7 +4,7 @@ tagline: Build your perfect packing list once. Use it every time.
 description: Build a list per trip — blank or seeded from a template — and tick items off as they go into the bag, so the essentials stop getting forgotten.
 icon: /icons/packfolio.png
 accent: ['#A3A454', '#C7C87F']
-platforms: ['iOS', 'Android']
+platforms: ['Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['packing', 'travel', 'checklist']
 status: 'Coming Soon'
