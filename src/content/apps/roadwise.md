@@ -4,7 +4,7 @@ tagline: Learn road signs, one quiz at a time.
 description: A fast multiple-choice quiz for road signs — a daily streak and per-sign mastery tracking. Starting with Sweden's 237 signs.
 icon: /icons/roadwise.png
 accent: ['#BF0C1D', '#F5A3AC']
-platforms: ['iOS', 'Android']
+platforms: ['Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage', 'Firebase Analytics']
 tags: ['education', 'driving', 'quiz']
 dataCollection: 'Anonymous usage statistics, off by default'
