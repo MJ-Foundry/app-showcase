@@ -7,10 +7,12 @@ accent: ['#A3A454', '#C7C87F']
 platforms: ['Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['packing', 'travel', 'checklist']
-status: 'Coming Soon'
+status: 'Live'
 featured: true
 order: 3
-updated: 2026-07-22
+updated: 2026-09-02
+links:
+  playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.packfolio'
 features:
   - 'A separate list for every trip, blank or from a template'
   - 'Six built-in templates: beach, ski, business, camping, city break, gym bag'
