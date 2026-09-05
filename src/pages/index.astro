@@ -127,6 +127,8 @@ const stats = [
   .stat__platforms { gap: 0.7rem; }
   .platform-icon { display: inline-flex; color: var(--color-ink); transition: transform 0.15s ease; }
   .platform-icon:hover { transform: scale(1.1); }
+  /* Match the optical height of the 2rem stat numbers. */
+  .platform-icon svg, .platform-icon img { height: 1.6rem; width: auto; }
 
   .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.75rem; }
   .kicker { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-peach-500); margin-bottom: 0.5rem; }
