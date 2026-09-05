@@ -109,11 +109,13 @@ const stats = [
 
 <style>
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; padding: 1.5rem 1rem; }
-  .stat { text-align: center; padding: 0.5rem; position: relative; }
+  .stat { display: flex; flex-direction: column; text-align: center; padding: 0.5rem; position: relative; }
   .stat:not(:last-child)::after {
     content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: var(--color-line);
   }
-  .stat__value { font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: var(--color-iris-700); letter-spacing: -0.02em; }
+  /* Push values to the bottom so they align across columns even when a label
+     wraps to two lines on small screens (e.g. "Available now" vs "Platforms"). */
+  .stat__value { margin-top: auto; font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: var(--color-iris-700); letter-spacing: -0.02em; }
   .stat__label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-faint); margin-bottom: 0.35rem; }
   .stat__platforms { display: flex; align-items: center; justify-content: center; gap: 0.7rem; min-height: 2.5rem; }
   .platform-icon { display: inline-flex; color: var(--color-ink); transition: transform 0.15s ease; }
