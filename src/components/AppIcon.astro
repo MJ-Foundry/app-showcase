@@ -53,19 +53,6 @@ const svgShape = isImage ? undefined : APP_ICONS[icon];
     flex: none;
     overflow: hidden;
   }
-  /* In dark mode, lift the tile with a translucent white wash. Because it is
-     additive, near-black accents (trigon, repeatio) become clearly lighter
-     while already-bright tiles barely change — and light mode is untouched.
-     Applies over image tiles too, so the baked-in dark PNG artwork lifts as
-     well. */
-  :global([data-theme='dark']) .app-icon::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.16);
-    pointer-events: none;
-  }
   /* soft inner highlight for a glassy feel — skipped for real icon artwork, which brings its own finish */
   .app-icon:not(.app-icon--image)::after {
     content: '';
