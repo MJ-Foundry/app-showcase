@@ -49,14 +49,22 @@ const svgShape = isImage ? undefined : APP_ICONS[icon];
     border-radius: 1rem;
     background-image: linear-gradient(135deg, var(--from), var(--to));
     color: #fff;
-    /* Hairline ring so the tile's edge always reads, even when the accent is
-       near-black (e.g. trigon) and would otherwise blend into a dark card. */
-    box-shadow: 0 8px 20px -10px var(--from), 0 0 0 1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 20px -10px var(--from);
     flex: none;
     overflow: hidden;
   }
-  :global([data-theme='dark']) .app-icon {
-    box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.14);
+  /* In dark mode, lift the tile with a translucent white wash. Because it is
+     additive, near-black accents (trigon, repeatio) become clearly lighter
+     while already-bright tiles barely change — and light mode is untouched.
+     Applies over image tiles too, so the baked-in dark PNG artwork lifts as
+     well. */
+  :global([data-theme='dark']) .app-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.16);
+    pointer-events: none;
   }
   /* soft inner highlight for a glassy feel — skipped for real icon artwork, which brings its own finish */
   .app-icon:not(.app-icon--image)::after {
