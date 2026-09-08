@@ -73,14 +73,6 @@ export const APP_ICONS: Record<string, string> = {
     <rect x="4" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6" />
     <rect x="13" y="13" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6" />
   `,
-  // Wrapped gift box with a bow — used by giftnook
-  gift: `
-    <rect x="4" y="9.4" width="16" height="10.6" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.6" />
-    <rect x="3" y="6.4" width="18" height="3.4" rx="1" fill="none" stroke="currentColor" stroke-width="1.6" />
-    <path d="M12 6.4V20" fill="none" stroke="currentColor" stroke-width="1.5" />
-    <path d="M12 6.4c-1-2.6-4.6-2.9-4.6-.7 0 1 .9 1.4 2 1.4H12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M12 6.4c1-2.6 4.6-2.9 4.6-.7 0 1-.9 1.4-2 1.4H12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-  `,
   // Info circle — used for the command palette's "About" entry
   info: `
     <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6" />
