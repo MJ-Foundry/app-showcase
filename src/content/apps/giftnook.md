@@ -1,6 +1,6 @@
 ---
 title: Giftnook
-tagline: Every gift idea, ready when it matters.
+tagline: Never forget a gift — or give the same thing twice.
 description: Keep every gift idea, purchase and the details worth remembering about the people in your life — organized by person and occasion, with a to-buy list grouped by store.
 icon: /icons/giftnook.png
 accent: ['#4E7355', '#7DA982']
