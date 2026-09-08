@@ -9,7 +9,7 @@ tech: ['React Native', 'Expo SDK 54', 'expo-router', 'AsyncStorage']
 tags: ['packing', 'travel', 'checklist']
 status: 'Live'
 featured: true
-order: 5
+order: 3
 updated: 2026-09-02
 links:
   playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.packfolio'

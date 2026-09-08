@@ -9,7 +9,7 @@ tech: ['React Native', 'Expo SDK 57', 'expo-router', 'expo-notifications', 'Asyn
 tags: ['routines', 'reminders', 'household']
 status: 'Coming Soon'
 featured: true
-order: 2
+order: 6
 updated: 2026-07-26
 features:
   - 'Interval, weekly, monthly and specific-date recurrence'

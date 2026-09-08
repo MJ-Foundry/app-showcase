@@ -9,7 +9,7 @@ tech: ['React Native', 'Expo SDK 54', 'expo-router', 'Reanimated', 'react-native
 tags: ['game', 'strategy', 'two-player']
 status: 'Live'
 featured: true
-order: 0
+order: 4
 updated: 2026-09-07
 links:
   playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.trigon'
