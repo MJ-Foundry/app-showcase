@@ -7,10 +7,12 @@ accent: ['#0B0E14', '#37E6D4']
 platforms: ['Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'Reanimated', 'react-native-svg']
 tags: ['game', 'strategy', 'two-player']
-status: 'Coming Soon'
+status: 'Live'
 featured: false
 order: 0
-updated: 2026-08-30
+updated: 2026-09-07
+links:
+  playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.trigon'
 features:
   - 'Play on one phone, passing it back and forth, or against the computer'
   - 'Three computer levels — on the hardest it plays perfectly and never slips'
