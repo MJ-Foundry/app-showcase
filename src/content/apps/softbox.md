@@ -9,7 +9,7 @@ tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-brightness', 'AsyncSt
 tags: ['photography', 'lighting', 'utility']
 status: 'Live'
 featured: true
-order: 1
+order: 3
 updated: 2026-08-12
 links:
   playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.softbox'

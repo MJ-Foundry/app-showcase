@@ -8,7 +8,7 @@ platforms: ['Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'Reanimated', 'react-native-svg']
 tags: ['game', 'strategy', 'two-player']
 status: 'Live'
-featured: false
+featured: true
 order: 0
 updated: 2026-09-07
 links:

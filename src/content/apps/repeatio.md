@@ -8,8 +8,8 @@ platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 57', 'expo-router', 'expo-notifications', 'AsyncStorage']
 tags: ['routines', 'reminders', 'household']
 status: 'Coming Soon'
-featured: false
-order: 4
+featured: true
+order: 2
 updated: 2026-07-26
 features:
   - 'Interval, weekly, monthly and specific-date recurrence'

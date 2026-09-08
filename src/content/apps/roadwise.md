@@ -10,7 +10,7 @@ tags: ['education', 'driving', 'quiz']
 dataCollection: 'Anonymous usage statistics, off by default'
 status: 'Live'
 featured: true
-order: 2
+order: 4
 updated: 2026-08-16
 links:
   playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.roadwise'

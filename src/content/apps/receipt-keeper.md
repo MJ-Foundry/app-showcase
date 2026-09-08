@@ -8,7 +8,7 @@ platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-text-extractor', 'expo-notifications', 'AsyncStorage']
 tags: ['receipts', 'warranties', 'reminders']
 status: 'Coming Soon'
-featured: false
+featured: true
 order: 1
 updated: 2026-08-19
 features:
