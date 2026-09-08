@@ -2,8 +2,8 @@
 title: Giftnook
 tagline: Never forget a gift — or give the same thing twice.
 description: Keep every gift idea, purchase and the details worth remembering about the people in your life — organized by person and occasion, with a to-buy list grouped by store.
-icon: /icons/giftnook.png
-accent: ['#4E7355', '#7DA982']
+icon: /icons/giftnook-tile.png
+accent: ['#E8845F', '#F6AE93']
 platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 57', 'expo-router', 'Reanimated', 'AsyncStorage']
 tags: ['gifts', 'occasions', 'planning']
