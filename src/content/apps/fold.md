@@ -7,10 +7,11 @@ accent: ['#1e6f6a', '#5aa39d']
 platforms: ['Android']
 tech: ['TypeScript', 'Phaser 3', 'Vite', 'Capacitor']
 tags: ['game', 'puzzle', 'origami']
+dataCollection: 'Anonymous usage statistics, off by default'
 status: 'Coming Soon'
 featured: false
 order: 3
-updated: 2026-09-10
+updated: 2026-09-20
 features:
   - 'Chapters of levels, each chapter teaching a new way the paper behaves'
   - 'Fold over or under, which decides whether a colour ends up hidden or on top'
@@ -42,3 +43,7 @@ earns a star.
 
 Nothing is timed and nothing is scored. The paper rustles when it settles, the
 phone gives a short tap, and that is the extent of the noise.
+
+The levels and your progress stay on the device, and there is no account and no
+sync. The one thing that can leave the phone is anonymous statistics about how
+far players get, and they stay off until you turn them on.
