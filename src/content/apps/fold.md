@@ -8,10 +8,12 @@ platforms: ['Android']
 tech: ['TypeScript', 'Phaser 3', 'Vite', 'Capacitor']
 tags: ['game', 'puzzle', 'origami']
 dataCollection: 'Anonymous usage statistics, off by default'
-status: 'Coming Soon'
-featured: false
-order: 3
-updated: 2026-09-20
+status: 'Live'
+featured: true
+order: 5
+updated: 2026-10-04
+links:
+  playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.fold'
 features:
   - 'Chapters of levels, each chapter teaching a new way the paper behaves'
   - 'Fold over or under, which decides whether a colour ends up hidden or on top'

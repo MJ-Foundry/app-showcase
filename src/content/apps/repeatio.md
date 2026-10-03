@@ -7,10 +7,12 @@ accent: ['#223D2E', '#5FA07A']
 platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 57', 'expo-router', 'expo-notifications', 'AsyncStorage']
 tags: ['routines', 'reminders', 'household']
-status: 'Coming Soon'
+status: 'Live'
 featured: true
 order: 6
-updated: 2026-07-26
+updated: 2026-10-04
+links:
+  playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.repeatio'
 features:
   - 'Interval, weekly, monthly and specific-date recurrence'
   - 'Floating or fixed anchoring for each schedule'

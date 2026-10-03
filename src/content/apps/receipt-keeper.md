@@ -8,8 +8,8 @@ platforms: ['iOS', 'Android']
 tech: ['React Native', 'Expo SDK 54', 'expo-router', 'expo-text-extractor', 'expo-notifications', 'AsyncStorage']
 tags: ['receipts', 'warranties', 'reminders']
 status: 'Coming Soon'
-featured: true
-order: 5
+featured: false
+order: 0
 updated: 2026-08-19
 features:
   - 'Scan or photograph any receipt or warranty in seconds'
