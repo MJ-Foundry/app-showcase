@@ -16,7 +16,7 @@ features:
   - 'Your hand is part of the game, so a steady hand builds higher'
   - 'Drag a stone sideways and let go to set it down, or hold the button to turn it'
   - 'Every stone is different, with its own shape, colour and grain'
-  - 'Two ways to play: Calm, and Challenge with gusts of wind and rounder stones'
+  - 'Two ways to play: Calm, and Challenge with wedged, rounded, awkward stones'
   - 'A lakeside at dusk, quiet ambient music and the click of stone on stone'
   - 'Share how high you got and see who has stacked the highest'
 related: ['fold', 'trigon']
@@ -37,9 +37,9 @@ light granite and warm sandstone to dark basalt, some with a white quartz vein
 running through them. Flat ones are easy to build on, rounded ones rock, and
 part of the game is choosing where each one goes and how to turn it.
 
-Calm is the game at its simplest: build until the cairn falls. Challenge adds
-gusts of wind that grow stronger the higher you build, a shakier hand, stronger
-tilt and rounder stones, with a record of its own.
+Calm is the game at its simplest: build until the cairn falls. Challenge hands
+you awkward stones instead, wedged, domed and rounded underneath, together with
+a shakier hand and stronger tilt, and keeps a record of its own.
 
 Everything happens on the phone and there is no account. Your best heights are
 saved on the device.
