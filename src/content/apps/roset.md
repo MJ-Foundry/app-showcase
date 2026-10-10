@@ -1,5 +1,5 @@
 ---
-title: Röset
+title: Zen Stones
 tagline: Stack the stones. Keep your hand still.
 description: A calm stone-stacking game where your phone is the ground — tilt it to keep the cairn balanced and stack it as high as you can.
 icon: /icons/roset.png
