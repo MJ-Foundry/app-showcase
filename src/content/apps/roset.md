@@ -7,10 +7,13 @@ accent: ['#2b3d63', '#e9a27a']
 platforms: ['Android']
 tech: ['TypeScript', 'three.js', 'planck.js', 'Vite', 'Capacitor']
 tags: ['game', 'calm', 'physics']
+dataCollection: 'Only your heights and Play Games name, for the leaderboard'
+internet: 'Only for the leaderboard and sharing'
+account: 'Not required, Google Play Games for the leaderboard'
 status: 'Coming Soon'
 featured: false
 order: 7
-updated: 2026-10-09
+updated: 2026-10-11
 features:
   - 'Your phone is the ground: lean it sideways and the whole cairn leans with it'
   - 'Your hand is part of the game, so a steady hand builds higher'
@@ -41,5 +44,6 @@ Calm is the game at its simplest: build until the cairn falls. Challenge hands
 you awkward stones instead, wedged, domed and rounded underneath, together with
 a shakier hand and stronger tilt, and keeps a record of its own.
 
-Everything happens on the phone and there is no account. Your best heights are
-saved on the device.
+The game works offline and needs no account. Your best heights are saved on the
+device. Only if you sign in to Google Play Games are they sent to the
+leaderboard, under your Play Games name.
