@@ -1,0 +1,65 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE } from '@lib/site';
+// The data-deletion page Google Play asks for (Data safety → data deletion link).
+// Not linked from the site; it is reached from the Play listing (Data safety form),
+// so it must stay at this address. Listed in the roset repo's CLAUDE.md.
+const lastUpdated = 'October 11, 2026';
+const sections = [
+  {
+    heading: 'What the game stores',
+    body: [
+      `Zen Stones: Stack & Balance (Röset in Swedish) is a game by ${SITE.name}. The game has no account of its own, and ${SITE.name} does not keep any of your data on its own servers.`,
+      'Your best heights and your settings are stored only on your phone.',
+      'If you sign in to Google Play Games, Google stores your scores together with your Play Games player ID and name, so that they can be shown on the leaderboards.',
+    ],
+  },
+  {
+    heading: 'Delete the data on your phone',
+    body: [
+      'Uninstall the game, or open Settings → Apps → Zen Stones → Storage and choose Clear storage. This deletes your best heights and settings.',
+    ],
+  },
+  {
+    heading: 'Delete your leaderboard scores',
+    body: [
+      'Open your Google Play Games settings and choose to delete your data for Zen Stones. Google then removes your scores from the leaderboards.',
+    ],
+  },
+  {
+    heading: 'What is kept',
+    body: ['Nothing. Everything described above is deleted completely.'],
+  },
+];
+---
+
+<BaseLayout
+  title="Zen Stones – delete your data"
+  description="How to delete the data connected to Zen Stones: Stack & Balance."
+  path="/zen-stones/delete-data"
+>
+  <section class="container-page pt-16 pb-4">
+    <div class="mx-auto max-w-2xl">
+      <p class="kicker">Zen Stones: Stack &amp; Balance · {SITE.name}</p>
+      <h1 class="mt-3 text-4xl md:text-5xl">Delete your data</h1>
+      <p class="mt-4 text-sm text-[var(--color-faint)]">Last updated {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="container-page mt-10 pb-8">
+    <div class="mx-auto max-w-2xl space-y-10">
+      {sections.map((s) => (
+        <div>
+          <h2 class="text-2xl">{s.heading}</h2>
+          {s.body.map((p) => (
+            <p class="mt-3 leading-relaxed text-[var(--color-muted)]">{p}</p>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .kicker { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-peach-500); }
+</style>
