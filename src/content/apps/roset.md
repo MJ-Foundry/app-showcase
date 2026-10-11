@@ -7,7 +7,7 @@ accent: ['#2b3d63', '#e9a27a']
 platforms: ['Android']
 tech: ['TypeScript', 'three.js', 'planck.js', 'Vite', 'Capacitor']
 tags: ['game', 'calm', 'physics']
-dataCollection: 'Leaderboard scores'
+dataCollection: 'Leaderboard scores (optional)'
 internet: 'Not required'
 status: 'Coming Soon'
 featured: false
