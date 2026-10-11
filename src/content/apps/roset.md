@@ -7,9 +7,8 @@ accent: ['#2b3d63', '#e9a27a']
 platforms: ['Android']
 tech: ['TypeScript', 'three.js', 'planck.js', 'Vite', 'Capacitor']
 tags: ['game', 'calm', 'physics']
-dataCollection: 'Only your heights and Play Games name, for the leaderboard'
-internet: 'Only for the leaderboard and sharing'
-account: 'Not required, Google Play Games for the leaderboard'
+dataCollection: 'Leaderboard scores'
+internet: 'Not required'
 status: 'Coming Soon'
 featured: false
 order: 7
