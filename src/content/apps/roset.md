@@ -9,10 +9,12 @@ tech: ['TypeScript', 'three.js', 'planck.js', 'Vite', 'Capacitor']
 tags: ['game', 'calm', 'physics']
 dataCollection: 'Leaderboard scores (optional)'
 internet: 'Not required'
-status: 'Coming Soon'
+status: 'Live'
 featured: false
 order: 7
-updated: 2026-10-11
+updated: 2026-10-14
+links:
+  playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.roset'
 features:
   - 'Your phone is the ground: lean it sideways and the whole cairn leans with it'
   - 'Your hand is part of the game, so a steady hand builds higher'
