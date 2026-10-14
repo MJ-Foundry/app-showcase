@@ -7,10 +7,12 @@ accent: ['#d6687c', '#f6c5cd']
 platforms: ['Android']
 tech: ['TypeScript', 'Phaser 3', 'Vite', 'Capacitor']
 tags: ['game', 'puzzle', 'minesweeper']
-status: 'Coming Soon'
+status: 'Live'
 featured: false
-order: -1
+order: 8
 updated: 2026-10-14
+links:
+  playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.softmine'
 features:
   - 'Four portrait boards, from a gentle 8×10 to a 14×22 expert'
   - 'Every tile is a tall keycap that presses down with a soft, synthesised thock'
