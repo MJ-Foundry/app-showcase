@@ -1,6 +1,6 @@
 ---
 title: Tint
-tagline: Paint by logic, one row at a time.
+tagline: Paint by logic and reveal the picture.
 description: A calm colour nonogram. Every row and column tells you which runs of colour it holds, and painting what they describe slowly reveals a hand-drawn picture.
 icon: /icons/tint.png
 accent: ['#7b4f7d', '#e98270']
@@ -13,7 +13,7 @@ order: -3
 updated: 2026-11-04
 features:
   - '300 hand-drawn pictures in twelve chapters, from 5×5 in one colour to 30×30 in six'
-  - 'Every picture can be solved one line at a time, without guessing, checked by a solver'
+  - 'Every picture can be solved by logic alone, without guessing, checked by a solver'
   - 'Tap a cell or drag along a row to paint, and cross out cells you know are empty'
   - 'Pinch to zoom on the big sheets, with the clues pinned to the edges'
   - 'A hint that fills in the next cell the sheet already implies, and shows why'

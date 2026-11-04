@@ -1,6 +1,6 @@
 ---
 title: Detangle
-tagline: Work the tangle loose, one rope at a time.
+tagline: Pull the ropes apart and let them go.
 description: A calm rope puzzle with real, laid ropes in a walnut tray. Pull them apart with your fingers, tilt the phone to let them slide, and every rope with nothing on top lifts away.
 icon: /icons/detangle.png
 accent: ['#3a2618', '#d09a35']
