@@ -19,7 +19,7 @@ features:
   - 'A new idea in every world, from a sunny meadow to a starry night'
   - 'Pegs, stones, ice, low cave roofs, two birds and a heavy owl'
   - 'No failing: a stick that falls gives its length back, and undo is free'
-  - 'A short demo the first time something new appears, and a hint button for one more stick'
+  - 'A short demo the first time something new appears, and a hint button that shows where the next stick goes'
 related: ['detangle', 'softmine']
 ---
 
