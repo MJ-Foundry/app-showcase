@@ -16,7 +16,7 @@ features:
   - 'Real physics decides whether it holds, so balance and counterweights matter'
   - 'A bird that hops down onto any stick that lies still beneath it'
   - 'A length budget per level, and more stars for using less wood'
-  - '312 levels in 13 worlds, from a sunny meadow to a starry night'
+  - 'A new idea in every world, from a sunny meadow to a starry night'
   - 'Pegs, stones, ice, low cave roofs, two birds and a heavy owl'
   - 'No failing: a stick that falls gives its length back, and undo is free'
   - 'A short demo the first time something new appears, and a hint button for one more stick'
