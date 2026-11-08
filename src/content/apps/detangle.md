@@ -7,14 +7,16 @@ accent: ['#3a2618', '#d09a35']
 platforms: ['Android']
 tech: ['TypeScript', 'three.js', 'Vite', 'Capacitor']
 tags: ['game', 'calm', 'physics']
-status: 'Coming Soon'
+status: 'Live'
 featured: false
 order: -2
-updated: 2026-11-03
+updated: 2026-11-08
+links:
+  playStore: 'https://play.google.com/store/apps/details?id=com.mjfoundry.detangle'
 features:
   - 'Real three-strand ropes that bend, slide and rest on each other'
   - 'Ropes woven over and under: draw a tail back out to set one free'
-  - 'Real overhand knots to loosen and untie'
+  - 'Overhand and figure-eight knots to loosen and untie'
   - 'Tilt or shake the phone and the whole pile slides like on a tray'
   - 'Pull with one finger, or hold with one and pull with the other'
   - 'Endless levels that grow slowly from two ropes to a full basket'
